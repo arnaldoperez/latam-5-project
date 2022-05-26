@@ -19,6 +19,8 @@ class User(db.Model):
         }
 
 class Falla(db.Model):
+
+    __tablename_ = 'falla'
     id = db.Column(db.Integer, primary_key=True)
     descripcion = db.Column(db.String(500), unique=False, nullable=False)  
     modelo = db.Column(db.String(120), unique=False, nullable=False)    
@@ -27,5 +29,19 @@ class Falla(db.Model):
     titulo = db.Column(db.String(100),unique=False, nullable=False)
     estado = db.Column(db.String(5),unique=False, nullable=False)
     ubicacion = db.Column(db.String(200), unique=False, nullable=False)
-    id_cliente = db.Column(db.Integer, nullable=False)
+    id_cliente = db.Column(db.Integer, ForeignKey= 'user.id')
+    usuario = relationship(User)
+
+    def serialize(self):
+        return{
+            "id": self.id,
+            "descripcion" : self.descripcion,
+            "modelo" : self.modelo,
+            "fecha_creacion" : self.fecha_creacion,
+            "fecha_cierre" : self.fecha_cierre,
+            "titulo" : self.titulo,
+            "estado" : self,estado,
+            "ubicacion" : self.ubicacion,
+            "usuario" : self.id_cliente
+            }
 
