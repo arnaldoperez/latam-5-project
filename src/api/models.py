@@ -48,10 +48,11 @@ class Falla(db.Model):
             "fecha_creacion" : self.fecha_creacion,
             "fecha_cierre" : self.fecha_cierre,
             "titulo" : self.titulo,
-            "estado" : self,estado,
+            "estado" : self.estado,
             "ubicacion" : self.ubicacion,
             "usuario" : self.id_cliente
             }
+
 class Perfil_tecnico(db.Model):
 
     __tablename__ = 'perfil_tecnico'
@@ -80,5 +81,23 @@ class Perfil_tecnico(db.Model):
             "id_user":self.id_user 
             # do not serialize the password, its a security breach
         }
-    
 
+class Calificacion(db.Model):
+    __tablename__ = 'servicio'
+    id = db.Column(db.Integer, primary_key=True)
+    calificacion = db.Column(db.String(50), nullable=False)
+    comentario = db.Column(db.String(250), nullable=False)
+    usuario_id = db.Column(Integer, ForeignKey('user.id'))
+    usuario = relationship(User)
+    propuesta_id = db.Column(Integer, ForeignKey('propuesta.id'))
+    propuesta = relationship(Propuesta)
+
+    def serialize(self):
+        return {
+            'id': self.id,           
+            'calificacion': self.calificacion,
+            'comentario': self.comentario,
+            'usuario': self.usuario,
+            'propuesta': self.propuesta
+        }
+    
