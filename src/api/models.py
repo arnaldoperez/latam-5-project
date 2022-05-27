@@ -48,7 +48,7 @@ class Falla(db.Model):
             "fecha_creacion" : self.fecha_creacion,
             "fecha_cierre" : self.fecha_cierre,
             "titulo" : self.titulo,
-            "estado" : self,estado,
+            "estado" : self.estado,
             "ubicacion" : self.ubicacion,
             "usuario" : self.id_cliente
             }
