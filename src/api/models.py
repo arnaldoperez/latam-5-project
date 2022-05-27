@@ -81,4 +81,3 @@ class Perfil_tecnico(db.Model):
             # do not serialize the password, its a security breach
         }
     
-
