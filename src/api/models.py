@@ -60,7 +60,6 @@ class Perfil_tecnico(db.Model):
     historial = db.Column(db.String(120), unique=True, nullable=False)
     ubicacion = db.Column(db.String(80), unique=False, nullable=False)
     descripcion = db.Column(db.String(120), unique=True, nullable=False)
-    apellido = db.Column(db.String(120), unique=True, nullable=False)
     url = db.Column(db.String(120), unique=True, nullable=False)
     id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship(User)

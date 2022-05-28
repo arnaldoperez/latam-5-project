@@ -2,5 +2,9 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "thunder-client.saveToWorkspace": true,
+<<<<<<< HEAD
   "thunder-client.workspaceRelativePath": "/apis"
+=======
+  "thunder-client.workspaceRelativePath": "./apis"
+>>>>>>> 3aa2dbfb3f73ab6899f2abe0517c3163fef02e29
 }
