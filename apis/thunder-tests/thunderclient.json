@@ -1,0 +1,40 @@
+[
+  {
+    "_id": "a9ad3bf1-999d-4fd3-a591-62a2e1a5cd6d",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "",
+    "name": "SignUp",
+    "url": "{{url}}/signup",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2022-05-28T00:56:01.087Z",
+    "modified": "2022-05-28T00:59:04.538Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\":\"arnaldo@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "c2cae637-08b1-4d12-ae33-cac68c0ccee3",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "",
+    "name": "crear_tecnico",
+    "url": "{{url}}/tecnicos",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-05-28T01:09:17.256Z",
+    "modified": "2022-05-28T01:29:16.517Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"id_user\":1,\n    \"historial\":\"historial2\",\n    \"descripcion\":\"descripcion2\",\n    \"ubicacion\":\"ubicacion2\",\n    \"url\":\"url2\"\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]

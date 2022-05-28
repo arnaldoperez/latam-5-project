@@ -37,8 +37,8 @@ class Falla(db.Model):
     titulo = db.Column(db.String(100),unique=False, nullable=False)
     estado = db.Column(db.String(5),unique=False, nullable=False)
     ubicacion = db.Column(db.String(200), unique=False, nullable=False)
-    id_cliente = db.Column(db.Integer, ForeignKey= 'user.id')
-    usuario = relationship(User)
+    id_cliente = db.Column(db.Integer, db.ForeignKey('user.id'))
+    usuario = db.relationship(User)
 
     def serialize(self):
         return{
@@ -60,7 +60,6 @@ class Perfil_tecnico(db.Model):
     historial = db.Column(db.String(120), unique=True, nullable=False)
     ubicacion = db.Column(db.String(80), unique=False, nullable=False)
     descripcion = db.Column(db.String(120), unique=True, nullable=False)
-    apellido = db.Column(db.String(120), unique=True, nullable=False)
     url = db.Column(db.String(120), unique=True, nullable=False)
     id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship(User)
