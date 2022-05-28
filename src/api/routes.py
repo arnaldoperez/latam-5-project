@@ -2,11 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-<<<<<<< HEAD
-from api.models import db, User, Falla
-=======
-from api.models import db, User, Perfil_tecnico
->>>>>>> 3aa2dbfb3f73ab6899f2abe0517c3163fef02e29
+from api.models import db, User, Perfil_tecnico, Falla
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
@@ -21,19 +17,19 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-<<<<<<< HEAD
 
-@app.route('/servicios', methods=['GET'])
+@api.route('/servicios', methods=['GET'])
 def listado_fallas():
     fallas = Falla.query.all()
-    return "Listado Servicios ok"
+    fallas = list(map(lambda falla: falla.serialize(), fallas ))
+    return jsonify(fallas)
 
-@app.route('/servicio/<int:falla_id>/', methods=['POST'])
+
+@api.route('/servicio/<int:falla_id>/', methods=['GET'])
 def falla(falla_id):
     falla = Falla.query.get_or_404(falla_id)
     return "Detalle Servicio ok"
 
-=======
 @api.route('/signup', methods=['POST']) #ENDPOINT DE REGISTRAR
 def signup():
     email=request.json.get("email")#capturando mi usuario email del requerimiento
@@ -66,4 +62,3 @@ def create_tecnico():
         "message": "usuario creado exitosamente"
     }
     return jsonify(response_body), 200
->>>>>>> 3aa2dbfb3f73ab6899f2abe0517c3163fef02e29

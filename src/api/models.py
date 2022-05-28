@@ -87,15 +87,15 @@ class Calificacion(db.Model):
     comentario = db.Column(db.String(250), nullable=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     usuario = db.relationship(User)
-    propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))
-    propuesta = db.relationship(Propuesta)
+    #propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))
+    #propuesta = db.relationship(Propuesta)
 
     def serialize(self):
         return {
             'id': self.id,           
             'calificacion': self.calificacion,
             'comentario': self.comentario,
-            'usuario': self.usuario,
-            'propuesta': self.propuesta
+            'usuario': self.usuario
+            #'propuesta': self.propuesta
         }
     
