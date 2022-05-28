@@ -37,8 +37,8 @@ class Falla(db.Model):
     titulo = db.Column(db.String(100),unique=False, nullable=False)
     estado = db.Column(db.String(5),unique=False, nullable=False)
     ubicacion = db.Column(db.String(200), unique=False, nullable=False)
-    id_cliente = db.Column(db.Integer, ForeignKey= 'user.id')
-    usuario = relationship(User)
+    id_cliente = db.Column(db.Integer, db.ForeignKey('user.id'))
+    usuario = db.relationship(User)
 
     def serialize(self):
         return{
@@ -48,7 +48,7 @@ class Falla(db.Model):
             "fecha_creacion" : self.fecha_creacion,
             "fecha_cierre" : self.fecha_cierre,
             "titulo" : self.titulo,
-            "estado" : self,estado,
+            "estado" : self.estado,
             "ubicacion" : self.ubicacion,
             "usuario" : self.id_cliente
             }
@@ -79,5 +79,24 @@ class Perfil_tecnico(db.Model):
             "fecha_ing": self.fecha_ing,
             "id_user":self.id_user 
             # do not serialize the password, its a security breach
+        }
+
+class Calificacion(db.Model):
+    __tablename__ = 'calificacion'
+    id = db.Column(db.Integer, primary_key=True)
+    calificacion = db.Column(db.String(50), nullable=False)
+    comentario = db.Column(db.String(250), nullable=False)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    usuario = db.relationship(User)
+    propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))
+    propuesta = db.relationship(Propuesta)
+
+    def serialize(self):
+        return {
+            'id': self.id,           
+            'calificacion': self.calificacion,
+            'comentario': self.comentario,
+            'usuario': self.usuario,
+            'propuesta': self.propuesta
         }
     
