@@ -98,9 +98,8 @@ class Calificacion(db.Model):
             'usuario': self.usuario
             #'propuesta': self.propuesta
         }
-    
+class Propuesta(db.Model):
     __tablename__ = 'propuesta'
-
     id = db.Column(db.Integer, primary_key=True)
     detalle = db.Column(db.String(120), unique=True, nullable=False)
     costo_servicio = db.Column(db.String(80), unique=False, nullable=False)
