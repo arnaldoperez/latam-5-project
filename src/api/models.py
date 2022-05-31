@@ -68,6 +68,13 @@ class Perfil_tecnico(db.Model):
     def __repr__(self):
         return f'<User {self.historial}>'
 
+    def historial(self):
+        return {
+            "id":self.id,
+            "historial":self.historial
+         }
+
+
     def serialize(self):
         return {
             "id": self.id,
