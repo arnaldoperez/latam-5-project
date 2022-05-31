@@ -45,6 +45,25 @@ def signup():
     }
     return jsonify(response_body), 201
 
+@api.route('/falla', methods=['POST']) #ENDPOINT DE REGISTRAR
+def signup():
+    id=request.json.get("id")#capturando mi usuario email del requerimiento
+    descripcion=request.json.get("descripcion")#capturando la contraseña de mi ususario
+    modelo=request.json.get("modelo")
+    fecha_creacion= #requiero ayuda con el codigo para tener fecha actual
+    fecha_cierre=request.json.get("fecha_cierre")
+    titulo = request.json.get("titulo")
+    estado = request.json.get("estado")
+    ubicacion = request.json.get("ubicacion")
+    id_cliente = request.json.get("id_cliente")
+    newPost=Falla(descripcion=descripcion, modelo=modelo, fecha_creacion=fecha_creacion, fecha_cierre=fecha_cierre, titulo=titulo, estado=estado, ubicacion=ubicacion, id_cliente=id_cliente)#creando mi nuevo usuario con el modelo (clase) que importe
+    db.session.add(newPost)
+    db.session.commit()
+    response_body = {
+        "message": "Falla creada exitosamente"
+    }
+    return jsonify(response_body), 201    
+
 @api.route('/tecnicos', methods=['POST'])
 def create_tecnico():
 
@@ -62,3 +81,18 @@ def create_tecnico():
         "message": "usuario creado exitosamente"
     }
     return jsonify(response_body), 200
+
+@api.route('/propuesta', methods=['POST']) #ENDPOINT DE PROPUESTA
+def nuevapropuesta():
+    detalle=request.json.get("detalle")#capturando destalle del requerimiento
+    costo_servicio=request.json.get("costo_servicio")#capturando servicio del requerimiento
+    estado=request.json.get("estado")#capturando estado del requerimiento
+    id_falla=request.json.get("id_falla")#capturando falla del requerimiento
+    id_tecnico=request.json.get("id_tecnico")#capturando tecnico del requerimiento
+    newPropuesta=Propuesta(detalle=detalle, costo_servicio=costo_servicio, estado=estado, id_falla=id_falla, id_tecnico=id_tecnico)#creando propuesta con el modelo (clase) que importe
+    db.session.add(newPropuesta)
+    db.session.commit()
+    response_body = {
+        "message": "propuesta creada exitosamente"
+    }
+    return jsonify(response_body), 201

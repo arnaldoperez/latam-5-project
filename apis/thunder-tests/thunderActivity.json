@@ -1,5 +1,6 @@
 [
   {
+<<<<<<< HEAD
     "_id": "6b24acb9-ec7a-49df-81f5-7d018da00223",
     "colId": "history",
     "containerId": "",
@@ -11,6 +12,24 @@
     "modified": "2022-05-30T23:39:01.617Z",
     "headers": [],
     "params": [],
+=======
+    "_id": "9bb38fc8-3270-4d5d-bcec-ba67bcd0dcba",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{url}}/falla",
+    "url": "{{url}}/falla",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-05-31T00:45:54.762Z",
+    "modified": "2022-05-31T01:03:41.937Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"descripcion\": \"string\",\n    \"modelo\": \"2010\",\n    \"fecha_creacion\": 1,\n    \"fecha_cierre\": 1,\n    \"titulo\": \"string\",\n    \"estado\": \"string\",\n    \"ubicacion\": \"string\",\n    \"id_cliente\": 1\n  \n}",
+      "form": []
+    },
+>>>>>>> desarrollo
     "tests": []
   }
 ]
