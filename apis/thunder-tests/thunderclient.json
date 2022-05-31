@@ -50,5 +50,19 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "0cf161bc-a318-4a24-ad9d-49ac1a05ad0e",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "",
+    "name": "Listar fallas",
+    "url": "{{url}}/servicios",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-05-30T23:40:23.606Z",
+    "modified": "2022-05-30T23:40:40.127Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

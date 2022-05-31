@@ -17,6 +17,8 @@ export const ListarFallas = () => {
   }, []);
 
   return (
+    <>
+    <h1>Listado de Servicios</h1>
     <ListGroup as="ul">
       {data.map((falla) => {
         <ListGroup.Item as="li" key={falla.id} active>
@@ -29,4 +31,5 @@ export const ListarFallas = () => {
       })}
     </ListGroup>
   );
+  </>
 };
