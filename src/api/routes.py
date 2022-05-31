@@ -82,15 +82,13 @@ def create_tecnico():
     }
     return jsonify(response_body), 200
 
-@APP.route('/historial/<int:id_tecnico>', methods=['GET'])
+"""@APP.route('/historial/<int:id_tecnico>', methods=['GET'])
 def get_single_person(id_tecnico):
-    """ 
-    Single tecnic
-    """
+  
     body = request.get_json() #{ 'username': 'new_username'}
     
     if request.method == 'GET':
         user1 = Person.query.get(id_tecnico)
         return jsonify(user1.serialize()), 200
 
-    return "Invalid Method", 404
+    return "Invalid Method", 404"""
