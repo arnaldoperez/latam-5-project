@@ -32,7 +32,7 @@ class Falla(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     descripcion = db.Column(db.String(500), unique=False, nullable=False)  
     modelo = db.Column(db.String(120), unique=False, nullable=False)    
-    fecha_creacion= db.Column(db.Integer, unique=False, nullable=False)  
+    fecha_creacion= db.Column(db.String(10), unique=False, nullable=False)  
     fecha_cierre= db.Column(db.Integer, unique=False, nullable=False)
     titulo = db.Column(db.String(100),unique=False, nullable=False)
     estado = db.Column(db.String(5),unique=False, nullable=False)
