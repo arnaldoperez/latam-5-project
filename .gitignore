@@ -73,3 +73,6 @@ database.database
 database.db
 diagram.png
 __pycache__/
+
+#variable de entorno de thunder
+apis/thunder-tests/thunderEnvironment.json
