@@ -47,7 +47,7 @@ def signup():
     return jsonify(response_body), 201
 
 @api.route('/falla', methods=['POST']) #ENDPOINT DE REGISTRAR
-def signup():
+def crearFalla():
     id=request.json.get("id")#capturando mi usuario email del requerimiento
     descripcion=request.json.get("descripcion")#capturando la contraseña de mi ususario
     modelo=request.json.get("modelo")
