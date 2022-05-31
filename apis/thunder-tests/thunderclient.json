@@ -56,11 +56,18 @@
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "",
     "name": "propuesta",
-    "url": "",
+    "url": "{{url}}/propuesta",
     "method": "GET",
     "sortNum": 40000,
     "created": "2022-05-31T00:23:43.777Z",
-    "modified": "2022-05-31T00:23:43.778Z",
-    "headers": []
+    "modified": "2022-05-31T00:43:08.755Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"detalle\": \"detalle\",\n    \"costo_servicio\": \"alto\",\n    \"estado\": \"estado\",\n    \"id_falla\": 1,\n    \"id_tecnico\": 1\n    \n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

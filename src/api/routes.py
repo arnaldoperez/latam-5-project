@@ -62,9 +62,9 @@ def create_tecnico():
         "message": "usuario creado exitosamente"
     }
     return jsonify(response_body), 200
-    
+
 @api.route('/propuesta', methods=['POST']) #ENDPOINT DE PROPUESTA
-def signup():
+def nuevapropuesta():
     detalle=request.json.get("detalle")#capturando destalle del requerimiento
     costo_servicio=request.json.get("costo_servicio")#capturando servicio del requerimiento
     estado=request.json.get("estado")#capturando estado del requerimiento
