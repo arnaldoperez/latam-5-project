@@ -4,6 +4,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Perfil_tecnico, Falla
 from api.utils import generate_sitemap, APIException
+import datetime 
 
 api = Blueprint('api', __name__)
 
@@ -50,7 +51,8 @@ def signup():
     id=request.json.get("id")#capturando mi usuario email del requerimiento
     descripcion=request.json.get("descripcion")#capturando la contraseña de mi ususario
     modelo=request.json.get("modelo")
-    fecha_creacion= #requiero ayuda con el codigo para tener fecha actual
+    date=datetime.datetime.now()
+    fecha_creacion= date.strftime("%x")
     fecha_cierre=request.json.get("fecha_cierre")
     titulo = request.json.get("titulo")
     estado = request.json.get("estado")
