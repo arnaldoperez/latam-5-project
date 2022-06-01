@@ -18,6 +18,7 @@ gunicorn = "*"
 cloudinary = "*"
 flask-admin = "*"
 datetime = "*"
+bcrypt = "*"
 
 [requires]
 python_version = "3.8"
