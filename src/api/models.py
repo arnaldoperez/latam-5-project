@@ -48,7 +48,8 @@ class Falla(db.Model):
     descripcion = db.Column(db.String(500), unique=False, nullable=False)  
     modelo = db.Column(db.String(120), unique=False, nullable=False)    
     fecha_creacion= db.Column(db.String(10), unique=False, nullable=False)  
-    fecha_cierre= db.Column(db.String(10), unique=False, nullable=False)
+    fecha_cierre= db.Column(db.String(10), db.ForeignKey('fecha_cierre'))
+    f_cierre= db.relationship(Calificacion)
     titulo = db.Column(db.String(100),unique=False, nullable=False)
     estado = db.Column(db.String(5),unique=False, nullable=False)
     ubicacion = db.Column(db.String(200), unique=False, nullable=False)
@@ -102,6 +103,7 @@ class Calificacion(db.Model):
     comentario = db.Column(db.String(250), nullable=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     usuario = db.relationship(User)
+    fecha_cierre= db.Column(db.String(10), unique=False, nullable=False)
     #propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))
     #propuesta = db.relationship(Propuesta)
 
