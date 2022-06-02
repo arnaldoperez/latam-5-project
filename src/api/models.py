@@ -124,3 +124,5 @@ class Propuesta(db.Model):
 
             # do not serialize the password, its a security breach
         }
+
+
