@@ -2,6 +2,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+
+
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -11,7 +13,7 @@ class User(db.Model):
     apellido = db.Column(db.String(120), unique=True, nullable=False)
     fecha_ing = db.Column(db.String(120), unique=True, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-
+    
     def __repr__(self):
         return f'<User {self.email}>'
 
@@ -52,6 +54,7 @@ class Falla(db.Model):
             "ubicacion" : self.ubicacion,
             "usuario" : self.id_cliente
             }
+
 class Perfil_tecnico(db.Model):
 
     __tablename__ = 'perfil_tecnico'
@@ -80,24 +83,6 @@ class Perfil_tecnico(db.Model):
             # do not serialize the password, its a security breach
         }
 
-class Calificacion(db.Model):
-    __tablename__ = 'calificacion'
-    id = db.Column(db.Integer, primary_key=True)
-    calificacion = db.Column(db.String(50), nullable=False)
-    comentario = db.Column(db.String(250), nullable=False)
-    usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    usuario = db.relationship(User)
-    #propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))
-    #propuesta = db.relationship(Propuesta)
-
-    def serialize(self):
-        return {
-            'id': self.id,           
-            'calificacion': self.calificacion,
-            'comentario': self.comentario,
-            'usuario': self.usuario
-            #'propuesta': self.propuesta
-        }
 class Propuesta(db.Model):
     __tablename__ = 'propuesta'
     id = db.Column(db.Integer, primary_key=True)
@@ -123,4 +108,61 @@ class Propuesta(db.Model):
             "id_tecnico": self.id_tecnico
 
             # do not serialize the password, its a security breach
+        }
+
+class Calificacion(db.Model):
+    __tablename__ = 'calificacion'
+    id = db.Column(db.Integer, primary_key=True)
+    calificacion = db.Column(db.String(50), nullable=False)
+    comentario = db.Column(db.String(250), nullable=False)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    usuario = db.relationship(User)
+    propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))
+    propuesta = db.relationship(Propuesta)
+
+    def serialize(self):
+        return {
+            'id': self.id,           
+            'calificacion': self.calificacion,
+            'comentario': self.comentario,
+            'usuario': self.usuario,
+            'propuesta': self.propuesta
+        }
+        
+class Imagenes(db.Model):
+    __tablename__ = 'imagenes'
+    id = db.Column(db.Integer, primary_key=True)
+    detalle = db.Column(db.String(120), nullable=True)
+    firebase_id = db.Column(db.String(80), unique=True, nullable=True)
+  
+    def __repr__(self):
+        return f'<User {self.id}>'
+
+    def serialize(self):
+        return {
+            "id":self.id,
+            "detalle":self.detalle,
+            "firebase_id":self.firebase_id,
+            "public_url":self.public_url
+        }
+
+class InformeTecnico(db.Model):
+    __tablename__ = 'informe_tecnico'
+    id = db.Column(db.Integer, primary_key=True)
+    fecha_creacion= db.Column(db.String(10), unique=False, nullable=False)
+    comentario_servicio = db.Column(db.String(250), nullable=False)
+    recomendacion = db.Column(db.String(250), nullable=False)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    usuario = db.relationship(User)
+    falla_id = db.Column(db.Integer, db.ForeignKey('falla.id'))
+    falla = db.relationship(Falla)
+
+    def serialize(self):
+        return {
+            'id': self.id,           
+            'fecha_creacion': self.fecha_creacion,
+            'comentario_servicio': self.comentario_servicio,
+            'recomendacion': self.recomendacion,
+            'usuario': self.usuario,
+            'falla': self.falla
         }
