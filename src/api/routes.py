@@ -126,5 +126,27 @@ def subir_imagen():
     blob.upload_from_filename(temp.name)
     
     return "Ok"
-    
-    
+
+@api.route('/calificaciones', methods=['POST']) 
+def crear_calificaciones():
+    calificacion = request.json.get("calificacion")
+    comentario = request.json.get("comentario")
+    usuario_id = request.json.get("usuario_id")
+    propuesta_id = request.json.get("apellido")
+    response_body = {
+        "message": "calificación creada exitosamente"
+    }
+    return jsonify(response_body), 201
+
+@api.route('/informe_tecnico', methods=['POST']) 
+def crear_informe_tecnico():
+    fecha_creacion = datetime.datetime.now()
+    comentario = request.json.get("comentario")
+    recomendacion = request.json.get("recomendacion")
+    usuario_id = request.json.get("usuario_id")
+    falla_id = request.json.get("falla_id")
+    response_body = {
+        "message": "informe creado exitosamente"
+    }
+    return jsonify(response_body), 201
+

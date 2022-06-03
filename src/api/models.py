@@ -83,24 +83,6 @@ class Perfil_tecnico(db.Model):
             # do not serialize the password, its a security breach
         }
 
-class Calificacion(db.Model):
-    __tablename__ = 'calificacion'
-    id = db.Column(db.Integer, primary_key=True)
-    calificacion = db.Column(db.String(50), nullable=False)
-    comentario = db.Column(db.String(250), nullable=False)
-    usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    usuario = db.relationship(User)
-    #propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))
-    #propuesta = db.relationship(Propuesta)
-
-    def serialize(self):
-        return {
-            'id': self.id,           
-            'calificacion': self.calificacion,
-            'comentario': self.comentario,
-            'usuario': self.usuario
-            #'propuesta': self.propuesta
-        }
 class Propuesta(db.Model):
     __tablename__ = 'propuesta'
     id = db.Column(db.Integer, primary_key=True)
@@ -128,6 +110,25 @@ class Propuesta(db.Model):
             # do not serialize the password, its a security breach
         }
 
+class Calificacion(db.Model):
+    __tablename__ = 'calificacion'
+    id = db.Column(db.Integer, primary_key=True)
+    calificacion = db.Column(db.String(50), nullable=False)
+    comentario = db.Column(db.String(250), nullable=False)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    usuario = db.relationship(User)
+    propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))
+    propuesta = db.relationship(Propuesta)
+
+    def serialize(self):
+        return {
+            'id': self.id,           
+            'calificacion': self.calificacion,
+            'comentario': self.comentario,
+            'usuario': self.usuario,
+            'propuesta': self.propuesta
+        }
+        
 class Imagenes(db.Model):
     __tablename__ = 'imagenes'
     id = db.Column(db.Integer, primary_key=True)
@@ -143,4 +144,25 @@ class Imagenes(db.Model):
             "detalle":self.detalle,
             "firebase_id":self.firebase_id,
             "public_url":self.public_url
+        }
+
+class InformeTecnico(db.Model):
+    __tablename__ = 'informe_tecnico'
+    id = db.Column(db.Integer, primary_key=True)
+    fecha_creacion= db.Column(db.String(10), unique=False, nullable=False)
+    comentario_servicio = db.Column(db.String(250), nullable=False)
+    recomendacion = db.Column(db.String(250), nullable=False)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    usuario = db.relationship(User)
+    falla_id = db.Column(db.Integer, db.ForeignKey('falla.id'))
+    falla = db.relationship(Falla)
+
+    def serialize(self):
+        return {
+            'id': self.id,           
+            'fecha_creacion': self.fecha_creacion,
+            'comentario_servicio': self.comentario_servicio,
+            'recomendacion': self.recomendacion,
+            'usuario': self.usuario,
+            'falla': self.falla
         }
