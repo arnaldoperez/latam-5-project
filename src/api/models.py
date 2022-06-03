@@ -50,7 +50,7 @@ class Falla(db.Model):
     descripcion = db.Column(db.String(500), unique=False, nullable=False)  
     modelo = db.Column(db.String(120), unique=False, nullable=False)    
     fecha_creacion= db.Column(db.String(10), unique=False, nullable=False)  
-    fecha_cierre= db.Column(db.String(10), db.ForeignKey('fecha_cierre'))
+    fecha_cierre= db.Column(db.String(10), db.ForeignKey('calificacion.fecha_cierre'))
     f_cierre= db.relationship(Calificacion)
     titulo = db.Column(db.String(100),unique=False, nullable=False)
     estado = db.Column(db.String(5),unique=False, nullable=False)
@@ -135,6 +135,7 @@ class Calificacion(db.Model):
     usuario = db.relationship(User)
     propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))
     propuesta = db.relationship(Propuesta)
+    fecha_cierre= db.Column(db.String(10), nullable=False)
 
     def serialize(self):
         return {

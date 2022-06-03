@@ -175,6 +175,8 @@ def crear_calificaciones():
     comentario = request.json.get("comentario")
     usuario_id = request.json.get("usuario_id")
     propuesta_id = request.json.get("apellido")
+    date=datetime.datetime.now()
+    fecha_cierre= date.strftime("%x")
     response_body = {
         "message": "calificación creada exitosamente"
     }
