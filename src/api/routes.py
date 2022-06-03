@@ -2,9 +2,11 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Perfil_tecnico, Falla
+from api.models import db, User, Perfil_tecnico, Falla, Imagenes
 from api.utils import generate_sitemap, APIException
 import datetime 
+from firebase_admin import storage
+import tempfile
 
 api = Blueprint('api', __name__)
 
@@ -98,3 +100,31 @@ def nuevapropuesta():
         "message": "propuesta creada exitosamente"
     }
     return jsonify(response_body), 201
+
+@api.route('/imagen', methods=['POST'])
+def subir_imagen():
+    # Se recibe un archivo en la peticion
+    file=request.files['file']
+    descripcion=request.form['descripcion']
+    # Extraemos la extension del archivo
+    extension=file.filename.split(".")[1]
+    # Se crear el registro en la base de datos 
+    imagen=Imagenes(detalle=descripcion)
+    db.session.add(imagen)
+    db.session.flush()
+    # Se genera el nombre de archivo con el id de la imagen y la extension
+    filename="falla/" + str(imagen.id) + "." + extension
+    # Se actualiza el registro de la imagen con el nombre
+    imagen.firebase_id=filename
+    db.session.commit()
+    # Guardar el archivo recibido en un archivo temporal
+    temp = tempfile.NamedTemporaryFile(delete=False)
+    file.save(temp.name)
+    # Subir el archivo a firebase
+    bucket=storage.bucket(name="tallerapp-4geeks.appspot.com")
+    blob = bucket.blob(filename)
+    blob.upload_from_filename(temp.name)
+    
+    return "Ok"
+    
+    

@@ -18,6 +18,7 @@ gunicorn = "*"
 cloudinary = "*"
 flask-admin = "*"
 datetime = "*"
+firebase-admin = "*"
 
 [requires]
 python_version = "3.8"

@@ -2,6 +2,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+
+
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -11,7 +13,7 @@ class User(db.Model):
     apellido = db.Column(db.String(120), unique=True, nullable=False)
     fecha_ing = db.Column(db.String(120), unique=True, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-
+    
     def __repr__(self):
         return f'<User {self.email}>'
 
@@ -52,6 +54,7 @@ class Falla(db.Model):
             "ubicacion" : self.ubicacion,
             "usuario" : self.id_cliente
             }
+
 class Perfil_tecnico(db.Model):
 
     __tablename__ = 'perfil_tecnico'
@@ -125,4 +128,19 @@ class Propuesta(db.Model):
             # do not serialize the password, its a security breach
         }
 
+class Imagenes(db.Model):
+    __tablename__ = 'imagenes'
+    id = db.Column(db.Integer, primary_key=True)
+    detalle = db.Column(db.String(120), nullable=True)
+    firebase_id = db.Column(db.String(80), unique=True, nullable=True)
+  
+    def __repr__(self):
+        return f'<User {self.id}>'
 
+    def serialize(self):
+        return {
+            "id":self.id,
+            "detalle":self.detalle,
+            "firebase_id":self.firebase_id,
+            "public_url":self.public_url
+        }
