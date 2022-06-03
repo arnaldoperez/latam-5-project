@@ -5,11 +5,11 @@
     "default": true,
     "sortNum": 10000,
     "created": "2022-05-28T00:54:58.513Z",
-    "modified": "2022-06-03T20:26:37.217Z",
+    "modified": "2022-06-03T22:25:28.831Z",
     "data": [
       {
         "name": "url",
-        "value": "https://3001-arnaldopere-latam5proje-tb8bdr6hw07.ws-us46.gitpod.io/"
+        "value": "https://3001-arnaldopere-latam5proje-tb8bdr6hw07.ws-us46.gitpod.io/api"
       }
     ]
   }
