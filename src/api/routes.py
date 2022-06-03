@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Perfil_tecnico, Falla, Imagenes
+from api.models import db, User, Perfil_tecnico, Falla, Imagenes, InformeTecnico, Factura, Calificacion, Propuesta
 from api.utils import generate_sitemap, APIException
 import datetime 
 from firebase_admin import storage
@@ -150,3 +150,19 @@ def crear_informe_tecnico():
     }
     return jsonify(response_body), 201
 
+@api.route('/crear_factura', methods=['POST']) 
+def crear_factura():
+    fecha_creacion = datetime.datetime.now()
+    detalle_factura = request.json.get("detalle_factura")
+    importe = request.json.get("importe")
+    estado = request.json.get("estado")
+    propuesta_id = request.json.get("propuesta_id")
+    response_body = {
+        "message": "factura creada exitosamente"
+    }
+    return jsonify(response_body), 201
+
+@api.route('/factura/<int:factura_id>/', methods=['GET'])
+def mostrar_factura(factura_id):
+    factura = Factura.query.get_or_404(factura_id)
+    return "Detalle Factura ok"
