@@ -64,5 +64,24 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "45aabe69-acfc-4c37-a354-0e6e44ebd8d6",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "",
+    "name": "crear_informe_tecnico",
+    "url": "{{url}}/informe_tecnico",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2022-06-03T20:16:10.140Z",
+    "modified": "2022-06-03T20:32:38.460Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"comentario_servicio\": \"bla bla\",\n    \"recomendacion\": \"recomendacion\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
