@@ -139,7 +139,7 @@ def crear_calificaciones():
     return jsonify(response_body), 201
 
 @api.route('/informe_tecnico', methods=['POST']) 
-def crear_informe():
+def crear_informe_tecnico():
     fecha_creacion = datetime.datetime.now()
     comentario = request.json.get("comentario")
     recomendacion = request.json.get("recomendacion")
