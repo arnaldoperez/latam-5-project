@@ -2,11 +2,13 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Perfil_tecnico, Falla, TokenBlockedList
+from api.models import db, User, Perfil_tecnico, Falla, Imagenes
 from api.utils import generate_sitemap, APIException
 from flask_bcrypt import Bcrypt 
 from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt
 import datetime 
+from firebase_admin import storage
+import tempfile
 
 
 api = Blueprint('api', __name__)
@@ -140,3 +142,53 @@ def nuevapropuesta():
         "message": "propuesta creada exitosamente"
     }
     return jsonify(response_body), 201
+
+@api.route('/imagen', methods=['POST'])
+def subir_imagen():
+    # Se recibe un archivo en la peticion
+    file=request.files['file']
+    descripcion=request.form['descripcion']
+    # Extraemos la extension del archivo
+    extension=file.filename.split(".")[1]
+    # Se crear el registro en la base de datos 
+    imagen=Imagenes(detalle=descripcion)
+    db.session.add(imagen)
+    db.session.flush()
+    # Se genera el nombre de archivo con el id de la imagen y la extension
+    filename="falla/" + str(imagen.id) + "." + extension
+    # Se actualiza el registro de la imagen con el nombre
+    imagen.firebase_id=filename
+    db.session.commit()
+    # Guardar el archivo recibido en un archivo temporal
+    temp = tempfile.NamedTemporaryFile(delete=False)
+    file.save(temp.name)
+    # Subir el archivo a firebase
+    bucket=storage.bucket(name="tallerapp-4geeks.appspot.com")
+    blob = bucket.blob(filename)
+    blob.upload_from_filename(temp.name)
+    
+    return "Ok"
+
+@api.route('/calificaciones', methods=['POST']) 
+def crear_calificaciones():
+    calificacion = request.json.get("calificacion")
+    comentario = request.json.get("comentario")
+    usuario_id = request.json.get("usuario_id")
+    propuesta_id = request.json.get("apellido")
+    response_body = {
+        "message": "calificación creada exitosamente"
+    }
+    return jsonify(response_body), 201
+
+@api.route('/informe_tecnico', methods=['POST']) 
+def crear_informe_tecnico():
+    fecha_creacion = datetime.datetime.now()
+    comentario = request.json.get("comentario")
+    recomendacion = request.json.get("recomendacion")
+    usuario_id = request.json.get("usuario_id")
+    falla_id = request.json.get("falla_id")
+    response_body = {
+        "message": "informe creado exitosamente"
+    }
+    return jsonify(response_body), 201
+

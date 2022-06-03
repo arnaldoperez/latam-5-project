@@ -42,32 +42,27 @@
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "",
     "name": "consultar falla",
-    "url": "{{url}}/servicios/2",
+    "url": "{{url}}/servicios/1",
     "method": "GET",
     "sortNum": 30000,
     "created": "2022-05-28T01:49:17.094Z",
-    "modified": "2022-05-28T01:57:19.339Z",
+    "modified": "2022-06-01T23:45:38.989Z",
     "headers": [],
     "params": [],
     "tests": []
   },
   {
-    "_id": "913a9d82-d81e-41c3-8f8e-c1c1fdb1c494",
+    "_id": "0cf161bc-a318-4a24-ad9d-49ac1a05ad0e",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "",
-    "name": "propuesta",
-    "url": "{{url}}/propuesta",
+    "name": "Listar fallas",
+    "url": "{{url}}/servicios",
     "method": "GET",
     "sortNum": 40000,
-    "created": "2022-05-31T00:23:43.777Z",
-    "modified": "2022-05-31T00:43:08.755Z",
+    "created": "2022-05-30T23:40:23.606Z",
+    "modified": "2022-05-30T23:40:40.127Z",
     "headers": [],
     "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n    \"detalle\": \"detalle\",\n    \"costo_servicio\": \"alto\",\n    \"estado\": \"estado\",\n    \"id_falla\": 1,\n    \"id_tecnico\": 1\n    \n}",
-      "form": []
-    },
     "tests": []
   }
 ]

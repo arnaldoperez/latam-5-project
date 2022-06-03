@@ -10,20 +10,20 @@ ports:
   - port: 5432
     onOpen: ignore
 tasks:
-    - init: >
-        (cp -n .env.example .env || true) && 
-        pipenv install &&
-        psql -U gitpod -c 'CREATE DATABASE example;' &&
-        psql -U gitpod -c 'CREATE EXTENSION unaccent;' -d example &&
-        pipenv run init && 
-        pipenv run migrate && 
-        pipenv run upgrade &&
-        python docs/assets/greeting.py back
-    - command: >
-        ((sed -i /BACKEND_URL/d .env && echo "" >> .env && echo "BACKEND_URL=https://3001-${GITPOD_WORKSPACE_URL:8}" >> .env) || true) && 
-        npm install &&
-        python docs/assets/greeting.py front
-      openMode: split-right
+  - init: >
+      (cp -n .env.example .env || true) && 
+      pipenv install &&
+      psql -U gitpod -c 'CREATE DATABASE example;' &&
+      psql -U gitpod -c 'CREATE EXTENSION unaccent;' -d example &&
+      pipenv run init && 
+      pipenv run migrate && 
+      pipenv run upgrade &&
+      python docs/assets/greeting.py back
+  - command: >
+      ((sed -i /BACKEND_URL/d .env && echo "" >> .env && echo "BACKEND_URL=https://3001-${GITPOD_WORKSPACE_URL:8}" >> .env) || true) && 
+      npm install &&
+      python docs/assets/greeting.py front
+    openMode: split-right
 
 vscode:
   extensions:
