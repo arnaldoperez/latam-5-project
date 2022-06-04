@@ -19,6 +19,8 @@ cloudinary = "*"
 flask-admin = "*"
 datetime = "*"
 firebase-admin = "*"
+flask-bcrypt = "*"
+flask-jwt-extended = "*"
 
 [requires]
 python_version = "3.8"

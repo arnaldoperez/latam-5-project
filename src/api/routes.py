@@ -169,18 +169,6 @@ def subir_imagen():
     
     return "Ok"
 
-@api.route('/calificaciones', methods=['POST']) 
-def crear_calificaciones():
-    calificacion = request.json.get("calificacion")
-    comentario = request.json.get("comentario")
-    usuario_id = request.json.get("usuario_id")
-    propuesta_id = request.json.get("apellido")
-    date=datetime.datetime.now()
-    fecha_cierre= date.strftime("%x")
-    response_body = {
-        "message": "calificación creada exitosamente"
-    }
-    return jsonify(response_body), 201
 
 @api.route('/informe_tecnico', methods=['POST']) 
 def crear_informe_tecnico():
@@ -194,3 +182,15 @@ def crear_informe_tecnico():
     }
     return jsonify(response_body), 201
 
+@api.route('/calificaciones', methods=['POST']) 
+def crear_calificaciones():
+    calificacion = request.json.get("calificacion")
+    comentario = request.json.get("comentario")
+    usuario_id = request.json.get("usuario_id")
+    propuesta_id = request.json.get("apellido")
+    date=datetime.datetime.now()
+    fecha_cierre= date.strftime("%x")
+    response_body = {
+        "message": "calificación creada exitosamente"
+    }
+    return jsonify(response_body), 201
