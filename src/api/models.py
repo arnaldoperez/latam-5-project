@@ -134,6 +134,7 @@ class Calificacion(db.Model):
     propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))
     propuesta = db.relationship(Propuesta)
     fecha_cierre= db.Column(db.String(10), nullable=False)
+    
 
     def serialize(self):
         return {

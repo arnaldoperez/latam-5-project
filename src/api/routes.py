@@ -10,9 +10,11 @@ import datetime
 from firebase_admin import storage
 import tempfile
 
-
+app = Flask(__name__)
 api = Blueprint('api', __name__)
 bcrypt = Bcrypt(app)
+#db = SQLAlchemy(app)
+#jwt = JWTManager(app)
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -190,6 +192,7 @@ def crear_calificaciones():
     propuesta_id = request.json.get("apellido")
     date=datetime.datetime.now()
     fecha_cierre= date.strftime("%x")
+    
     response_body = {
         "message": "calificación creada exitosamente"
     }
