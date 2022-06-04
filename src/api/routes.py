@@ -145,24 +145,14 @@ def crear_informe_tecnico():
     recomendacion = request.json.get("recomendacion")
     usuario_id = request.json.get("usuario_id")
     falla_id = request.json.get("falla_id")
+    importe = request.json.get("importe")
+    estado = request.json.get("estado")
     response_body = {
         "message": "informe creado exitosamente"
     }
     return jsonify(response_body), 201
 
-@api.route('/crear_factura', methods=['POST']) 
-def crear_factura():
-    fecha_creacion = datetime.datetime.now()
-    detalle_factura = request.json.get("detalle_factura")
-    importe = request.json.get("importe")
-    estado = request.json.get("estado")
-    propuesta_id = request.json.get("propuesta_id")
-    response_body = {
-        "message": "factura creada exitosamente"
-    }
-    return jsonify(response_body), 201
-
-@api.route('/factura/<int:factura_id>/', methods=['GET'])
-def mostrar_factura(factura_id):
-    factura = Factura.query.get_or_404(factura_id)
-    return "Detalle Factura ok"
+@api.route('/informe_tecnico/<int:informe_id>/', methods=['GET'])
+def mostrar_factura(informe_id):
+    informe = InformeTecnico.query.get_or_404(informe_id)
+    return "Detalle Informe Técnico ok"

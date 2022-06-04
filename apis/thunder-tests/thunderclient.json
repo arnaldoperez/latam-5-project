@@ -85,29 +85,15 @@
     "tests": []
   },
   {
-    "_id": "c2770ea9-a9ce-4efb-bc64-f0af5d146df8",
-    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "f368aa53-5b02-4014-bd3d-107a315393b3",
-    "name": "crear_factura",
-    "url": "{{url}}/crear_factura",
-    "method": "POST",
-    "sortNum": 60000,
-    "created": "2022-06-03T22:22:14.577Z",
-    "modified": "2022-06-03T22:22:50.019Z",
-    "headers": [],
-    "params": [],
-    "tests": []
-  },
-  {
     "_id": "359ab2de-5f24-4c86-a67e-66aabaf5e700",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "f368aa53-5b02-4014-bd3d-107a315393b3",
-    "name": "mostrar_factura",
+    "containerId": "7e832073-9516-4af0-9997-9441f0baf8aa",
+    "name": "mostrar_informe_tecnico",
     "url": "{{url}}/factura/<int:factura_id>/",
     "method": "GET",
-    "sortNum": 70000,
+    "sortNum": 20000,
     "created": "2022-06-03T22:23:08.190Z",
-    "modified": "2022-06-03T22:23:39.874Z",
+    "modified": "2022-06-04T01:02:48.441Z",
     "headers": [],
     "params": [],
     "tests": []

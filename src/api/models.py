@@ -156,6 +156,8 @@ class InformeTecnico(db.Model):
     usuario = db.relationship(User)
     falla_id = db.Column(db.Integer, db.ForeignKey('falla.id'))
     falla = db.relationship(Falla)
+    importe = db.Column(db.Float)
+    estado = db.Column(db.String(50), nullable=False)
 
     def serialize(self):
         return {
@@ -164,25 +166,7 @@ class InformeTecnico(db.Model):
             'comentario_servicio': self.comentario_servicio,
             'recomendacion': self.recomendacion,
             'usuario': self.usuario,
-            'falla': self.falla
-        }
-
-class Factura(db.Model):
-    __tablename__ = 'factura'
-    id = db.Column(db.Integer, primary_key=True)
-    fecha_creacion= db.Column(db.String(10), unique=False, nullable=False)
-    detalle_factura = db.Column(db.String(250), nullable=False)
-    importe = db.Column(db.Float)
-    estado = db.Column(db.String(50), nullable=False)
-    propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))
-    propuesta = db.relationship(Propuesta)
-
-    def serialize(self):
-        return {
-            'id': self.id,
-            'fecha_creacion': self.fecha_creacion, 
-            'detalle_factura': self.detalle_factura,          
+            'falla': self.falla,
             'importe': self.importe,
-            'estado': self.estado,
-            'propuesta': self.propuesta,
+            'estado': self.estado
         }
