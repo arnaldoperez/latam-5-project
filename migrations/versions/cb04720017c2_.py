@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: d2fc7e59ad61
+Revision ID: cb04720017c2
 Revises: 
-Create Date: 2022-06-02 01:58:21.627159
+Create Date: 2022-06-04 01:36:05.146167
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd2fc7e59ad61'
+revision = 'cb04720017c2'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,7 +22,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('detalle', sa.String(length=120), nullable=True),
     sa.Column('firebase_id', sa.String(length=80), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('firebase_id')
     )
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -33,10 +34,7 @@ def upgrade():
     sa.Column('fecha_ing', sa.String(length=120), nullable=False),
     sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('apellido'),
-    sa.UniqueConstraint('email'),
-    sa.UniqueConstraint('fecha_ing'),
-    sa.UniqueConstraint('nombre')
+    sa.UniqueConstraint('email')
     )
     op.create_table('calificacion',
     sa.Column('id', sa.Integer(), nullable=False),
