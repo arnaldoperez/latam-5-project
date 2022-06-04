@@ -174,7 +174,7 @@ class InformeTecnico(db.Model):
     falla_id = db.Column(db.Integer, db.ForeignKey('falla.id'))
     falla = db.relationship(Falla)
     importe = db.Column(db.Float)
-    estado = db.Column(db.String(50), nullable=False)
+    estado = db.Column(db.String(40), nullable=False)
 
     def serialize(self):
         return {
