@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
-
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -28,33 +27,20 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-class Falla(db.Model):
-
-    __tablename_ = 'falla'
-    id = db.Column(db.Integer, primary_key=True)
-    descripcion = db.Column(db.String(500), unique=False, nullable=False)  
-    modelo = db.Column(db.String(120), unique=False, nullable=False)    
-    fecha_creacion= db.Column(db.String(10), unique=False, nullable=False)  
-    fecha_cierre= db.Column(db.String(10), unique=False, nullable=False)
-    titulo = db.Column(db.String(100),unique=False, nullable=False)
-    estado = db.Column(db.String(5),unique=False, nullable=False)
-    ubicacion = db.Column(db.String(200), unique=False, nullable=False)
-    id_cliente = db.Column(db.Integer, db.ForeignKey('user.id'))
-    usuario = db.relationship(User)
+class TokenBlockedList(db.Model):
+    id=db.Column(db.Integer, primary_key=True)
+    token=db.Column(db.String(200), unique=True, nullable=False)
+    email=db.Column(db.String(200), nullable=False, index=True)
+    created_at = db.Column(db.DateTime, nullable=False)
 
     def serialize(self):
-        return{
+        return {
             "id": self.id,
-            "descripcion" : self.descripcion,
-            "modelo" : self.modelo,
-            "fecha_creacion" : self.fecha_creacion,
-            "fecha_cierre" : self.fecha_cierre,
-            "titulo" : self.titulo,
-            "estado" : self.estado,
-            "ubicacion" : self.ubicacion,
-            "usuario" : self.id_cliente
-            }
-
+            "token":self.token,
+            "email":self.email,
+            "created_at":self.created_at
+        }
+      
 class Perfil_tecnico(db.Model):
 
     __tablename__ = 'perfil_tecnico'
@@ -83,6 +69,33 @@ class Perfil_tecnico(db.Model):
             # do not serialize the password, its a security breach
         }
 
+class Falla(db.Model):
+
+    __tablename_ = 'falla'
+    id = db.Column(db.Integer, primary_key=True)
+    descripcion = db.Column(db.String(500), unique=False, nullable=False)  
+    modelo = db.Column(db.String(120), unique=False, nullable=False)    
+    fecha_creacion= db.Column(db.String(10), unique=False, nullable=False)  
+    fecha_cierre= db.Column(db.String(10), nullable=True)
+    titulo = db.Column(db.String(100),unique=False, nullable=False)
+    estado = db.Column(db.String(5),unique=False, nullable=False)
+    ubicacion = db.Column(db.String(200), unique=False, nullable=False)
+    id_cliente = db.Column(db.Integer, db.ForeignKey('user.id'))
+    usuario = db.relationship(User)
+
+    def serialize(self):
+        return{
+            "id": self.id,
+            "descripcion" : self.descripcion,
+            "modelo" : self.modelo,
+            "fecha_creacion" : self.fecha_creacion,
+            "fecha_cierre" : self.fecha_cierre,
+            "titulo" : self.titulo,
+            "estado" : self.estado,
+            "ubicacion" : self.ubicacion,
+            "usuario" : self.id_cliente
+            }
+
 class Propuesta(db.Model):
     __tablename__ = 'propuesta'
     id = db.Column(db.Integer, primary_key=True)
@@ -110,6 +123,7 @@ class Propuesta(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 class Calificacion(db.Model):
     __tablename__ = 'calificacion'
     id = db.Column(db.Integer, primary_key=True)
@@ -119,6 +133,8 @@ class Calificacion(db.Model):
     usuario = db.relationship(User)
     propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))
     propuesta = db.relationship(Propuesta)
+    fecha_cierre= db.Column(db.String(10), nullable=False)
+    
 
     def serialize(self):
         return {
@@ -128,7 +144,8 @@ class Calificacion(db.Model):
             'usuario': self.usuario,
             'propuesta': self.propuesta
         }
-        
+
+
 class Imagenes(db.Model):
     __tablename__ = 'imagenes'
     id = db.Column(db.Integer, primary_key=True)
