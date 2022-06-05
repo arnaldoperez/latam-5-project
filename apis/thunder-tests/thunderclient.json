@@ -8,12 +8,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-28T00:56:01.087Z",
-    "modified": "2022-06-05T20:28:56.817Z",
+    "modified": "2022-06-05T20:38:42.957Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"arnaldo1@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
+      "raw": "{\n    \"email\":\"arnaldo3@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
       "form": []
     },
     "tests": []
@@ -27,7 +27,7 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-05-28T01:09:17.256Z",
-    "modified": "2022-06-05T20:29:11.551Z",
+    "modified": "2022-06-05T20:39:04.938Z",
     "headers": [],
     "params": [],
     "body": {
@@ -121,12 +121,12 @@
     "method": "POST",
     "sortNum": 80000,
     "created": "2022-06-05T17:19:10.406Z",
-    "modified": "2022-06-05T20:29:57.186Z",
+    "modified": "2022-06-05T20:40:13.324Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"costo_servicio\",\n    \"estado\":\"estado\",\n    \"id_falla\":2,\n    \"id_tecnico\":2\n}",
+      "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"costo_servicio\",\n    \"estado\":\"estado\",\n    \"id_falla\":4,\n    \"id_tecnico\":2\n}",
       "form": []
     },
     "tests": []
@@ -140,12 +140,12 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-06-05T17:19:36.498Z",
-    "modified": "2022-06-05T20:29:28.551Z",
+    "modified": "2022-06-05T20:39:29.038Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"descripcion\":\"ejemplodescricpion\",\n    \"modelo\":\"ejemplomodelo\",\n    \"fecha_cierre\":\"cierre\",\n    \"titulo\":\"ejemplo_titulo\",\n    \"estado\":\"stade\",\n    \"ubicacion\":\"ejemplo_ubicacion\",\n    \"id_cliente\":2,\n    \"usuario\":\"ejemplo_usuario\"\n}",
+      "raw": "{\n    \"descripcion\":\"ejemplodescricpion\",\n    \"modelo\":\"ejemplomodelo\",\n    \"fecha_cierre\":\"cierre\",\n    \"titulo\":\"ejemplo_titulo\",\n    \"estado\":\"stade\",\n    \"ubicacion\":\"ejemplo_ubicacion\",\n    \"id_cliente\":4,\n    \"usuario\":\"ejemplo_usuario\"\n}",
       "form": []
     },
     "tests": []
@@ -159,7 +159,7 @@
     "method": "POST",
     "sortNum": 100000,
     "created": "2022-06-05T18:51:19.847Z",
-    "modified": "2022-06-05T20:30:33.983Z",
+    "modified": "2022-06-05T20:40:42.370Z",
     "headers": [],
     "params": [],
     "body": {
@@ -178,12 +178,12 @@
     "method": "POST",
     "sortNum": 110000,
     "created": "2022-06-05T19:02:14.594Z",
-    "modified": "2022-06-05T20:30:54.523Z",
+    "modified": "2022-06-05T20:41:02.908Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"calificacion\":\"calificacion\",\n    \"comentario\":\"comentario\",\n    \"usuario_id\":2,\n    \"propuesta_id\":1,\n    \"fecha_cierre\":\"23/10/1\"\n}",
+      "raw": "{\n    \"calificacion\":\"calificacion\",\n    \"comentario\":\"comentario\",\n    \"usuario_id\":1,\n    \"propuesta_id\":3,\n    \"fecha_cierre\":\"23/10/1\"\n}",
       "form": []
     },
     "tests": []
