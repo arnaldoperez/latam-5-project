@@ -149,5 +149,36 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "5c1bf781-a183-48f2-995d-80c8f3b58ebc",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "",
+    "name": "crear informe Tecnico",
+    "url": "{{url}}/informe_tecnico",
+    "method": "POST",
+    "sortNum": 100000,
+    "created": "2022-06-05T18:51:19.847Z",
+    "modified": "2022-06-05T18:57:15.772Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"comentario\":\"comentario\",\n    \"recomendacion\":\"recomendacion\",\n    \"usuario_id\":2,\n    \"falla_id\":2\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "8d5fe89f-e6f6-477d-8c84-efecd8f304b1",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "7e832073-9516-4af0-9997-9441f0baf8aa",
+    "name": "crear Calificacion Servicio",
+    "url": "",
+    "method": "GET",
+    "sortNum": 110000,
+    "created": "2022-06-05T19:02:14.594Z",
+    "modified": "2022-06-05T19:02:14.594Z",
+    "headers": []
   }
 ]
