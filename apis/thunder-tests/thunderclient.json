@@ -8,12 +8,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-28T00:56:01.087Z",
-    "modified": "2022-05-28T00:59:04.538Z",
+    "modified": "2022-06-05T16:41:45.682Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"arnaldo@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
+      "raw": "{\n    \"email\":\"arnaldo1@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
       "form": []
     },
     "tests": []
@@ -27,12 +27,12 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-05-28T01:09:17.256Z",
-    "modified": "2022-05-28T01:29:16.517Z",
+    "modified": "2022-06-05T16:41:55.893Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"id_user\":1,\n    \"historial\":\"historial2\",\n    \"descripcion\":\"descripcion2\",\n    \"ubicacion\":\"ubicacion2\",\n    \"url\":\"url2\"\n}",
+      "raw": "{\n    \"id_user\":2,\n    \"historial\":\"historial\",\n    \"descripcion\":\"descripcion\",\n    \"ubicacion\":\"ubicacion\",\n    \"url\":\"url\"\n}",
       "form": []
     },
     "tests": []

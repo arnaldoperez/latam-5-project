@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: c846e3210546
+Revision ID: 7267cb01b5e5
 Revises: 
-Create Date: 2022-06-05 00:15:48.082905
+Create Date: 2022-06-05 16:41:07.919169
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c846e3210546'
+revision = '7267cb01b5e5'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -43,10 +43,7 @@ def upgrade():
     sa.Column('fecha_ing', sa.String(length=120), nullable=False),
     sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('apellido'),
-    sa.UniqueConstraint('email'),
-    sa.UniqueConstraint('fecha_ing'),
-    sa.UniqueConstraint('nombre')
+    sa.UniqueConstraint('email')
     )
     op.create_table('falla',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -70,10 +67,7 @@ def upgrade():
     sa.Column('id_user', sa.Integer(), nullable=True),
     sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.ForeignKeyConstraint(['id_user'], ['user.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('descripcion'),
-    sa.UniqueConstraint('historial'),
-    sa.UniqueConstraint('url')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('informe_tecnico',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -96,9 +90,7 @@ def upgrade():
     sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.ForeignKeyConstraint(['id_falla'], ['falla.id'], ),
     sa.ForeignKeyConstraint(['id_tecnico'], ['perfil_tecnico.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('detalle'),
-    sa.UniqueConstraint('estado')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('calificacion',
     sa.Column('id', sa.Integer(), nullable=False),

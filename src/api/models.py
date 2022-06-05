@@ -7,11 +7,11 @@ class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
-    nombre = db.Column(db.String(120), unique=True, nullable=False)
-    apellido = db.Column(db.String(120), unique=True, nullable=False)
-    fecha_ing = db.Column(db.String(120), unique=True, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    password = db.Column(db.String(80), nullable=False)
+    nombre = db.Column(db.String(120), nullable=False)
+    apellido = db.Column(db.String(120), nullable=False)
+    fecha_ing = db.Column(db.String(120), nullable=False)
+    is_active = db.Column(db.Boolean(), nullable=False)
     
     def __repr__(self):
         return f'<User {self.email}>'
@@ -45,10 +45,10 @@ class Perfil_tecnico(db.Model):
     __tablename__ = 'perfil_tecnico'
 
     id = db.Column(db.Integer, primary_key=True)
-    historial = db.Column(db.String(120), unique=True, nullable=False)
-    ubicacion = db.Column(db.String(80), unique=False, nullable=False)
-    descripcion = db.Column(db.String(120), unique=True, nullable=False)
-    url = db.Column(db.String(120), unique=True, nullable=False)
+    historial = db.Column(db.String(120), nullable=False)
+    ubicacion = db.Column(db.String(80), nullable=False)
+    descripcion = db.Column(db.String(120), nullable=False)
+    url = db.Column(db.String(120), nullable=False)
     id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship(User)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
@@ -72,13 +72,13 @@ class Falla(db.Model):
 
     __tablename_ = 'falla'
     id = db.Column(db.Integer, primary_key=True)
-    descripcion = db.Column(db.String(500), unique=False, nullable=False)  
-    modelo = db.Column(db.String(120), unique=False, nullable=False)    
-    fecha_creacion= db.Column(db.String(10), unique=False, nullable=False)  
+    descripcion = db.Column(db.String(500),  nullable=False)  
+    modelo = db.Column(db.String(120),  nullable=False)    
+    fecha_creacion= db.Column(db.String(10),  nullable=False)  
     fecha_cierre= db.Column(db.String(10), nullable=True)
-    titulo = db.Column(db.String(100),unique=False, nullable=False)
-    estado = db.Column(db.String(5),unique=False, nullable=False)
-    ubicacion = db.Column(db.String(200), unique=False, nullable=False)
+    titulo = db.Column(db.String(100), nullable=False)
+    estado = db.Column(db.String(5), nullable=False)
+    ubicacion = db.Column(db.String(200),  nullable=False)
     id_cliente = db.Column(db.Integer, db.ForeignKey('user.id'))
     usuario = db.relationship(User)
 
@@ -98,14 +98,14 @@ class Falla(db.Model):
 class Propuesta(db.Model):
     __tablename__ = 'propuesta'
     id = db.Column(db.Integer, primary_key=True)
-    detalle = db.Column(db.String(120), unique=True, nullable=False)
-    costo_servicio = db.Column(db.String(80), unique=False, nullable=False)
-    estado = db.Column(db.String(120), unique=True, nullable=False)
+    detalle = db.Column(db.String(120),  nullable=False)
+    costo_servicio = db.Column(db.String(80), nullable=False)
+    estado = db.Column(db.String(120),  nullable=False)
     id_falla = db.Column(db.Integer, db.ForeignKey('falla.id'))
     falla = db.relationship(Falla)
     id_tecnico = db.Column(db.Integer, db.ForeignKey('perfil_tecnico.id'))
     perfil_tecnico = db.relationship(Perfil_tecnico)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    is_active = db.Column(db.Boolean(),  nullable=False)
   
     def __repr__(self):
         return f'<User {self.historial}>'
@@ -165,7 +165,7 @@ class Imagenes(db.Model):
 class InformeTecnico(db.Model):
     __tablename__ = 'informe_tecnico'
     id = db.Column(db.Integer, primary_key=True)
-    fecha_creacion= db.Column(db.String(10), unique=False, nullable=False)
+    fecha_creacion= db.Column(db.String(10), nullable=False)
     comentario_servicio = db.Column(db.String(250), nullable=False)
     recomendacion = db.Column(db.String(250), nullable=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -186,7 +186,7 @@ class InformeTecnico(db.Model):
 class Factura(db.Model):
     __tablename__ = 'factura'
     id = db.Column(db.Integer, primary_key=True)
-    fecha_creacion= db.Column(db.String(10), unique=False, nullable=False)
+    fecha_creacion= db.Column(db.String(10), nullable=False)
     detalle_factura = db.Column(db.String(250), nullable=False)
     importe = db.Column(db.Float)
     estado = db.Column(db.String(50), nullable=False)
