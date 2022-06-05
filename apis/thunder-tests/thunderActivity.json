@@ -22,12 +22,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-06-05T00:11:09.741Z",
-    "modified": "2022-06-05T00:11:58.415Z",
+    "modified": "2022-06-05T16:01:58.761Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"id\": \"123456\",\n    \"email\" : \"asdfasd@gmail.com\",\n    \"password\": \"bollitos28\"\n    \"nombre\" : \"Germán\",\n    \"apellido\" : \"Duarte\",\n    \"fecha_ing\": \"2015-05-19\"\n}",
+      "raw": "{\n    \"id\": \"123456\",\n    \"email\" : \"asdfasd@gmail.com\",\n    \"password\": \"bollitos28\",\n    \"nombre\" : \"German\",\n    \"apellido\" : \"Duarte\",\n    \"fecha_ing\": \"2015-05-19\"\n}",
       "form": []
     },
     "tests": []

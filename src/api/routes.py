@@ -40,7 +40,7 @@ def falla(falla_id):
     falla = Falla.query.get_or_404(falla_id)
     return "Detalle Servicio ok"
 
-@api.route('/signup', methods=['PUT']) #ENDPOINT DE REGISTRAR
+@api.route('/signup', methods=['POST']) #ENDPOINT DE REGISTRAR
 def signup():
     email=request.json.get("email")#capturando mi usuario email del requerimiento
     password=request.json.get("password")#capturando la contraseña de mi ususario
