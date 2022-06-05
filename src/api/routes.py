@@ -138,7 +138,7 @@ def nuevapropuesta():
     estado=request.json.get("estado")#capturando estado del requerimiento
     id_falla=request.json.get("id_falla")#capturando falla del requerimiento
     id_tecnico=request.json.get("id_tecnico")#capturando tecnico del requerimiento
-    newPropuesta=Propuesta(detalle=detalle, costo_servicio=costo_servicio, estado=estado, id_falla=id_falla, id_tecnico=id_tecnico)#creando propuesta con el modelo (clase) que importe
+    newPropuesta=Propuesta(detalle=detalle, costo_servicio=costo_servicio, estado=estado, id_falla=id_falla, id_tecnico=id_tecnico, is_active=True)#creando propuesta con el modelo (clase) que importe
     db.session.add(newPropuesta)
     db.session.commit()
     response_body = {

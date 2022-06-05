@@ -111,5 +111,43 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "29bdc3bb-30f0-4582-818f-0793a69afd47",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "",
+    "name": "Crear Propuesta",
+    "url": "{{url}}/propuesta",
+    "method": "POST",
+    "sortNum": 80000,
+    "created": "2022-06-05T17:19:10.406Z",
+    "modified": "2022-06-05T17:19:10.406Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"costo_servicio\",\n    \"estado\":\"estado\",\n    \"id_falla\":1,\n    \"id_tecnico\":1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "f20b5d6f-0618-4b72-a1a1-da8554927f35",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "",
+    "name": "Crear Falla",
+    "url": "{{url}}/falla",
+    "method": "POST",
+    "sortNum": 90000,
+    "created": "2022-06-05T17:19:36.498Z",
+    "modified": "2022-06-05T17:19:36.498Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"descripcion\":\"ejemplodescricpion\",\n    \"modelo\":\"ejemplomodelo\",\n    \"fecha_cierre\":\"cierre\",\n    \"titulo\":\"ejemplo_titulo\",\n    \"estado\":\"stade\",\n    \"ubicacion\":\"ejemplo_ubicacion\",\n    \"id_cliente\":2,\n    \"usuario\":\"ejemplo_usuario\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

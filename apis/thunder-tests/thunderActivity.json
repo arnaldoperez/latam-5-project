@@ -144,5 +144,24 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "513cb7d4-00be-493a-8409-a2f5f4afc28b",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{url}}/propuesta",
+    "url": "{{url}}/propuesta",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-06-05T17:11:43.160Z",
+    "modified": "2022-06-05T17:17:03.304Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"costo_servicio\",\n    \"estado\":\"estado\",\n    \"id_falla\":1,\n    \"id_tecnico\":1\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
