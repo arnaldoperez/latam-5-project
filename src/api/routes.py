@@ -176,10 +176,14 @@ def subir_imagen():
 @api.route('/informe_tecnico', methods=['POST']) 
 def crear_informe_tecnico():
     fecha_creacion = datetime.datetime.now()
-    comentario = request.json.get("comentario")
+    comentario_servicio = request.json.get("comentario_servicio")
     recomendacion = request.json.get("recomendacion")
     usuario_id = request.json.get("usuario_id")
     falla_id = request.json.get("falla_id")
+
+    newInforme= InformeTecnico(fecha_creacion=fecha_creacion,comentario_servicio=comentario_servicio,recomendacion=recomendacion,usuario_id=usuario_id, falla_id=falla_id)
+    db.session.add(newInforme)
+    db.session.commit()
     response_body = {
         "message": "informe creado exitosamente"
     }
@@ -201,3 +205,20 @@ def crear_factura():
 def mostrar_factura(factura_id):
     factura = Factura.query.get_or_404(factura_id)
     return "Detalle Factura ok"
+
+@api.route('/calificaciones', methods=['POST'])
+def create_calification():
+
+    calificacion=request.json.get("calificacion")
+    comentario=request.json.get("comentario")
+    usuario_id=request.json.get("usuario_id")
+    propuesta_id=request.json.get("propuesta_id")
+    fecha_cierre=request.json.get("fecha_cierre")
+        
+    newCalificacion= Calificacion(calificacion=calificacion,comentario=comentario,usuario_id=usuario_id,propuesta_id=propuesta_id, fecha_cierre=fecha_cierre)
+    db.session.add(newCalificacion)
+    db.session.commit()
+    response_body = {
+        "message": "Calificacion creado exitosamente"
+    }
+    return jsonify(response_body), 200

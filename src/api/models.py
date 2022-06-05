@@ -108,7 +108,7 @@ class Propuesta(db.Model):
     is_active = db.Column(db.Boolean(),  nullable=False)
   
     def __repr__(self):
-        return f'<User {self.historial}>'
+        return f'<User {self.estado}>'
 
     def serialize(self):
         return {
@@ -140,8 +140,9 @@ class Calificacion(db.Model):
             'id': self.id,           
             'calificacion': self.calificacion,
             'comentario': self.comentario,
-            'usuario': self.usuario,
-            'propuesta': self.propuesta
+            'usuario_id': self.usuario_id,
+            'propuesta_id': self.propuesta_id,
+            'fecha_cierre': self.fecha_cierre
         }
 
 
@@ -165,7 +166,7 @@ class Imagenes(db.Model):
 class InformeTecnico(db.Model):
     __tablename__ = 'informe_tecnico'
     id = db.Column(db.Integer, primary_key=True)
-    fecha_creacion= db.Column(db.String(10), nullable=False)
+    fecha_creacion= db.Column(db.String(250), nullable=False)
     comentario_servicio = db.Column(db.String(250), nullable=False)
     recomendacion = db.Column(db.String(250), nullable=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))

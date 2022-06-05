@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-28T00:56:01.087Z",
-    "modified": "2022-06-05T16:57:26.326Z",
+    "modified": "2022-06-05T20:28:56.817Z",
     "headers": [],
     "params": [],
     "body": {
@@ -27,7 +27,7 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-05-28T01:09:17.256Z",
-    "modified": "2022-06-05T16:57:36.830Z",
+    "modified": "2022-06-05T20:29:11.551Z",
     "headers": [],
     "params": [],
     "body": {
@@ -121,12 +121,12 @@
     "method": "POST",
     "sortNum": 80000,
     "created": "2022-06-05T17:19:10.406Z",
-    "modified": "2022-06-05T17:19:10.406Z",
+    "modified": "2022-06-05T20:29:57.186Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"costo_servicio\",\n    \"estado\":\"estado\",\n    \"id_falla\":1,\n    \"id_tecnico\":1\n}",
+      "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"costo_servicio\",\n    \"estado\":\"estado\",\n    \"id_falla\":2,\n    \"id_tecnico\":2\n}",
       "form": []
     },
     "tests": []
@@ -138,9 +138,9 @@
     "name": "Crear Falla",
     "url": "{{url}}/falla",
     "method": "POST",
-    "sortNum": 90000,
+    "sortNum": 60000,
     "created": "2022-06-05T17:19:36.498Z",
-    "modified": "2022-06-05T17:19:36.498Z",
+    "modified": "2022-06-05T20:29:28.551Z",
     "headers": [],
     "params": [],
     "body": {
@@ -159,12 +159,12 @@
     "method": "POST",
     "sortNum": 100000,
     "created": "2022-06-05T18:51:19.847Z",
-    "modified": "2022-06-05T18:57:15.772Z",
+    "modified": "2022-06-05T20:30:33.983Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"comentario\":\"comentario\",\n    \"recomendacion\":\"recomendacion\",\n    \"usuario_id\":2,\n    \"falla_id\":2\n}",
+      "raw": "{\n    \"comentario_servicio\":\"comentario_servicio\",\n    \"recomendacion\":\"recomendacion\",\n    \"usuario_id\":1,\n    \"falla_id\":2\n}",
       "form": []
     },
     "tests": []
@@ -172,13 +172,20 @@
   {
     "_id": "8d5fe89f-e6f6-477d-8c84-efecd8f304b1",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "7e832073-9516-4af0-9997-9441f0baf8aa",
+    "containerId": "",
     "name": "crear Calificacion Servicio",
-    "url": "",
-    "method": "GET",
+    "url": "{{url}}/calificaciones",
+    "method": "POST",
     "sortNum": 110000,
     "created": "2022-06-05T19:02:14.594Z",
-    "modified": "2022-06-05T19:02:14.594Z",
-    "headers": []
+    "modified": "2022-06-05T20:30:54.523Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"calificacion\":\"calificacion\",\n    \"comentario\":\"comentario\",\n    \"usuario_id\":2,\n    \"propuesta_id\":1,\n    \"fecha_cierre\":\"23/10/1\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
