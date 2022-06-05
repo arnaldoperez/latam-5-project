@@ -106,5 +106,24 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "d3ab7aa5-5bce-4d6d-b629-d903aec34f75",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{url}}/login",
+    "url": "{{url}}/login",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-06-05T00:34:00.797Z",
+    "modified": "2022-06-05T00:34:00.885Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\":\"puchirri98@gmail.com\",\n    \"password\":\"Bollitos\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
