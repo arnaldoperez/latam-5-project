@@ -22,12 +22,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-06-05T00:11:09.741Z",
-    "modified": "2022-06-05T16:01:58.761Z",
+    "modified": "2022-06-05T00:11:58.415Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"id\": \"123456\",\n    \"email\" : \"asdfasd@gmail.com\",\n    \"password\": \"bollitos28\",\n    \"nombre\" : \"German\",\n    \"apellido\" : \"Duarte\",\n    \"fecha_ing\": \"2015-05-19\"\n}",
+      "raw": "{\n    \"id\": \"123456\",\n    \"email\" : \"asdfasd@gmail.com\",\n    \"password\": \"bollitos28\"\n    \"nombre\" : \"Germán\",\n    \"apellido\" : \"Duarte\",\n    \"fecha_ing\": \"2015-05-19\"\n}",
       "form": []
     },
     "tests": []
@@ -122,6 +122,25 @@
     "body": {
       "type": "json",
       "raw": "{\n    \"email\":\"puchirri98@gmail.com\",\n    \"password\":\"Bollitos\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "9a8f180f-b4d3-4d8d-ac08-4221f6913ed2",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{url}}/falla",
+    "url": "{{url}}/falla",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-06-05T16:53:05.302Z",
+    "modified": "2022-06-05T16:59:02.037Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"descripcion\":\"ejemplodescricpion\",\n    \"modelo\":\"ejemplomodelo\",\n    \"fecha_cierre\":\"cierre\",\n    \"titulo\":\"ejemplo_titulo\",\n    \"estado\":\"stade\",\n    \"ubicacion\":\"ejemplo_ubicacion\",\n    \"id_cliente\":2,\n    \"usuario\":\"ejemplo_usuario\"\n}",
       "form": []
     },
     "tests": []
