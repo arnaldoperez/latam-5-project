@@ -20,7 +20,6 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
-            "password": self.password,
             "nombre": self.nombre,
             "apellido": self.apellido,
             "fecha_ing": self.fecha_ing
