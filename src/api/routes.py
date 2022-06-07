@@ -206,19 +206,31 @@ def mostrar_factura(factura_id):
     factura = Factura.query.get_or_404(factura_id)
     return "Detalle Factura ok"
 
+
 @api.route('/calificaciones', methods=['POST'])
 def create_calification():
 
     calificacion=request.json.get("calificacion")
     comentario=request.json.get("comentario")
-    usuario_id=request.json.get("usuario_id")
+    id_tecnico=request.json.get("id_tecnico")
     propuesta_id=request.json.get("propuesta_id")
     fecha_cierre=request.json.get("fecha_cierre")
         
-    newCalificacion= Calificacion(calificacion=calificacion,comentario=comentario,usuario_id=usuario_id,propuesta_id=propuesta_id, fecha_cierre=fecha_cierre)
+    newCalificacion= Calificacion(calificacion=calificacion,comentario=comentario,id_tecnico=id_tecnico,propuesta_id=propuesta_id, fecha_cierre=fecha_cierre)
     db.session.add(newCalificacion)
     db.session.commit()
     response_body = {
         "message": "Calificacion creado exitosamente"
     }
     return jsonify(response_body), 200
+
+@api.route('/calificaciones', methods=['GET'])
+def historial_calificacionestodos():
+    historial = Calificacion.query.all()
+    historial = list(map(lambda calificacion: calificacion.serialize(), historial ))
+    return jsonify(historial)
+
+@api.route('/calificaciones/<id_tecnico>', methods=['GET'])
+def historial_calificaciones(id_tecnico):
+    historial = Calificacion.query.get(id_tecnico)
+    return jsonify(historial.serialize())
