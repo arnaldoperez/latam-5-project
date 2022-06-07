@@ -128,8 +128,8 @@ class Calificacion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     calificacion = db.Column(db.String(50), nullable=False)
     comentario = db.Column(db.String(250), nullable=False)
-    usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    usuario = db.relationship(User)
+    id_tecnico = db.Column(db.Integer, db.ForeignKey('perfil_tecnico.id'))
+    perfil_tecnico = db.relationship(Perfil_tecnico)
     propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))
     propuesta = db.relationship(Propuesta)
     fecha_cierre= db.Column(db.String(10), nullable=False)
@@ -140,7 +140,7 @@ class Calificacion(db.Model):
             'id': self.id,           
             'calificacion': self.calificacion,
             'comentario': self.comentario,
-            'usuario_id': self.usuario_id,
+            'id_tecnico': self.id_tecnico,
             'propuesta_id': self.propuesta_id,
             'fecha_cierre': self.fecha_cierre
         }
