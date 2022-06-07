@@ -166,7 +166,7 @@ class Imagenes(db.Model):
 class InformeTecnico(db.Model):
     __tablename__ = 'informe_tecnico'
     id = db.Column(db.Integer, primary_key=True)
-    fecha_creacion= db.Column(db.String(250), nullable=False)
+    fecha_creacion= db.Column(db.String(10), nullable=False)
     comentario_servicio = db.Column(db.String(250), nullable=False)
     recomendacion = db.Column(db.String(250), nullable=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -182,8 +182,8 @@ class InformeTecnico(db.Model):
             'fecha_creacion': self.fecha_creacion,
             'comentario_servicio': self.comentario_servicio,
             'recomendacion': self.recomendacion,
-            'usuario': self.usuario,
-            'falla': self.falla,
+            'usuario_id': self.usuario_id,
+            'falla_id': self.falla_id,
             'importe': self.importe,
             'estado': self.estado
         }

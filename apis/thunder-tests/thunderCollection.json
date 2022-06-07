@@ -6,13 +6,6 @@
     "sortNum": 10000,
     "folders": [
       {
-        "_id": "f368aa53-5b02-4014-bd3d-107a315393b3",
-        "name": "Facturación",
-        "containerId": "",
-        "created": "2022-06-03T22:21:58.693Z",
-        "sortNum": 10000
-      },
-      {
         "_id": "7e832073-9516-4af0-9997-9441f0baf8aa",
         "name": "Informe Técnico",
         "containerId": "",

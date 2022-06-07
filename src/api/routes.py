@@ -27,17 +27,17 @@ def handle_hello():
     return jsonify(response_body), 200
 
 
-@api.route('/servicios', methods=['GET'])
+@api.route('/fallas', methods=['GET'])
 def listado_fallas():
     fallas = Falla.query.all()
     fallas = list(map(lambda falla: falla.serialize(), fallas ))
     return jsonify(fallas)
 
 
-@api.route('/servicio/<int:falla_id>/', methods=['GET'])
+@api.route('/falla/<int:falla_id>/', methods=['GET'])
 def falla(falla_id):
     falla = Falla.query.get_or_404(falla_id)
-    return "Detalle Servicio ok"
+    return jsonify(falla.serialize())
 
 @api.route('/signup', methods=['POST']) #ENDPOINT DE REGISTRAR
 def signup():
@@ -190,12 +190,16 @@ def crear_informe_tecnico():
     }
     return jsonify(response_body), 201
 
-@api.route('/mostrar_informes', method=['GET'])
-def mostrar_informes():
+@api.route('/informes', methods=['GET'])
+def listar_informes():
     informes = InformeTecnico.query.all()
-    informes = list(map(lambda informes: informes.serialize(), informes ))
+    informes = list(map(lambda informe: informe.serialize(), informes ))
     return jsonify(informes)
 
+@api.route('/informe/<int:informe_id>', methods=['GET'])
+def mostrar_informe(informe_id):
+    informe = InformeTecnico.query.get_or_404(informe_id)
+    return jsonify(informe.serialize())
 
 @api.route('/calificaciones', methods=['POST'])
 def create_calification():
