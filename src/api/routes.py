@@ -208,10 +208,15 @@ def create_calification():
     comentario=request.json.get("comentario")
     id_tecnico=request.json.get("id_tecnico")
     propuesta_id=request.json.get("propuesta_id")
-    fecha_cierre=request.json.get("fecha_cierre")
-        
-    newCalificacion= Calificacion(calificacion=calificacion,comentario=comentario,id_tecnico=id_tecnico,propuesta_id=propuesta_id, fecha_cierre=fecha_cierre)
+    date=datetime.datetime.now()
+    fecha_cierre= date.strftime("%x")
+    #fecha_cierre=request.json.get("fecha_cierre")
+    newCalificacion= Calificacion(calificacion=calificacion,comentario=comentario,usuario_id=usuario_id,propuesta_id=propuesta_id, fecha_cierre=fecha_cierre)
     db.session.add(newCalificacion)
+    db.session.flush()
+    cierre_falla=newCalificacion.propuesta.falla
+    cierre_falla.fecha_cierre=newCalificacion.fecha_cierre
+    db.session.add(cierre_falla)
     db.session.commit()
     response_body = {
         "message": "Calificacion creado exitosamente"

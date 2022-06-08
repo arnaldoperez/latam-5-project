@@ -4,11 +4,11 @@
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "",
     "name": "SignUp",
-    "url": "{{url}}/signup",
+    "url": "https://3001-arnaldopere-latam5proje-fctrxdauhde.ws-us47.gitpod.io/api/signup",
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-28T00:56:01.087Z",
-    "modified": "2022-06-07T19:42:44.220Z",
+    "modified": "2022-06-08T16:28:16.903Z",
     "headers": [],
     "params": [],
     "body": {
