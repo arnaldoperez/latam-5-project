@@ -18,16 +18,16 @@
     "colId": "history",
     "containerId": "",
     "name": "{{url}}/singup",
-    "url": "https://3001-arnaldopere-latam5proje-v5eaud1tkn0.ws-us46.gitpod.io/api/singup",
+    "url": "{{url}}/singup",
     "method": "POST",
     "sortNum": 0,
     "created": "2022-06-05T00:11:09.741Z",
-    "modified": "2022-06-07T00:01:10.702Z",
+    "modified": "2022-06-05T00:11:58.415Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"id\": \"123456\",\n    \"email\" : \"asdfasd@gmail.com\",\n    \"password\": \"bollitos28\",\n    \"nombre\" : \"German\",\n    \"apellido\" : \"Duarte\",\n    \"fecha_ing\": \"2015-05-19\"\n}",
+      "raw": "{\n    \"id\": \"123456\",\n    \"email\" : \"asdfasd@gmail.com\",\n    \"password\": \"bollitos28\"\n    \"nombre\" : \"Germán\",\n    \"apellido\" : \"Duarte\",\n    \"fecha_ing\": \"2015-05-19\"\n}",
       "form": []
     },
     "tests": []
@@ -131,11 +131,11 @@
     "colId": "history",
     "containerId": "",
     "name": "{{url}}/falla",
-    "url": "https://3001-arnaldopere-latam5proje-v5eaud1tkn0.ws-us46.gitpod.io/api/falla",
+    "url": "{{url}}/falla",
     "method": "POST",
     "sortNum": 0,
     "created": "2022-06-05T16:53:05.302Z",
-    "modified": "2022-06-06T23:59:25.166Z",
+    "modified": "2022-06-05T17:05:07.165Z",
     "headers": [],
     "params": [],
     "body": {
@@ -160,6 +160,25 @@
     "body": {
       "type": "json",
       "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"costo_servicio\",\n    \"estado\":\"estado\",\n    \"id_falla\":1,\n    \"id_tecnico\":1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "154bec06-f977-4daa-8f14-f8e344a00306",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://3001-arnaldopere-latam5proje-fctrxdauhde.ws-us47.gitpod.io/api/login",
+    "url": "https://3001-arnaldopere-latam5proje-fctrxdauhde.ws-us47.gitpod.io/api/login",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-06-08T16:30:27.981Z",
+    "modified": "2022-06-08T16:30:28.310Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\":\"arnaldo10@4geeks.com\",\n    \"password\":\"123456\"\n}",
       "form": []
     },
     "tests": []
