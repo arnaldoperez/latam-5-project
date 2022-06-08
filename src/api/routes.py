@@ -2,8 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Perfil_tecnico, Falla, Imagenes, Calificacion, TokenBlockedList, Propuesta, InformeTecnico, Factura
-#from api.models import db, User, Perfil_tecnico, Falla, Imagenes, InformeTecnico, Factura, Calificacion, Propuesta
+from api.models import db, User, Perfil_tecnico, Falla, Imagenes, Calificacion, TokenBlockedList, Propuesta, InformeTecnico
 from api.utils import generate_sitemap, APIException
 from flask_bcrypt import Bcrypt 
 from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt
@@ -28,17 +27,17 @@ def handle_hello():
     return jsonify(response_body), 200
 
 
-@api.route('/servicios', methods=['GET'])
+@api.route('/fallas', methods=['GET'])
 def listado_fallas():
     fallas = Falla.query.all()
     fallas = list(map(lambda falla: falla.serialize(), fallas ))
     return jsonify(fallas)
 
 
-@api.route('/servicio/<int:falla_id>/', methods=['GET'])
+@api.route('/falla/<int:falla_id>/', methods=['GET'])
 def falla(falla_id):
     falla = Falla.query.get_or_404(falla_id)
-    return "Detalle Servicio ok"
+    return jsonify(falla.serialize())
 
 @api.route('/signup', methods=['POST']) #ENDPOINT DE REGISTRAR
 def signup():
@@ -180,8 +179,10 @@ def crear_informe_tecnico():
     recomendacion = request.json.get("recomendacion")
     usuario_id = request.json.get("usuario_id")
     falla_id = request.json.get("falla_id")
+    importe = request.json.get("importe")
+    estado = request.json.get("estado")
 
-    newInforme= InformeTecnico(fecha_creacion=fecha_creacion,comentario_servicio=comentario_servicio,recomendacion=recomendacion,usuario_id=usuario_id, falla_id=falla_id)
+    newInforme= InformeTecnico(fecha_creacion=fecha_creacion,comentario_servicio=comentario_servicio,recomendacion=recomendacion,usuario_id=usuario_id, falla_id=falla_id,importe=importe,estado=estado)
     db.session.add(newInforme)
     db.session.commit()
     response_body = {
@@ -189,29 +190,23 @@ def crear_informe_tecnico():
     }
     return jsonify(response_body), 201
 
-@api.route('/crear_factura', methods=['POST']) 
-def crear_factura():
-    fecha_creacion = datetime.datetime.now()
-    detalle_factura = request.json.get("detalle_factura")
-    importe = request.json.get("importe")
-    estado = request.json.get("estado")
-    propuesta_id = request.json.get("propuesta_id")
-    response_body = {
-        "message": "factura creada exitosamente"
-    }
-    return jsonify(response_body), 201
+@api.route('/informes', methods=['GET'])
+def listar_informes():
+    informes = InformeTecnico.query.all()
+    informes = list(map(lambda informe: informe.serialize(), informes ))
+    return jsonify(informes)
 
-@api.route('/factura/<int:factura_id>/', methods=['GET'])
-def mostrar_factura(factura_id):
-    factura = Factura.query.get_or_404(factura_id)
-    return "Detalle Factura ok"
+@api.route('/informe/<int:informe_id>', methods=['GET'])
+def mostrar_informe(informe_id):
+    informe = InformeTecnico.query.get_or_404(informe_id)
+    return jsonify(informe.serialize())
 
 @api.route('/calificaciones', methods=['POST'])
 def create_calification():
 
     calificacion=request.json.get("calificacion")
     comentario=request.json.get("comentario")
-    usuario_id=request.json.get("usuario_id")
+    id_tecnico=request.json.get("id_tecnico")
     propuesta_id=request.json.get("propuesta_id")
     date=datetime.datetime.now()
     fecha_cierre= date.strftime("%x")
@@ -227,3 +222,14 @@ def create_calification():
         "message": "Calificacion creado exitosamente"
     }
     return jsonify(response_body), 200
+
+@api.route('/calificaciones', methods=['GET'])
+def historial_calificacionestodos():
+    historial = Calificacion.query.all()
+    historial = list(map(lambda calificacion: calificacion.serialize(), historial ))
+    return jsonify(historial)
+
+@api.route('/calificaciones/<id_tecnico>', methods=['GET'])
+def historial_calificaciones(id_tecnico):
+    historial = Calificacion.query.get(id_tecnico)
+    return jsonify(historial.serialize())
