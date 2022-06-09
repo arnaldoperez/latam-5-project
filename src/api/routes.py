@@ -212,7 +212,7 @@ def create_calification():
     date=datetime.datetime.now()
     fecha_cierre= date.strftime("%x")
     #fecha_cierre=request.json.get("fecha_cierre")
-    newCalificacion= Calificacion(calificacion=calificacion,comentario=comentario,usuario_id=usuario_id,propuesta_id=propuesta_id, fecha_cierre=fecha_cierre)
+    newCalificacion= Calificacion(calificacion=calificacion,comentario=comentario,propuesta_id=propuesta_id, fecha_cierre=fecha_cierre)
     db.session.add(newCalificacion)
     db.session.flush()
     cierre_falla=newCalificacion.propuesta.falla

@@ -3,33 +3,33 @@
     "_id": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "colName": "Proyecto",
     "created": "2022-05-28T00:55:47.356Z",
-    "sortNum": 10000
-  },
-  {
-    "_id": "f8133ead-0c76-4f0f-9fbb-3eef2eae5621",
-    "colName": "Carga de datos",
-    "created": "2022-06-04T01:15:13.473Z",
-    "sortNum": 20000,
-    "folders": [],
-    "settings": {
-      "headers": [],
-      "tests": [],
-      "envId": "74fe68be-8044-4704-a345-829e6d4c93a4"
-    }
-    },
-    {
-    "_id": "a039e116-029b-4920-ad0a-8acf4586352e",
-    "name": "llenar base",
-    "containerId": "",
-    "created": "2022-06-08T01:25:15.504Z",
     "sortNum": 10000,
     "folders": [
+      {
+        "_id": "f8133ead-0c76-4f0f-9fbb-3eef2eae5621",
+        "colName": "Carga de datos",
+        "created": "2022-06-04T01:15:13.473Z",
+        "sortNum": 20000,
+        "folders": [],
+        "settings": {
+          "headers": [],
+          "tests": [],
+          "envId": "74fe68be-8044-4704-a345-829e6d4c93a4"
+        }
+      },
       {
         "_id": "7e832073-9516-4af0-9997-9441f0baf8aa",
         "name": "Informe Técnico",
         "containerId": "",
         "created": "2022-06-03T22:26:16.836Z",
         "sortNum": 20000
+      },
+      {
+        "_id": "a039e116-029b-4920-ad0a-8acf4586352e",
+        "name": "llenar base",
+        "containerId": "",
+        "created": "2022-06-08T01:25:15.504Z",
+        "sortNum": 10000
       }
     ]
   }

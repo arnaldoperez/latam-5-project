@@ -2,13 +2,13 @@
   {
     "_id": "a9ad3bf1-999d-4fd3-a591-62a2e1a5cd6d",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "",
-    "name": "SignUp",
-    "url": "https://3001-arnaldopere-latam5proje-fctrxdauhde.ws-us47.gitpod.io/api/signup",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "CrearUsuario",
+    "url": "{{url}}/signup",
     "method": "POST",
-    "sortNum": 10000,
+    "sortNum": 5000,
     "created": "2022-05-28T00:56:01.087Z",
-    "modified": "2022-06-08T16:28:16.903Z",
+    "modified": "2022-06-09T01:49:57.119Z",
     "headers": [],
     "params": [],
     "body": {
@@ -21,13 +21,13 @@
   {
     "_id": "c2cae637-08b1-4d12-ae33-cac68c0ccee3",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "",
-    "name": "crear_tecnico",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "CrearPerfilTecnico",
     "url": "{{url}}/tecnicos",
     "method": "POST",
-    "sortNum": 20000,
+    "sortNum": 10000,
     "created": "2022-05-28T01:09:17.256Z",
-    "modified": "2022-06-07T18:07:33.149Z",
+    "modified": "2022-06-09T01:37:56.129Z",
     "headers": [],
     "params": [],
     "body": {
@@ -96,110 +96,6 @@
     "modified": "2022-06-04T01:02:48.441Z"
   },
   {
-    "_id": "29bdc3bb-30f0-4582-818f-0793a69afd47",
-    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "",
-    "name": "Crear Propuesta",
-    "url": "{{url}}/propuesta",
-    "method": "POST",
-    "sortNum": 80000,
-    "created": "2022-06-05T17:19:10.406Z",
-    "modified": "2022-06-07T18:15:51.314Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"20.00\",\n    \"estado\":\"estado\",\n    \"id_falla\":2,\n    \"id_tecnico\":2\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
-    "_id": "f20b5d6f-0618-4b72-a1a1-da8554927f35",
-    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "",
-    "name": "Crear Falla",
-    "url": "{{url}}/falla",
-    "method": "POST",
-    "sortNum": 60000,
-    "created": "2022-06-05T17:19:36.498Z",
-    "modified": "2022-06-07T18:07:40.945Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n    \"descripcion\":\"ejemplodescricpion\",\n    \"modelo\":\"ejemplomodelo\",\n    \"fecha_cierre\":\"cierre\",\n    \"titulo\":\"ejemplo_titulo\",\n    \"estado\":\"stade\",\n    \"ubicacion\":\"ejemplo_ubicacion\",\n    \"id_cliente\":1,\n    \"usuario\":\"ejemplo_usuario\"\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
-    "_id": "5c1bf781-a183-48f2-995d-80c8f3b58ebc",
-    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "",
-    "name": "crear informe Tecnico",
-    "url": "{{url}}/informe_tecnico",
-    "method": "POST",
-    "sortNum": 100000,
-    "created": "2022-06-05T18:51:19.847Z",
-    "modified": "2022-06-05T20:40:42.370Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n    \"comentario_servicio\":\"comentario_servicio\",\n    \"recomendacion\":\"recomendacion\",\n    \"usuario_id\":1,\n    \"falla_id\":2\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
-    "_id": "8d5fe89f-e6f6-477d-8c84-efecd8f304b1",
-    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "",
-    "name": "crear Calificacion Servicio",
-    "url": "{{url}}/calificaciones",
-    "method": "POST",
-    "sortNum": 110000,
-    "created": "2022-06-05T19:02:14.594Z",
-    "modified": "2022-06-05T20:41:02.908Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n    \"calificacion\":\"calificacion\",\n    \"comentario\":\"comentario\",\n    \"usuario_id\":1,\n    \"propuesta_id\":3,\n    \"fecha_cierre\":\"23/10/1\"\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
-    "_id": "0e079270-5c5e-404e-8fd5-82359e8ffdc0",
-    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "7e832073-9516-4af0-9997-9441f0baf8aa",
-    "name": "Listar informes",
-    "url": "{{url}}/informes",
-    "method": "GET",
-    "sortNum": 120000,
-    "created": "2022-06-07T18:24:22.738Z",
-    "modified": "2022-06-07T19:41:49.686Z",
-    "headers": [],
-    "params": [],
-    "tests": []
-  },
-  {
-    "_id": "54ff7887-b097-4378-983d-95fed0375307",
-    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "7e832073-9516-4af0-9997-9441f0baf8aa",
-    "name": "Consultar Informe",
-    "url": "{{url}}/informe/2",
-    "method": "GET",
-    "sortNum": 130000,
-    "created": "2022-06-07T21:01:34.929Z",
-    "modified": "2022-06-07T21:04:57.482Z",
-    "headers": [],
-    "params": [],
-    "tests": []
-  },
-  {
     "_id": "eb5949a7-c3a4-45d5-8955-e1ca7a5a22e7",
     "colId": "f8133ead-0c76-4f0f-9fbb-3eef2eae5621",
     "containerId": "",
@@ -250,5 +146,128 @@
         "value": "{{id_usr_2}}"
       }
     ]
+  },
+  {
+    "_id": "29bdc3bb-30f0-4582-818f-0793a69afd47",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "Crear Propuesta",
+    "url": "{{url}}/propuesta",
+    "method": "POST",
+    "sortNum": 25000,
+    "created": "2022-06-05T17:19:10.406Z",
+    "modified": "2022-06-09T01:56:39.273Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"20.00\",\n    \"estado\":\"estado\",\n    \"id_falla\":1,\n    \"id_tecnico\":1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "f20b5d6f-0618-4b72-a1a1-da8554927f35",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "Crear Falla",
+    "url": "{{url}}/falla",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-06-05T17:19:36.498Z",
+    "modified": "2022-06-09T01:37:58.413Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"descripcion\":\"ejemplodescricpion\",\n    \"modelo\":\"ejemplomodelo\",\n    \"fecha_cierre\":\"cierre\",\n    \"titulo\":\"ejemplo_titulo\",\n    \"estado\":\"stade\",\n    \"ubicacion\":\"ejemplo_ubicacion\",\n    \"id_cliente\":1,\n    \"usuario\":\"ejemplo_usuario\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5c1bf781-a183-48f2-995d-80c8f3b58ebc",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "crear informe Tecnico",
+    "url": "{{url}}/informe_tecnico",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-06-05T18:51:19.847Z",
+    "modified": "2022-06-09T01:58:12.172Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"comentario_servicio\":\"comentario_servicio\",\n    \"recomendacion\":\"recomendacion\",\n    \"usuario_id\":1,\n    \"falla_id\":1,\n    \"estado\":\"terminado\",\n    \"importe\":100\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "8d5fe89f-e6f6-477d-8c84-efecd8f304b1",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "crear Calificacion Servicio",
+    "url": "{{url}}/calificaciones",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2022-06-05T19:02:14.594Z",
+    "modified": "2022-06-09T02:04:08.104Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"calificacion\":\"calificacion\",\n    \"comentario\":\"comentario\",\n    \"propuesta_id\":1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "0e079270-5c5e-404e-8fd5-82359e8ffdc0",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "7e832073-9516-4af0-9997-9441f0baf8aa",
+    "name": "Listar informes",
+    "url": "{{url}}/informes",
+    "method": "GET",
+    "sortNum": 120000,
+    "created": "2022-06-07T18:24:22.738Z",
+    "modified": "2022-06-07T19:41:49.686Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "54ff7887-b097-4378-983d-95fed0375307",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "7e832073-9516-4af0-9997-9441f0baf8aa",
+    "name": "Consultar Informe",
+    "url": "{{url}}/informe/2",
+    "method": "GET",
+    "sortNum": 130000,
+    "created": "2022-06-07T21:01:34.929Z",
+    "modified": "2022-06-07T21:04:57.482Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "de503881-bd6c-4d36-88f6-14bb1e2611bd",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "CrearUsuarioTecnico",
+    "url": "{{url}}/signup",
+    "method": "POST",
+    "sortNum": 7500,
+    "created": "2022-06-09T01:47:09.554Z",
+    "modified": "2022-06-09T01:52:14.030Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\":\"arnald@4gks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
