@@ -85,7 +85,6 @@
     "tests": []
   },
   {
-<<<<<<< HEAD
     "_id": "359ab2de-5f24-4c86-a67e-66aabaf5e700",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "7e832073-9516-4af0-9997-9441f0baf8aa",
@@ -94,8 +93,9 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-06-03T22:23:08.190Z",
-    "modified": "2022-06-04T01:02:48.441Z",
-=======
+    "modified": "2022-06-04T01:02:48.441Z"
+  },
+  {
     "_id": "29bdc3bb-30f0-4582-818f-0793a69afd47",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "",
@@ -195,7 +195,6 @@
     "sortNum": 130000,
     "created": "2022-06-07T21:01:34.929Z",
     "modified": "2022-06-07T21:04:57.482Z",
->>>>>>> 05b5fe044dda86a36809603d4ea3a8fcf974ca95
     "headers": [],
     "params": [],
     "tests": []
