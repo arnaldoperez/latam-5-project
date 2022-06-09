@@ -30,5 +30,175 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "eea6edc3-46bd-47c4-aa47-47e55efe83bb",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{url}}/singup",
+    "url": "{{url}}/singup",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-06-05T00:11:09.741Z",
+    "modified": "2022-06-05T00:11:58.415Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"id\": \"123456\",\n    \"email\" : \"asdfasd@gmail.com\",\n    \"password\": \"bollitos28\"\n    \"nombre\" : \"Germán\",\n    \"apellido\" : \"Duarte\",\n    \"fecha_ing\": \"2015-05-19\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "8fce5630-1acc-43f5-9d7e-c6c249ae68c7",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://3001-arnaldopere-latam5proje-t14c3u9zekl.ws-us46.gitpod.io/?vscodeBrowserReqId=1654388167597/singup",
+    "url": "https://3001-arnaldopere-latam5proje-t14c3u9zekl.ws-us46.gitpod.io/?vscodeBrowserReqId=1654388167597/singup",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-06-05T00:16:25.251Z",
+    "modified": "2022-06-05T00:25:33.009Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "vscodeBrowserReqId",
+        "value": "1654388167597/singup",
+        "isPath": false
+      }
+    ],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"id\": \"123456\",\n    \"email\" : \"asdfasd@gmail.com\",\n    \"password\": \"bollitos28\"\n    \"nombre\" : \"Germán\",\n    \"apellido\" : \"Duarte\",\n    \"fecha_ing\": \"2015-05-19\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "73a6a0a8-0b6a-4dbc-bbc9-3c2273e35579",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://3001-arnaldopere-latam5proje-t14c3u9zekl.ws-us46.gitpod.io/?vscodeBrowserReqId=1654388167597/singup",
+    "url": "https://3001-arnaldopere-latam5proje-t14c3u9zekl.ws-us46.gitpod.io/?vscodeBrowserReqId=1654388167597/singup",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-06-05T00:23:12.381Z",
+    "modified": "2022-06-05T00:23:12.457Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "vscodeBrowserReqId",
+        "value": "1654388167597/singup",
+        "isPath": false
+      }
+    ],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"id\": \"123456\",\n    \"email\" : \"asdfasd@gmail.com\",\n    \"password\": \"bollitos28\"\n    \"nombre\" : \"Germán\",\n    \"apellido\" : \"Duarte\",\n    \"fecha_ing\": \"2015-05-19\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "acc57e51-a457-497c-b078-e3dfd8d240b4",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://3001-arnaldopere-latam5proje-t14c3u9zekl.ws-us46.gitpod.io/?vscodeBrowserReqId=1654388167597/singup",
+    "url": "https://3001-arnaldopere-latam5proje-t14c3u9zekl.ws-us46.gitpod.io/?vscodeBrowserReqId=1654388167597/singup",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-06-05T00:31:49.712Z",
+    "modified": "2022-06-05T00:31:49.834Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "vscodeBrowserReqId",
+        "value": "1654388167597/singup",
+        "isPath": false
+      }
+    ],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"id\": \"123456\",\n    \"email\" : \"asdfasd@gmail.com\",\n    \"password\": \"bollitos28\"\n    \"nombre\" : \"Germán\",\n    \"apellido\" : \"Duarte\",\n    \"fecha_ing\": \"2015-05-19\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "d3ab7aa5-5bce-4d6d-b629-d903aec34f75",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{url}}/login",
+    "url": "{{url}}/login",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-06-05T00:34:00.797Z",
+    "modified": "2022-06-05T00:34:00.885Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\":\"puchirri98@gmail.com\",\n    \"password\":\"Bollitos\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "9a8f180f-b4d3-4d8d-ac08-4221f6913ed2",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{url}}/falla",
+    "url": "{{url}}/falla",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-06-05T16:53:05.302Z",
+    "modified": "2022-06-05T17:05:07.165Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"descripcion\":\"ejemplodescricpion\",\n    \"modelo\":\"ejemplomodelo\",\n    \"fecha_cierre\":\"cierre\",\n    \"titulo\":\"ejemplo_titulo\",\n    \"estado\":\"stade\",\n    \"ubicacion\":\"ejemplo_ubicacion\",\n    \"id_cliente\":2,\n    \"usuario\":\"ejemplo_usuario\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "513cb7d4-00be-493a-8409-a2f5f4afc28b",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{url}}/propuesta",
+    "url": "{{url}}/propuesta",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-06-05T17:11:43.160Z",
+    "modified": "2022-06-05T17:17:03.304Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"costo_servicio\",\n    \"estado\":\"estado\",\n    \"id_falla\":1,\n    \"id_tecnico\":1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "154bec06-f977-4daa-8f14-f8e344a00306",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://3001-arnaldopere-latam5proje-fctrxdauhde.ws-us47.gitpod.io/api/login",
+    "url": "https://3001-arnaldopere-latam5proje-fctrxdauhde.ws-us47.gitpod.io/api/login",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-06-08T16:30:27.981Z",
+    "modified": "2022-06-08T16:30:28.310Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\":\"arnaldo10@4geeks.com\",\n    \"password\":\"123456\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

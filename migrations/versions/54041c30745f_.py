@@ -1,5 +1,6 @@
 """empty message
 
+<<<<<<< HEAD:migrations/versions/33d7320566ce_.py
 <<<<<<< HEAD:migrations/versions/cb04720017c2_.py
 Revision ID: cb04720017c2
 Revises: 
@@ -9,6 +10,11 @@ Revision ID: 33d7320566ce
 Revises: 
 Create Date: 2022-06-03 20:13:55.997819
 >>>>>>> desarrollo:migrations/versions/33d7320566ce_.py
+=======
+Revision ID: 54041c30745f
+Revises: 
+Create Date: 2022-06-08 16:36:30.324229
+>>>>>>> 05b5fe044dda86a36809603d4ea3a8fcf974ca95:migrations/versions/54041c30745f_.py
 
 """
 from alembic import op
@@ -16,11 +22,15 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
+<<<<<<< HEAD:migrations/versions/33d7320566ce_.py
 <<<<<<< HEAD:migrations/versions/cb04720017c2_.py
 revision = 'cb04720017c2'
 =======
 revision = '33d7320566ce'
 >>>>>>> desarrollo:migrations/versions/33d7320566ce_.py
+=======
+revision = '54041c30745f'
+>>>>>>> 05b5fe044dda86a36809603d4ea3a8fcf974ca95:migrations/versions/54041c30745f_.py
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,6 +45,15 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('firebase_id')
     )
+    op.create_table('token_blocked_list',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('token', sa.String(length=200), nullable=False),
+    sa.Column('email', sa.String(length=200), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('token')
+    )
+    op.create_index(op.f('ix_token_blocked_list_email'), 'token_blocked_list', ['email'], unique=False)
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('email', sa.String(length=120), nullable=False),
@@ -51,7 +70,7 @@ def upgrade():
     sa.Column('descripcion', sa.String(length=500), nullable=False),
     sa.Column('modelo', sa.String(length=120), nullable=False),
     sa.Column('fecha_creacion', sa.String(length=10), nullable=False),
-    sa.Column('fecha_cierre', sa.String(length=10), nullable=False),
+    sa.Column('fecha_cierre', sa.String(length=10), nullable=True),
     sa.Column('titulo', sa.String(length=100), nullable=False),
     sa.Column('estado', sa.String(length=5), nullable=False),
     sa.Column('ubicacion', sa.String(length=200), nullable=False),
@@ -68,10 +87,7 @@ def upgrade():
     sa.Column('id_user', sa.Integer(), nullable=True),
     sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.ForeignKeyConstraint(['id_user'], ['user.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('descripcion'),
-    sa.UniqueConstraint('historial'),
-    sa.UniqueConstraint('url')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('informe_tecnico',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -80,6 +96,8 @@ def upgrade():
     sa.Column('recomendacion', sa.String(length=250), nullable=False),
     sa.Column('usuario_id', sa.Integer(), nullable=True),
     sa.Column('falla_id', sa.Integer(), nullable=True),
+    sa.Column('importe', sa.Float(), nullable=True),
+    sa.Column('estado', sa.String(length=40), nullable=False),
     sa.ForeignKeyConstraint(['falla_id'], ['falla.id'], ),
     sa.ForeignKeyConstraint(['usuario_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -94,18 +112,17 @@ def upgrade():
     sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.ForeignKeyConstraint(['id_falla'], ['falla.id'], ),
     sa.ForeignKeyConstraint(['id_tecnico'], ['perfil_tecnico.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('detalle'),
-    sa.UniqueConstraint('estado')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('calificacion',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('calificacion', sa.String(length=50), nullable=False),
     sa.Column('comentario', sa.String(length=250), nullable=False),
-    sa.Column('usuario_id', sa.Integer(), nullable=True),
+    sa.Column('id_tecnico', sa.Integer(), nullable=True),
     sa.Column('propuesta_id', sa.Integer(), nullable=True),
+    sa.Column('fecha_cierre', sa.String(length=10), nullable=False),
+    sa.ForeignKeyConstraint(['id_tecnico'], ['perfil_tecnico.id'], ),
     sa.ForeignKeyConstraint(['propuesta_id'], ['propuesta.id'], ),
-    sa.ForeignKeyConstraint(['usuario_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
@@ -119,5 +136,7 @@ def downgrade():
     op.drop_table('perfil_tecnico')
     op.drop_table('falla')
     op.drop_table('user')
+    op.drop_index(op.f('ix_token_blocked_list_email'), table_name='token_blocked_list')
+    op.drop_table('token_blocked_list')
     op.drop_table('imagenes')
     # ### end Alembic commands ###

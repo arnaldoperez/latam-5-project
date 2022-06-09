@@ -3,6 +3,7 @@
     "_id": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "colName": "Proyecto",
     "created": "2022-05-28T00:55:47.356Z",
+<<<<<<< HEAD
     "sortNum": 10000
   },
   {
@@ -16,5 +17,17 @@
       "tests": [],
       "envId": "74fe68be-8044-4704-a345-829e6d4c93a4"
     }
+=======
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "7e832073-9516-4af0-9997-9441f0baf8aa",
+        "name": "Informe Técnico",
+        "containerId": "",
+        "created": "2022-06-03T22:26:16.836Z",
+        "sortNum": 20000
+      }
+    ]
+>>>>>>> 05b5fe044dda86a36809603d4ea3a8fcf974ca95
   }
 ]
