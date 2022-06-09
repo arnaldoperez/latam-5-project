@@ -130,16 +130,16 @@
     "colId": "history",
     "containerId": "",
     "name": "{{url}}/login",
-    "url": "{{url}}/login",
+    "url": "https://3001-arnaldopere-latam5proje-xrkzn7u8to5.ws-us47.gitpod.io/api/login",
     "method": "POST",
     "sortNum": 0,
     "created": "2022-06-05T00:34:00.797Z",
-    "modified": "2022-06-05T00:34:00.885Z",
+    "modified": "2022-06-09T00:47:43.514Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"puchirri98@gmail.com\",\n    \"password\":\"Bollitos\"\n}",
+      "raw": "{\n    \"email\":\"arnaldo10@4geeks.com\",\n    \"password\":\"123456\"\n}",
       "form": []
     },
     "tests": []
