@@ -14,7 +14,7 @@ app = Flask(__name__)
 api = Blueprint('api', __name__)
 bcrypt = Bcrypt(app)
 #db = SQLAlchemy(app)
-#jwt = JWTManager(app)
+jwt = JWTManager(app)
 
 
 @api.route('/hello', methods=['POST', 'GET'])
