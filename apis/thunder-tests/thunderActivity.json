@@ -1,5 +1,23 @@
 [
   {
+    "_id": "9bb38fc8-3270-4d5d-bcec-ba67bcd0dcba",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{url}}/falla",
+    "url": "{{url}}/falla",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-05-31T00:45:54.762Z",
+    "modified": "2022-05-31T01:03:41.937Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"descripcion\": \"string\",\n    \"modelo\": \"2010\",\n    \"fecha_creacion\": 1,\n    \"fecha_cierre\": 1,\n    \"titulo\": \"string\",\n    \"estado\": \"string\",\n    \"ubicacion\": \"string\",\n    \"id_cliente\": 1\n  \n}",
+      "form": []
+    }
+  },
+  {
     "_id": "6b24acb9-ec7a-49df-81f5-7d018da00223",
     "colId": "history",
     "containerId": "",
@@ -112,16 +130,16 @@
     "colId": "history",
     "containerId": "",
     "name": "{{url}}/login",
-    "url": "{{url}}/login",
+    "url": "https://3001-arnaldopere-latam5proje-xrkzn7u8to5.ws-us47.gitpod.io/api/login",
     "method": "POST",
     "sortNum": 0,
     "created": "2022-06-05T00:34:00.797Z",
-    "modified": "2022-06-05T00:34:00.885Z",
+    "modified": "2022-06-09T00:47:43.514Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"puchirri98@gmail.com\",\n    \"password\":\"Bollitos\"\n}",
+      "raw": "{\n    \"email\":\"arnaldo10@4geeks.com\",\n    \"password\":\"123456\"\n}",
       "form": []
     },
     "tests": []
@@ -160,6 +178,25 @@
     "body": {
       "type": "json",
       "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"costo_servicio\",\n    \"estado\":\"estado\",\n    \"id_falla\":1,\n    \"id_tecnico\":1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "154bec06-f977-4daa-8f14-f8e344a00306",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://3001-arnaldopere-latam5proje-fctrxdauhde.ws-us47.gitpod.io/api/login",
+    "url": "https://3001-arnaldopere-latam5proje-fctrxdauhde.ws-us47.gitpod.io/api/login",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-06-08T16:30:27.981Z",
+    "modified": "2022-06-08T16:30:28.310Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\":\"arnaldo10@4geeks.com\",\n    \"password\":\"123456\"\n}",
       "form": []
     },
     "tests": []

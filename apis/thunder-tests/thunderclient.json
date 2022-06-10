@@ -2,13 +2,13 @@
   {
     "_id": "a9ad3bf1-999d-4fd3-a591-62a2e1a5cd6d",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "",
-    "name": "SignUp",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "CrearUsuario",
     "url": "{{url}}/signup",
     "method": "POST",
-    "sortNum": 10000,
+    "sortNum": 5000,
     "created": "2022-05-28T00:56:01.087Z",
-    "modified": "2022-06-09T01:07:49.111Z",
+    "modified": "2022-06-09T01:49:57.119Z",
     "headers": [],
     "params": [],
     "body": {
@@ -21,13 +21,13 @@
   {
     "_id": "c2cae637-08b1-4d12-ae33-cac68c0ccee3",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "",
-    "name": "crear_tecnico",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "CrearPerfilTecnico",
     "url": "{{url}}/tecnicos",
     "method": "POST",
-    "sortNum": 20000,
+    "sortNum": 10000,
     "created": "2022-05-28T01:09:17.256Z",
-    "modified": "2022-06-09T01:08:09.849Z",
+    "modified": "2022-06-09T01:37:56.129Z",
     "headers": [],
     "params": [],
     "body": {
@@ -85,20 +85,83 @@
     "tests": []
   },
   {
-    "_id": "29bdc3bb-30f0-4582-818f-0793a69afd47",
+    "_id": "359ab2de-5f24-4c86-a67e-66aabaf5e700",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "7e832073-9516-4af0-9997-9441f0baf8aa",
+    "name": "mostrar_informe_tecnico",
+    "url": "{{url}}/factura/<int:factura_id>/",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2022-06-03T22:23:08.190Z",
+    "modified": "2022-06-04T01:02:48.441Z"
+  },
+  {
+    "_id": "eb5949a7-c3a4-45d5-8955-e1ca7a5a22e7",
+    "colId": "f8133ead-0c76-4f0f-9fbb-3eef2eae5621",
     "containerId": "",
-    "name": "Crear Propuesta",
-    "url": "{{url}}/propuesta",
+    "name": "Crear usuario 1",
+    "url": "{{url}}/signup",
     "method": "POST",
-    "sortNum": 80000,
-    "created": "2022-06-05T17:19:10.406Z",
-    "modified": "2022-06-09T01:09:30.636Z",
+    "sortNum": 10000,
+    "created": "2022-06-04T01:26:48.662Z",
+    "modified": "2022-06-04T01:33:41.741Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"20.00\",\n    \"estado\":\"estado\",\n    \"id_falla\":2,\n    \"id_tecnico\":1\n}",
+      "raw": "{\n    \"email\":\"arnaldo2@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
+      "form": []
+    },
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{id_usr_1}}"
+      }
+    ]
+  },
+  {
+    "_id": "d1fe718a-1d63-4d1e-80d8-5eaee405ec95",
+    "colId": "f8133ead-0c76-4f0f-9fbb-3eef2eae5621",
+    "containerId": "",
+    "name": "Crear usuario 2",
+    "url": "{{url}}/signup",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-06-04T01:32:39.074Z",
+    "modified": "2022-06-04T01:34:21.549Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\":\"antonio@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Antonio\",\n    \"apellido\":\"Martinez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
+      "form": []
+    },
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{id_usr_2}}"
+      }
+    ]
+  },
+  {
+    "_id": "29bdc3bb-30f0-4582-818f-0793a69afd47",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "Crear Propuesta",
+    "url": "{{url}}/propuesta",
+    "method": "POST",
+    "sortNum": 25000,
+    "created": "2022-06-05T17:19:10.406Z",
+    "modified": "2022-06-09T01:56:39.273Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"20.00\",\n    \"estado\":\"estado\",\n    \"id_falla\":1,\n    \"id_tecnico\":1\n}",
       "form": []
     },
     "tests": []
@@ -106,13 +169,13 @@
   {
     "_id": "f20b5d6f-0618-4b72-a1a1-da8554927f35",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
     "name": "Crear Falla",
     "url": "{{url}}/falla",
     "method": "POST",
-    "sortNum": 60000,
+    "sortNum": 20000,
     "created": "2022-06-05T17:19:36.498Z",
-    "modified": "2022-06-09T01:08:51.978Z",
+    "modified": "2022-06-09T01:37:58.413Z",
     "headers": [],
     "params": [],
     "body": {
@@ -125,18 +188,18 @@
   {
     "_id": "5c1bf781-a183-48f2-995d-80c8f3b58ebc",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
     "name": "crear informe Tecnico",
     "url": "{{url}}/informe_tecnico",
     "method": "POST",
-    "sortNum": 100000,
+    "sortNum": 30000,
     "created": "2022-06-05T18:51:19.847Z",
-    "modified": "2022-06-05T20:40:42.370Z",
+    "modified": "2022-06-09T01:58:12.172Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"comentario_servicio\":\"comentario_servicio\",\n    \"recomendacion\":\"recomendacion\",\n    \"usuario_id\":1,\n    \"falla_id\":2\n}",
+      "raw": "{\n    \"comentario_servicio\":\"comentario_servicio\",\n    \"recomendacion\":\"recomendacion\",\n    \"usuario_id\":1,\n    \"falla_id\":1,\n    \"estado\":\"terminado\",\n    \"importe\":100\n}",
       "form": []
     },
     "tests": []
@@ -144,18 +207,18 @@
   {
     "_id": "8d5fe89f-e6f6-477d-8c84-efecd8f304b1",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
     "name": "crear Calificacion Servicio",
     "url": "{{url}}/calificaciones",
     "method": "POST",
-    "sortNum": 110000,
+    "sortNum": 50000,
     "created": "2022-06-05T19:02:14.594Z",
-    "modified": "2022-06-05T20:41:02.908Z",
+    "modified": "2022-06-09T02:04:08.104Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"calificacion\":\"calificacion\",\n    \"comentario\":\"comentario\",\n    \"usuario_id\":1,\n    \"propuesta_id\":3,\n    \"fecha_cierre\":\"23/10/1\"\n}",
+      "raw": "{\n    \"calificacion\":\"calificacion\",\n    \"comentario\":\"comentario\",\n    \"propuesta_id\":1\n}",
       "form": []
     },
     "tests": []
@@ -186,6 +249,25 @@
     "modified": "2022-06-07T21:04:57.482Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "de503881-bd6c-4d36-88f6-14bb1e2611bd",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "CrearUsuarioTecnico",
+    "url": "{{url}}/signup",
+    "method": "POST",
+    "sortNum": 7500,
+    "created": "2022-06-09T01:47:09.554Z",
+    "modified": "2022-06-09T01:52:14.030Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\":\"arnald@4gks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
+      "form": []
+    },
     "tests": []
   }
 ]

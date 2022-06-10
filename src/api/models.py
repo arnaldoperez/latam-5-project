@@ -50,7 +50,7 @@ class Perfil_tecnico(db.Model):
     descripcion = db.Column(db.String(120), nullable=False)
     url = db.Column(db.String(120), nullable=False)
     id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
-    user = db.relationship(User)
+    user = db.relationship('User',lazy=True,backref='perfil_tecnico')
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
   
     def __repr__(self):
@@ -98,7 +98,7 @@ class Falla(db.Model):
     estado = db.Column(db.String(5), nullable=False)
     ubicacion = db.Column(db.String(200),  nullable=False)
     id_cliente = db.Column(db.Integer, db.ForeignKey('user.id'))
-    usuario = db.relationship(User)
+    usuario = db.relationship('User',lazy=True,backref='falla')
     imagen_id = db.Column(db.Integer, db.ForeignKey('imagenes.id'))
     imagen = db.relationship(Imagenes)
 
@@ -125,7 +125,7 @@ class Propuesta(db.Model):
     id_falla = db.Column(db.Integer, db.ForeignKey('falla.id'))
     falla = db.relationship(Falla)
     id_tecnico = db.Column(db.Integer, db.ForeignKey('perfil_tecnico.id'))
-    perfil_tecnico = db.relationship(Perfil_tecnico)
+    perfil_tecnico = db.relationship('Perfil_tecnico',lazy=True,backref='propuesta')
     is_active = db.Column(db.Boolean(),  nullable=False)
   
     def __repr__(self):
@@ -152,7 +152,7 @@ class Calificacion(db.Model):
     id_tecnico = db.Column(db.Integer, db.ForeignKey('perfil_tecnico.id'))
     perfil_tecnico = db.relationship(Perfil_tecnico)
     propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))
-    propuesta = db.relationship(Propuesta)
+    propuesta = db.relationship('Propuesta',lazy=True,backref='calificacion')
     fecha_cierre= db.Column(db.String(10), nullable=False)
     
 
@@ -171,13 +171,13 @@ class Calificacion(db.Model):
 class InformeTecnico(db.Model):
     __tablename__ = 'informe_tecnico'
     id = db.Column(db.Integer, primary_key=True)
-    fecha_creacion= db.Column(db.String(50), nullable=False)
+    fecha_creacion= db.Column(db.Date, nullable=False)
     comentario_servicio = db.Column(db.String(250), nullable=False)
     recomendacion = db.Column(db.String(250), nullable=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    usuario = db.relationship(User)
+    usuario = db.relationship('User',lazy=True,backref='informe_tecnico')
     falla_id = db.Column(db.Integer, db.ForeignKey('falla.id'))
-    falla = db.relationship(Falla)
+    falla = db.relationship('Falla',lazy=True,backref='informe_tecnico')
     importe = db.Column(db.Float)
     estado = db.Column(db.String(40), nullable=False)
     imagen_id = db.Column(db.Integer, db.ForeignKey('imagenes.id'))

@@ -14,7 +14,7 @@ app = Flask(__name__)
 api = Blueprint('api', __name__)
 bcrypt = Bcrypt(app)
 #db = SQLAlchemy(app)
-#jwt = JWTManager(app)
+jwt = JWTManager(app)
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -51,6 +51,7 @@ def signup():
     db.session.add(newUser)
     db.session.commit()
     response_body = {
+        "id":newUser.id,
         "message": "usuario creado exitosamente"
     }
     return jsonify(response_body), 201
@@ -234,10 +235,15 @@ def create_calification():
     comentario=request.json.get("comentario")
     id_tecnico=request.json.get("id_tecnico")
     propuesta_id=request.json.get("propuesta_id")
-    fecha_cierre=request.json.get("fecha_cierre")
-        
-    newCalificacion= Calificacion(calificacion=calificacion,comentario=comentario,id_tecnico=id_tecnico,propuesta_id=propuesta_id, fecha_cierre=fecha_cierre)
+    date=datetime.datetime.now()
+    fecha_cierre= date.strftime("%x")
+    #fecha_cierre=request.json.get("fecha_cierre")
+    newCalificacion= Calificacion(calificacion=calificacion,comentario=comentario,propuesta_id=propuesta_id, fecha_cierre=fecha_cierre)
     db.session.add(newCalificacion)
+    db.session.flush()
+    cierre_falla=newCalificacion.propuesta.falla
+    cierre_falla.fecha_cierre=newCalificacion.fecha_cierre
+    db.session.add(cierre_falla)
     db.session.commit()
     response_body = {
         "message": "Calificacion creado exitosamente"
@@ -250,6 +256,11 @@ def historial_calificacionestodos():
     historial = list(map(lambda calificacion: calificacion.serialize(), historial ))
     return jsonify(historial)
 
+@api.route('/informe_tecnico/<int:informe_id>/', methods=['GET'])
+def mostrar_factura(informe_id):
+    informe = InformeTecnico.query.get_or_404(informe_id)
+    return "Detalle Informe Técnico ok"
+    
 @api.route('/calificaciones/<id_tecnico>', methods=['GET'])
 def historial_calificaciones(id_tecnico):
     historial = Calificacion.query.get(id_tecnico)
