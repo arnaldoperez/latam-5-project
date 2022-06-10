@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 9be719aeb44c
+Revision ID: 8cb9eede7ca1
 Revises: 
-Create Date: 2022-06-07 17:26:45.776177
+Create Date: 2022-06-09 01:07:12.149865
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '9be719aeb44c'
+revision = '8cb9eede7ca1'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -55,7 +55,9 @@ def upgrade():
     sa.Column('estado', sa.String(length=5), nullable=False),
     sa.Column('ubicacion', sa.String(length=200), nullable=False),
     sa.Column('id_cliente', sa.Integer(), nullable=True),
+    sa.Column('imagen_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['id_cliente'], ['user.id'], ),
+    sa.ForeignKeyConstraint(['imagen_id'], ['imagenes.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('perfil_tecnico',
@@ -71,14 +73,16 @@ def upgrade():
     )
     op.create_table('informe_tecnico',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('fecha_creacion', sa.String(length=250), nullable=False),
+    sa.Column('fecha_creacion', sa.String(length=50), nullable=False),
     sa.Column('comentario_servicio', sa.String(length=250), nullable=False),
     sa.Column('recomendacion', sa.String(length=250), nullable=False),
     sa.Column('usuario_id', sa.Integer(), nullable=True),
     sa.Column('falla_id', sa.Integer(), nullable=True),
     sa.Column('importe', sa.Float(), nullable=True),
     sa.Column('estado', sa.String(length=40), nullable=False),
+    sa.Column('imagen_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['falla_id'], ['falla.id'], ),
+    sa.ForeignKeyConstraint(['imagen_id'], ['imagenes.id'], ),
     sa.ForeignKeyConstraint(['usuario_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
