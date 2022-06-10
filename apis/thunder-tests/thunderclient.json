@@ -13,7 +13,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"arnaldo10@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
+      "raw": "{\n    \"email\":\"javier3@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Javier\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
       "form": []
     },
     "tests": []
@@ -32,7 +32,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"id_user\":2,\n    \"historial\":\"historial\",\n    \"descripcion\":\"descripcion\",\n    \"ubicacion\":\"ubicacion\",\n    \"url\":\"url\"\n}",
+      "raw": "{\n    \"id_user\":3,\n    \"historial\":\"historial\",\n    \"descripcion\":\"descripcion\",\n    \"ubicacion\":\"ubicacion\",\n    \"url\":\"url\"\n}",
       "form": []
     },
     "tests": []
@@ -180,7 +180,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"descripcion\":\"ejemplodescricpion\",\n    \"modelo\":\"ejemplomodelo\",\n    \"fecha_cierre\":\"cierre\",\n    \"titulo\":\"ejemplo_titulo\",\n    \"estado\":\"stade\",\n    \"ubicacion\":\"ejemplo_ubicacion\",\n    \"id_cliente\":1,\n    \"usuario\":\"ejemplo_usuario\"\n}",
+      "raw": "{\n    \"descripcion\":\"Moto no enciende\",\n    \"modelo\":\"Yamaha\",\n    \"fecha_cierre\":\"cierre\",\n    \"titulo\":\"ejemplo_titulo\",\n    \"estado\":\"stade\",\n    \"ubicacion\":\"ejemplo_ubicacion\",\n    \"id_cliente\":3,\n    \"usuario\":\"ejemplo_usuario\"\n}",
       "form": []
     },
     "tests": []

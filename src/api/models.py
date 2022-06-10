@@ -68,6 +68,24 @@ class Perfil_tecnico(db.Model):
             # do not serialize the password, its a security breach
         }
 
+class Imagenes(db.Model):
+    __tablename__ = 'imagenes'
+    id = db.Column(db.Integer, primary_key=True)
+    detalle = db.Column(db.String(120), nullable=True)
+    firebase_id = db.Column(db.String(80), unique=True, nullable=True)
+  
+    def __repr__(self):
+        return f'<User {self.id}>'
+
+    def serialize(self):
+        return {
+            "id":self.id,
+            "detalle":self.detalle,
+            "firebase_id":self.firebase_id,
+            "public_url":self.public_url
+        }
+
+
 class Falla(db.Model):
 
     __tablename_ = 'falla'
@@ -81,6 +99,8 @@ class Falla(db.Model):
     ubicacion = db.Column(db.String(200),  nullable=False)
     id_cliente = db.Column(db.Integer, db.ForeignKey('user.id'))
     usuario = db.relationship('User',lazy=True,backref='falla')
+    imagen_id = db.Column(db.Integer, db.ForeignKey('imagenes.id'))
+    imagen = db.relationship(Imagenes)
 
     def serialize(self):
         return{
@@ -92,7 +112,8 @@ class Falla(db.Model):
             "titulo" : self.titulo,
             "estado" : self.estado,
             "ubicacion" : self.ubicacion,
-            "usuario" : self.id_cliente
+            "usuario" : self.id_cliente,
+            "imagen" : self.imagen_id
             }
 
 class Propuesta(db.Model):
@@ -146,22 +167,6 @@ class Calificacion(db.Model):
         }
 
 
-class Imagenes(db.Model):
-    __tablename__ = 'imagenes'
-    id = db.Column(db.Integer, primary_key=True)
-    detalle = db.Column(db.String(120), nullable=True)
-    firebase_id = db.Column(db.String(80), unique=True, nullable=True)
-  
-    def __repr__(self):
-        return f'<User {self.id}>'
-
-    def serialize(self):
-        return {
-            "id":self.id,
-            "detalle":self.detalle,
-            "firebase_id":self.firebase_id,
-            "public_url":self.public_url
-        }
 
 class InformeTecnico(db.Model):
     __tablename__ = 'informe_tecnico'
@@ -175,6 +180,8 @@ class InformeTecnico(db.Model):
     falla = db.relationship('Falla',lazy=True,backref='informe_tecnico')
     importe = db.Column(db.Float)
     estado = db.Column(db.String(40), nullable=False)
+    imagen_id = db.Column(db.Integer, db.ForeignKey('imagenes.id'))
+    imagen = db.relationship(Imagenes)
 
     def serialize(self):
         return {
