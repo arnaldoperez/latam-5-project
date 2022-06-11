@@ -76,3 +76,4 @@ __pycache__/
 
 #variable de entorno de thunder
 apis/thunder-tests/thunderEnvironment.json
+.env

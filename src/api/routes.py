@@ -46,7 +46,9 @@ def signup():
     password_encryptado = bcrypt.generate_password_hash(password, rounds=None).decode("utf-8") 
     nombre=request.json.get("nombre")
     apellido=request.json.get("apellido")
-    fecha_ing=request.json.get("fecha_ing")
+    #fecha_ing=request.json.get("fecha_ing")
+    date=datetime.datetime.now()
+    fecha_ing= date.strftime("%x")
     newUser=User(email=email, password=password_encryptado, nombre=nombre, apellido=apellido, fecha_ing=fecha_ing, is_active= True)#creando mi nuevo usuario con el modelo (clase) que importe
     db.session.add(newUser)
     db.session.commit()
@@ -172,20 +174,46 @@ def subir_imagen():
     
     return "Ok"
 
-
 @api.route('/informe_tecnico', methods=['POST']) 
 def crear_informe_tecnico():
-    fecha_creacion = datetime.datetime.now()
-    comentario_servicio = request.json.get("comentario_servicio")
-    recomendacion = request.json.get("recomendacion")
-    usuario_id = request.json.get("usuario_id")
-    falla_id = request.json.get("falla_id")
-    importe = request.json.get("importe")
-    estado = request.json.get("estado")
 
+    # Recibiendo los datos de la peticion
+    imagen=request.files['imagen']
+    fecha_creacion = datetime.datetime.now()
+    comentario_servicio=request.form['comentario_servicio']
+    usuario_id=request.form['usuario_id']
+    recomendacion=request.form['recomendacion']
+    falla_id=request.form['falla_id']
+    importe=request.form['importe']
+    estado=request.form['estado']
+    
+    # Creamos el objeto del informe tecnico para la BD y lo guardamos
     newInforme= InformeTecnico(fecha_creacion=fecha_creacion,comentario_servicio=comentario_servicio,recomendacion=recomendacion,usuario_id=usuario_id, falla_id=falla_id,importe=importe,estado=estado)
     db.session.add(newInforme)
+    db.session.flush()
+
+    # Guardar el archivo recibido en un archivo temporal
+    temp = tempfile.NamedTemporaryFile(delete=False)
+    imagen.save(temp.name)
+    
+    # Se genera el nombre del archivo y la extension para poder guardarlo
+    extension=imagen.filename.split(".")[1]
+    firebase_id="informe/"+str(newInforme.id)+"."+extension
+
+    # Subir el archivo a firebase
+    bucket=storage.bucket(name="tallerapp-4geeks.appspot.com")
+    blob = bucket.blob(firebase_id)
+    blob.upload_from_filename(temp.name)
+
+    # Se guardan los datos de la imagen en la base de datos con el nombre que le corresponde
+    imagenDB=Imagenes(detalle="Informe tecnico " + str(newInforme.id), firebase_id=firebase_id)
+    db.session.add(imagenDB)
+    db.session.flush()
+
+    # Actualizamos el campo imagen del informe, con el id de la imagen que se acaba de guardar
+    newInforme.imagen_id=imagenDB.id
     db.session.commit()
+
     response_body = {
         "message": "informe creado exitosamente"
     }
