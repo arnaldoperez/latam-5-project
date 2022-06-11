@@ -20,7 +20,8 @@ export const SignUp = () => {
     let email = data.get("email"); //lo estoy sacando directamente de mi form.Control name="email"
     let password = data.get("password"); //lo estoy sacando directamente de mi form.Control name="password"
     let confirm = data.get("confirm");
-    let phoneNumber = data.get("phone-number");
+    let nombre = data.get("nombre");
+    let apellido = data.get("apellido");
     let check = data.get("check");
     if (password !== confirm) {
       console.error("Las claves no coinciden");
@@ -32,7 +33,7 @@ export const SignUp = () => {
     }
 
     actions //importe las actions y el store
-      .signUp(email, password, phoneNumber) //evaluo mi funcion signup que me retorna una promesa
+      .signUp(email, password, nombre, apellido) //evaluo mi funcion signup que me retorna una promesa
       .then((resp) => {
         //evalua la respuesta en sus dos casos
         if (resp.code == 201) navigate.push("/login");
@@ -87,17 +88,25 @@ export const SignUp = () => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Phone Number</Form.Label>
+              <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter Phone Number"
-                name="phone-number"
+                placeholder="Enter your name"
+                name="nombre"
+              />
+              {/*Este nombre es el que se toma en la funcion SignUpUser con el evento submit*/}
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Last name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter your Last name"
+                name="apellido"
               />
               {/*Este phoneNumber es el que se toma en la funcion SignUpUser con el evento submit*/}
-              <Form.Text className="text-muted">
-                We'll never share your phone Number with anyone else.
-              </Form.Text>
             </Form.Group>
+          
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check
                 type="checkbox"
@@ -106,7 +115,8 @@ export const SignUp = () => {
                 name="check"
               />
             </Form.Group>
-
+            
+            
             <Button variant="primary" type="submit">
               Submit
             </Button>

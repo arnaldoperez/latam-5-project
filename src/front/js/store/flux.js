@@ -1,4 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
+	const apiURL = process.env.BACKEND_URL+"/api";
 	return {
 		store: {
 			message: null,
@@ -45,12 +46,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ demo: demo });
 			},
 
-			signUp: async (email, password, phoneNumber = "") => {//mi peticion es asincrona es decir espera por el resultado
+			signUp: async (email, password, nombre, apellido ) => {//mi peticion es asincrona es decir espera por el resultado
 			  const params = {
 				method: "POST", //ingreso el metodo de mi peticion
 				body: JSON.stringify({//ingreso el contenido del body y los parametros de mi peticion
 				  email,
 				  password,
+				  nombre,
+				  apellido
 				}),
 				headers: {
 				  "Content-Type": "application/json",
