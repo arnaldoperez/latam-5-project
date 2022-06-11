@@ -2,8 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Perfil_tecnico, Falla, Imagenes, Calificacion, TokenBlockedList, Propuesta, InformeTecnico, Factura
-#from api.models import db, User, Perfil_tecnico, Falla, Imagenes, InformeTecnico, Factura, Calificacion, Propuesta
+from api.models import db, User, Perfil_tecnico, Falla, Imagenes, Calificacion, TokenBlockedList, Propuesta, InformeTecnico
 from api.utils import generate_sitemap, APIException
 from flask_bcrypt import Bcrypt 
 from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt
@@ -15,7 +14,7 @@ app = Flask(__name__)
 api = Blueprint('api', __name__)
 bcrypt = Bcrypt(app)
 #db = SQLAlchemy(app)
-#jwt = JWTManager(app)
+jwt = JWTManager(app)
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -28,17 +27,17 @@ def handle_hello():
     return jsonify(response_body), 200
 
 
-@api.route('/servicios', methods=['GET'])
+@api.route('/fallas', methods=['GET'])
 def listado_fallas():
     fallas = Falla.query.all()
     fallas = list(map(lambda falla: falla.serialize(), fallas ))
     return jsonify(fallas)
 
 
-@api.route('/servicio/<int:falla_id>/', methods=['GET'])
+@api.route('/falla/<int:falla_id>/', methods=['GET'])
 def falla(falla_id):
     falla = Falla.query.get_or_404(falla_id)
-    return "Detalle Servicio ok"
+    return jsonify(falla.serialize())
 
 @api.route('/signup', methods=['POST']) #ENDPOINT DE REGISTRAR
 def signup():
@@ -54,8 +53,8 @@ def signup():
     db.session.add(newUser)
     db.session.commit()
     response_body = {
-        "message": "usuario creado exitosamente",
-        "id":newUser.id
+        "id":newUser.id,
+        "message": "usuario creado exitosamente"
     }
     return jsonify(response_body), 201
 
@@ -175,40 +174,61 @@ def subir_imagen():
     
     return "Ok"
 
-
 @api.route('/informe_tecnico', methods=['POST']) 
 def crear_informe_tecnico():
-    fecha_creacion = datetime.datetime.now()
-    comentario_servicio = request.json.get("comentario_servicio")
-    recomendacion = request.json.get("recomendacion")
-    usuario_id = request.json.get("usuario_id")
-    falla_id = request.json.get("falla_id")
 
-    newInforme= InformeTecnico(fecha_creacion=fecha_creacion,comentario_servicio=comentario_servicio,recomendacion=recomendacion,usuario_id=usuario_id, falla_id=falla_id)
+    # Recibiendo los datos de la peticion
+    imagen=request.files['imagen']
+    fecha_creacion = datetime.datetime.now()
+    comentario_servicio=request.form['comentario_servicio']
+    usuario_id=request.form['usuario_id']
+    recomendacion=request.form['recomendacion']
+    falla_id=request.form['falla_id']
+    importe=request.form['importe']
+    estado=request.form['estado']
+    
+    # Creamos el objeto del informe tecnico para la BD y lo guardamos
+    newInforme= InformeTecnico(fecha_creacion=fecha_creacion,comentario_servicio=comentario_servicio,recomendacion=recomendacion,usuario_id=usuario_id, falla_id=falla_id,importe=importe,estado=estado)
     db.session.add(newInforme)
+    db.session.flush()
+
+    # Guardar el archivo recibido en un archivo temporal
+    temp = tempfile.NamedTemporaryFile(delete=False)
+    imagen.save(temp.name)
+    
+    # Se genera el nombre del archivo y la extension para poder guardarlo
+    extension=imagen.filename.split(".")[1]
+    firebase_id="informe/"+str(newInforme.id)+"."+extension
+
+    # Subir el archivo a firebase
+    bucket=storage.bucket(name="tallerapp-4geeks.appspot.com")
+    blob = bucket.blob(firebase_id)
+    blob.upload_from_filename(temp.name)
+
+    # Se guardan los datos de la imagen en la base de datos con el nombre que le corresponde
+    imagenDB=Imagenes(detalle="Informe tecnico " + str(newInforme.id), firebase_id=firebase_id)
+    db.session.add(imagenDB)
+    db.session.flush()
+
+    # Actualizamos el campo imagen del informe, con el id de la imagen que se acaba de guardar
+    newInforme.imagen_id=imagenDB.id
     db.session.commit()
+
     response_body = {
         "message": "informe creado exitosamente"
     }
     return jsonify(response_body), 201
 
-@api.route('/crear_factura', methods=['POST']) 
-def crear_factura():
-    fecha_creacion = datetime.datetime.now()
-    detalle_factura = request.json.get("detalle_factura")
-    importe = request.json.get("importe")
-    estado = request.json.get("estado")
-    propuesta_id = request.json.get("propuesta_id")
-    response_body = {
-        "message": "factura creada exitosamente"
-    }
-    return jsonify(response_body), 201
+@api.route('/informes', methods=['GET'])
+def listar_informes():
+    informes = InformeTecnico.query.all()
+    informes = list(map(lambda informe: informe.serialize(), informes ))
+    return jsonify(informes)
 
-@api.route('/factura/<int:factura_id>/', methods=['GET'])
-def mostrar_factura(factura_id):
-    factura = Factura.query.get_or_404(factura_id)
-    return "Detalle Factura ok"
-
+@api.route('/informe/<int:informe_id>', methods=['GET'])
+def mostrar_informe(informe_id):
+    informe = InformeTecnico.query.get_or_404(informe_id)
+    return jsonify(informe.serialize())
 
 @api.route('/calificaciones', methods=['POST'])
 def create_calification():
@@ -217,10 +237,15 @@ def create_calification():
     comentario=request.json.get("comentario")
     id_tecnico=request.json.get("id_tecnico")
     propuesta_id=request.json.get("propuesta_id")
-    fecha_cierre=request.json.get("fecha_cierre")
-        
-    newCalificacion= Calificacion(calificacion=calificacion,comentario=comentario,id_tecnico=id_tecnico,propuesta_id=propuesta_id, fecha_cierre=fecha_cierre)
+    date=datetime.datetime.now()
+    fecha_cierre= date.strftime("%x")
+    #fecha_cierre=request.json.get("fecha_cierre")
+    newCalificacion= Calificacion(calificacion=calificacion,comentario=comentario,propuesta_id=propuesta_id, fecha_cierre=fecha_cierre)
     db.session.add(newCalificacion)
+    db.session.flush()
+    cierre_falla=newCalificacion.propuesta.falla
+    cierre_falla.fecha_cierre=newCalificacion.fecha_cierre
+    db.session.add(cierre_falla)
     db.session.commit()
     response_body = {
         "message": "Calificacion creado exitosamente"
@@ -233,6 +258,11 @@ def historial_calificacionestodos():
     historial = list(map(lambda calificacion: calificacion.serialize(), historial ))
     return jsonify(historial)
 
+@api.route('/informe_tecnico/<int:informe_id>/', methods=['GET'])
+def mostrar_factura(informe_id):
+    informe = InformeTecnico.query.get_or_404(informe_id)
+    return "Detalle Informe Técnico ok"
+    
 @api.route('/calificaciones/<id_tecnico>', methods=['GET'])
 def historial_calificaciones(id_tecnico):
     historial = Calificacion.query.get(id_tecnico)

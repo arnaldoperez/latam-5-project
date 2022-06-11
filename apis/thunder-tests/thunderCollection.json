@@ -6,11 +6,16 @@
     "sortNum": 10000,
     "folders": [
       {
-        "_id": "f368aa53-5b02-4014-bd3d-107a315393b3",
-        "name": "Facturación",
-        "containerId": "",
-        "created": "2022-06-03T22:21:58.693Z",
-        "sortNum": 10000
+        "_id": "f8133ead-0c76-4f0f-9fbb-3eef2eae5621",
+        "colName": "Carga de datos",
+        "created": "2022-06-04T01:15:13.473Z",
+        "sortNum": 20000,
+        "folders": [],
+        "settings": {
+          "headers": [],
+          "tests": [],
+          "envId": "74fe68be-8044-4704-a345-829e6d4c93a4"
+        }
       },
       {
         "_id": "7e832073-9516-4af0-9997-9441f0baf8aa",

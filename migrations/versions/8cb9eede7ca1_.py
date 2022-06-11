@@ -1,20 +1,8 @@
 """empty message
 
-<<<<<<< HEAD:migrations/versions/9fd6338f3b11_.py
-Revision ID: 9fd6338f3b11
-Revises: 
-Create Date: 2022-06-08 01:49:21.136497
-=======
-<<<<<<< HEAD:migrations/versions/8cb9eede7ca1_.py
-Revision ID: 8cb9eede7ca1
-Revises: 
-Create Date: 2022-06-09 01:07:12.149865
-=======
 Revision ID: 23be115433f1
 Revises: 
 Create Date: 2022-06-09 22:09:54.276541
->>>>>>> desarrollo:migrations/versions/23be115433f1_.py
->>>>>>> desarrollo:migrations/versions/23be115433f1_.py
 
 """
 from alembic import op
@@ -22,15 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-<<<<<<< HEAD:migrations/versions/9fd6338f3b11_.py
-revision = '9fd6338f3b11'
-=======
-<<<<<<< HEAD:migrations/versions/8cb9eede7ca1_.py
-revision = '8cb9eede7ca1'
-=======
 revision = '23be115433f1'
->>>>>>> desarrollo:migrations/versions/23be115433f1_.py
->>>>>>> desarrollo:migrations/versions/23be115433f1_.py
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -93,11 +73,7 @@ def upgrade():
     )
     op.create_table('informe_tecnico',
     sa.Column('id', sa.Integer(), nullable=False),
-<<<<<<< HEAD:migrations/versions/8cb9eede7ca1_.py
-    sa.Column('fecha_creacion', sa.String(length=50), nullable=False),
-=======
     sa.Column('fecha_creacion', sa.Date(), nullable=False),
->>>>>>> desarrollo:migrations/versions/23be115433f1_.py
     sa.Column('comentario_servicio', sa.String(length=250), nullable=False),
     sa.Column('recomendacion', sa.String(length=250), nullable=False),
     sa.Column('usuario_id', sa.Integer(), nullable=True),
