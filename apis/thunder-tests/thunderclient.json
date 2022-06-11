@@ -3,7 +3,7 @@
     "_id": "a9ad3bf1-999d-4fd3-a591-62a2e1a5cd6d",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
-    "name": "CrearUsuario",
+    "name": "SignUp",
     "url": "{{url}}/signup",
     "method": "POST",
     "sortNum": 5000,
@@ -268,6 +268,53 @@
       "raw": "{\n    \"email\":\"arnald@4gks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "2958434d-60cc-4884-923b-d159f4d238c5",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "Crear Falla Copy",
+    "url": "{{url}}/falla",
+    "method": "POST",
+    "sortNum": 35000,
+    "created": "2022-06-08T01:27:13.122Z",
+    "modified": "2022-06-08T01:42:53.844Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"descripcion\":\"descricpion1\",\n    \"modelo\":\"ejemplomodelo1\",\n    \"fecha_cierre\":\"cierre1\",\n    \"titulo\":\"ejemplo_titulo1\",\n    \"estado\":\"stad1\",\n    \"ubicacion\":\"ejemplo_ubicacion1\",\n    \"id_cliente\":1,\n    \"usuario\":\"ejemplo_usuario1\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "995c1d99-d275-4af9-b4e4-b408b7f6edd3",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "",
+    "name": "Consultar calificaciones",
+    "url": "{{url}}/calificaciones",
+    "method": "GET",
+    "sortNum": 120000,
+    "created": "2022-06-08T01:30:03.697Z",
+    "modified": "2022-06-08T01:51:41.734Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "7771b8ea-0d68-4282-ba82-b7ec0744445f",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "",
+    "name": "Historial de calificaciones por usuario",
+    "url": "{{url}}/calificaciones/1",
+    "method": "GET",
+    "sortNum": 130000,
+    "created": "2022-06-08T01:52:17.703Z",
+    "modified": "2022-06-08T01:52:38.486Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]
