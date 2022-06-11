@@ -1,21 +1,26 @@
-import React, { useState } from "react";
-import { Context } from "../store/appContext";
+import React, { useState, useContext } from "react";
+import { Context, loginInfo } from "../store/appContext";
 import "../../styles/home.css";
 
 export const Login = () => {
-  const { formValue, setformValue } = useState("");
+  const [loginInfo, setloginInfo] = useState();
+  const { store, actions } = useContext(Context);
+  //const changeHandler = (event) => {
+  //formValue = setformValue(event.target.value);
+  //};
+  function handleSubmission(event) {
+    console.log("Submission event");
+    event.preventDefault();
+    const data = new FormData(event.target);
+    let email = data.get("email");
+    let password = data.get("password");
 
-  const changeHandler = (event) => {
-    formValue = setformValue(event.target.value);
-  };
-  const handleSubmission = () => {
-    const formData = new FormData();
-    formData.append("email");
-  };
+    actions.login(email, password);
+  }
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmission}>
         <div className="form-group">
           <div className="input-group">
             <div className="input-group-prepend">
@@ -25,7 +30,7 @@ export const Login = () => {
               </span>
             </div>
             <input
-              name=""
+              name="email"
               className="form-control"
               placeholder="Email or login"
               type="email"
@@ -41,6 +46,7 @@ export const Login = () => {
               </span>
             </div>
             <input
+              name="password"
               className="form-control"
               placeholder="******"
               type="password"
@@ -49,8 +55,7 @@ export const Login = () => {
         </div>
         <div className="form-group text-center">
           <button type="submit" className="btn btn-primary btn-block">
-            {" "}
-            Login{" "}
+            Login
           </button>
         </div>
         <p className="text-center">

@@ -19,7 +19,7 @@ export const Home = () => {
                 <div className="input-group-prepend">
                   <span className="input-group-text">
                     {" "}
-                    <i class="fa fa-user"></i>{" "}
+                    <i className="fa fa-user"></i>{" "}
                   </span>
                 </div>
                 <input
@@ -52,17 +52,17 @@ export const Home = () => {
               </button>
             </div>
             <p className="text-center">
-              <a href="#" class="btn">
+              <a href="#" className="btn">
                 Forgot password?
               </a>
             </p>
           </form>
         </article>
       </div>
-      <div class="jumbotron container-fluid">
-        <div class="container col-6 text-center">
-          <h1 class="justify-content">About us</h1>
-          <p class="lead">
+      <div className="jumbotron container-fluid">
+        <div className="container col-6 text-center">
+          <h1 className="justify-content">About us</h1>
+          <p className="lead">
             We will introduce you the right person to repair your vehicles. You
             can visit the workshop o the workshop can visit you. Know the
             reputation from your handyman. We are the biggest community for
