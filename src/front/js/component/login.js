@@ -26,7 +26,7 @@ export const Login = () => {
             <div className="input-group-prepend">
               <span className="input-group-text">
                 {" "}
-                <i class="fa fa-user"></i>{" "}
+                <i className="fa fa-user"></i>{" "}
               </span>
             </div>
             <input
@@ -59,7 +59,7 @@ export const Login = () => {
           </button>
         </div>
         <p className="text-center">
-          <a href="#" class="btn">
+          <a href="#" className="btn">
             Forgot password?
           </a>
         </p>

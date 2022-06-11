@@ -49,7 +49,27 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ demo: demo });
       },
       login: (email, password) => {
-        console.log(email, password);
+        fetch(
+          "https://3001-arnaldopere-latam5proje-urbbrs1j9de.ws-us47.gitpod.io/api/login", //recordar cambiar url del backend
+          {
+            mode: "no-cors",
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+            },
+            method: "POST",
+            body: JSON.stringify({ email, password }),
+          }
+        )
+          .then(async (response) => {
+            await response.json();
+            console.log(response.json());
+          })
+          .then(async (result) => {
+            console.log("Success:", result);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
       },
     },
   };
