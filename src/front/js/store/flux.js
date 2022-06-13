@@ -50,29 +50,53 @@ const getState = ({ getStore, getActions, setStore }) => {
         //reset the global store
         setStore({ demo: demo });
       },
-      login: (email, password) => {
-        fetch(
-          "https://3001-arnaldopere-latam5proje-urbbrs1j9de.ws-us47.gitpod.io/api/login", //recordar cambiar url del backend
-          {
-            mode: "no-cors",
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-            },
-            method: "POST",
-            body: JSON.stringify({ email, password }),
-          }
-        )
-          .then(async (response) => {
-            await response.json();
-            console.log(response.json());
-          })
-          .then(async (result) => {
-            console.log("Success:", result);
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
+      login: async (email, password) => {
+        const params = {
+          method: "POST",
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const resp = await fetch(`${apiURL}/login`, params);
+        if (resp.status !== 200) {
+          return { code: resp.status, msg: resp.statusText };
+        }
+
+        const data = await resp.json();
+        console.log(data);
+        const token = data.token;
+        const refreshToken = data.refreshToken;
+
+        setStore({ token, refreshToken });
+        localStorage.setItem("token", token);
+        localStorage.setItem("refreshToken", refreshToken);
+        return { code: 200, msg: "Access granted" };
       },
+
+      logout: async () => {
+        const store = getStore();
+        console.log(store);
+        const params = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const resp = await fetch(`${apiURL}/logout`, params);
+        if (resp.status !== 200) {
+          return { code: resp.status, msg: resp.statusText };
+        }
+
+        setStore({ token: "" });
+        localStorage.removeItem("token");
+        return { code: 200, msg: "Sesion cerrada" };
+      },
+
       signUp: async (email, password, nombre, apellido) => {
         //mi peticion es asincrona es decir espera por el resultado
         const params = {

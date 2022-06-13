@@ -19,7 +19,7 @@ export const Login = () => {
   }
 
   return (
-    <div>
+    <div className="col-6 col-md-4 container-fluid">
       <form onSubmit={handleSubmission}>
         <div className="form-group">
           <div className="input-group">
