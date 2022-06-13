@@ -8,6 +8,7 @@ import { Single } from "./pages/single";
 import ListadoFallas from "./pages/ListadoFallas";
 import DetalleFallas from "./pages/DetalleFallas";
 import injectContext from "./store/appContext";
+import { SignUp } from "./pages/signUp";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -24,11 +25,17 @@ const Layout = () => {
         <ScrollToTop>
           <Navbar />
           <Switch>
+            <Route exact path="/signup">
+              <SignUp />
+            </Route>
             <Route exact path="/">
               <Home />
             </Route>
             <Route exact path="/demo">
               <Demo />
+            </Route>
+            <Route exact path="/single/:theid">
+              <Single />
             </Route>
             <Route exact path="/fallas">
               <ListadoFallas />
