@@ -105,7 +105,8 @@ def crearFalla():
     estado = request.json.get("estado")
     ubicacion = request.json.get("ubicacion")
     id_cliente = request.json.get("id_cliente")
-    newPost=Falla(descripcion=descripcion, modelo=modelo, fecha_creacion=fecha_creacion, fecha_cierre=fecha_cierre, titulo=titulo, estado=estado, ubicacion=ubicacion, id_cliente=id_cliente)#creando mi nuevo usuario con el modelo (clase) que importe
+    imagen_id = request.json.get("imagen_id")
+    newPost=Falla(descripcion=descripcion, modelo=modelo, fecha_creacion=fecha_creacion, fecha_cierre=fecha_cierre, titulo=titulo, estado=estado, ubicacion=ubicacion, id_cliente=id_cliente, imagen_id=imagen_id)#creando mi nuevo usuario con el modelo (clase) que importe
     db.session.add(newPost)
     db.session.commit()
     response_body = {

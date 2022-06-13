@@ -175,12 +175,12 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-06-05T17:19:36.498Z",
-    "modified": "2022-06-09T01:37:58.413Z",
+    "modified": "2022-06-13T22:00:34.306Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"descripcion\":\"Moto no enciende\",\n    \"modelo\":\"Yamaha\",\n    \"fecha_cierre\":\"cierre\",\n    \"titulo\":\"ejemplo_titulo\",\n    \"estado\":\"stade\",\n    \"ubicacion\":\"ejemplo_ubicacion\",\n    \"id_cliente\":3,\n    \"usuario\":\"ejemplo_usuario\"\n}",
+      "raw": "{\n    \"descripcion\":\"Cuando freno sobre los 180 km/h escucho un fuerte golpeteo metálico que pareciera provenir del motor. Hace dos meses le cambiaron los pistones porque tenian un juego excesivo. Tambien hay un olor a quemado que viene del tanque de combustible\",\n    \"modelo\":\"Honda Kiuva\",\n    \"fecha_creacion\":\"3-3-22\",\n    \"fecha_cierre\":\"3-3-22\",\n    \"titulo\":\"No frena bien a altas velocidades\",\n    \"estado\":\"open\",\n    \"ubicacion\":\"Castilla, Buenos Aires\",\n    \"id_cliente\":2,\n    \"usuario\":1,\n    \"imagen_id\": 1\n}",
       "form": []
     },
     "tests": []
@@ -194,12 +194,12 @@
     "method": "POST",
     "sortNum": 30000,
     "created": "2022-06-05T18:51:19.847Z",
-    "modified": "2022-06-09T01:58:12.172Z",
+    "modified": "2022-06-10T23:34:55.829Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"comentario_servicio\":\"comentario_servicio\",\n    \"recomendacion\":\"recomendacion\",\n    \"usuario_id\":1,\n    \"falla_id\":1,\n    \"estado\":\"terminado\",\n    \"importe\":100\n}",
+      "raw": "{\n    \"comentario_servicio\":\"comentario_servicio\",\n    \"recomendacion\":\"recomendacion\",\n    \"usuario_id\":2,\n    \"falla_id\":1,\n    \"estado\":\"terminado\",\n    \"importe\":100\n}",
       "form": []
     },
     "tests": []
@@ -260,12 +260,12 @@
     "method": "POST",
     "sortNum": 7500,
     "created": "2022-06-09T01:47:09.554Z",
-    "modified": "2022-06-09T01:52:14.030Z",
+    "modified": "2022-06-10T23:34:02.613Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"arnald@4gks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
+      "raw": "{\n    \"email\":\"arnald244@4gks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
       "form": []
     },
     "tests": []
