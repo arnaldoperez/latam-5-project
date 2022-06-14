@@ -1,7 +1,10 @@
 const apiURL = process.env.BACKEND_URL + "/api";
 const getState = ({ getStore, getActions, setStore }) => {
+  const apiURL = process.env.BACKEND_URL + "/api";
   return {
     store: {
+      fallas: [],
+      detalle: [],
       message: null,
       demo: [
         {
@@ -118,6 +121,51 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
 
         return { code: 201, msg: "Usuario registrado" };
+      },
+
+      signUpTech: async (historial, ubicacion, descripcion, url, id_user) => {
+        //mi peticion es asincrona es decir espera por el resultado
+        console.log(historial, ubicacion, descripcion, url, id_user);
+        id_user = parseInt(id_user);
+        const params = {
+          method: "POST", //ingreso el metodo de mi peticion
+          body: JSON.stringify({
+            //ingreso el contenido del body y los parametros de mi peticion
+            historial,
+            ubicacion,
+            descripcion,
+            url,
+            id_user,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const resp = await fetch(`${apiURL}/tecnicos`, params); //esperar a mi peticion mediante la funcion fetch con los parametros en el cuerpo y encabezado del mensaje para realizar el sgnup en este caso se busca regitrar un usuario
+        if (resp.status !== 201) {
+          return { code: resp.status, msg: resp.statusText };
+        }
+        //
+        return { code: 201, msg: "Tecnico registrado" };
+      },
+
+      listarFallas: async () => {
+        const url =
+          "https://3001-arnaldopere-latam5proje-eut884jccbg.ws-us47.gitpod.io/api";
+        //const res = await fetch(`${url}/fallas`);
+        const res = await fetch(process.env.BACKEND_URL + "/api/fallas");
+        const listado = await res.json();
+        const store = getStore();
+        //setStore({ fallas: [...store.fallas, listado] });
+        setStore({ fallas: listado });
+        return store.fallas;
+      },
+      detalleFallas: async (id) => {
+        const res = await fetch(process.env.BACKEND_URL + "/api/falla/" + id);
+        const datos = await res.json();
+        const store = getStore();
+        setStore({ detalle: datos });
+        return store.detalle;
       },
     },
   };

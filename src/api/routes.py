@@ -4,16 +4,16 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Perfil_tecnico, Falla, Imagenes, Calificacion, TokenBlockedList, Propuesta, InformeTecnico
 from api.utils import generate_sitemap, APIException
-from flask_bcrypt import Bcrypt 
-from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt
+from flask_bcrypt import Bcrypt #libreria de encriptacion para el hash
+from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt#librerias necesarias para la creacion del token
 import datetime 
 from firebase_admin import storage
 import tempfile
 
-app = Flask(__name__)
+app = Flask(__name__) #base de datos de flask
 api = Blueprint('api', __name__)
-bcrypt = Bcrypt(app)
-#db = SQLAlchemy(app)
+bcrypt = Bcrypt(app) #aca 
+#db = SQLAlchemy(app) 
 jwt = JWTManager(app)
 
 
@@ -43,12 +43,12 @@ def falla(falla_id):
 def signup():
     email=request.json.get("email")#capturando mi usuario email del requerimiento
     password=request.json.get("password")#capturando la contraseña de mi ususario
-    password_encryptado = bcrypt.generate_password_hash(password, rounds=None).decode("utf-8") 
+    password_encryptado = bcrypt.generate_password_hash(password, rounds=None).decode("utf-8") # se procede a encriptar el password
     nombre=request.json.get("nombre")
     apellido=request.json.get("apellido")
     #fecha_ing=request.json.get("fecha_ing")
     date=datetime.datetime.now()
-    fecha_ing= date.strftime("%x")
+    fecha_ing= date.strftime("%x")#creando la fecha de ingreso
     newUser=User(email=email, password=password_encryptado, nombre=nombre, apellido=apellido, fecha_ing=fecha_ing, is_active= True)#creando mi nuevo usuario con el modelo (clase) que importe
     db.session.add(newUser)
     db.session.commit()
@@ -107,7 +107,8 @@ def crearFalla():
     estado = request.json.get("estado")
     ubicacion = request.json.get("ubicacion")
     id_cliente = request.json.get("id_cliente")
-    newPost=Falla(descripcion=descripcion, modelo=modelo, fecha_creacion=fecha_creacion, fecha_cierre=fecha_cierre, titulo=titulo, estado=estado, ubicacion=ubicacion, id_cliente=id_cliente)#creando mi nuevo usuario con el modelo (clase) que importe
+    imagen_id = request.json.get("imagen_id")
+    newPost=Falla(descripcion=descripcion, modelo=modelo, fecha_creacion=fecha_creacion, fecha_cierre=fecha_cierre, titulo=titulo, estado=estado, ubicacion=ubicacion, id_cliente=id_cliente, imagen_id=imagen_id)#creando mi nuevo usuario con el modelo (clase) que importe
     db.session.add(newPost)
     db.session.commit()
     response_body = {

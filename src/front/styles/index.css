@@ -1,3 +1,19 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+
+.mainMargin {
+  margin: 20px 60px 20px 60px;
+}
+
+.fechaFalla {
+  display: flex;
+  justify-content: space-between;
+}
+.activation:hover {
+  background: rgb(240, 240, 240);
+}
+.detalles {
+  display: flex;
+  justify-content: space-evenly;
+}
