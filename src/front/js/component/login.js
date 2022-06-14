@@ -1,10 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { Context, loginInfo } from "../store/appContext";
 import "../../styles/home.css";
 
 export const Login = () => {
   const [loginInfo, setloginInfo] = useState();
   const { store, actions } = useContext(Context);
+  const history = useHistory();
   //const changeHandler = (event) => {
   //formValue = setformValue(event.target.value);
   //};
@@ -16,8 +18,9 @@ export const Login = () => {
     let password = data.get("password");
 
     actions.login(email, password);
+    history.push("");
   }
-
+  useEffect(() => {}, [store.token]);
   return (
     <div className="col-6 col-md-4 container-fluid">
       <form onSubmit={handleSubmission}>

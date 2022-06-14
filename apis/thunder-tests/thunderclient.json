@@ -4,11 +4,11 @@
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
     "name": "SignUp",
-    "url": "{{url}}/signup",
+    "url": "https://3001-arnaldopere-latam5proje-yw6hu1r4kdf.ws-us47.gitpod.io/api/signup",
     "method": "POST",
     "sortNum": 5000,
     "created": "2022-05-28T00:56:01.087Z",
-    "modified": "2022-06-09T01:49:57.119Z",
+    "modified": "2022-06-14T00:40:30.796Z",
     "headers": [],
     "params": [],
     "body": {
@@ -252,25 +252,6 @@
     "tests": []
   },
   {
-    "_id": "de503881-bd6c-4d36-88f6-14bb1e2611bd",
-    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
-    "name": "CrearUsuarioTecnico",
-    "url": "{{url}}/signup",
-    "method": "POST",
-    "sortNum": 7500,
-    "created": "2022-06-09T01:47:09.554Z",
-    "modified": "2022-06-09T01:52:14.030Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n    \"email\":\"arnald@4gks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
     "_id": "2958434d-60cc-4884-923b-d159f4d238c5",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
@@ -315,6 +296,25 @@
     "modified": "2022-06-08T01:52:38.486Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "de503881-bd6c-4d36-88f6-14bb1e2611bd",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "CrearUsuarioTecnico",
+    "url": "{{url}}/signup",
+    "method": "POST",
+    "sortNum": 7500,
+    "created": "2022-06-09T01:47:09.554Z",
+    "modified": "2022-06-09T01:52:14.030Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\":\"arnald@4gks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
+      "form": []
+    },
     "tests": []
   }
 ]
