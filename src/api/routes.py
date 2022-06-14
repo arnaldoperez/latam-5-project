@@ -6,6 +6,7 @@ from api.models import db, User, Perfil_tecnico, Falla, Imagenes, Calificacion, 
 from api.utils import generate_sitemap, APIException
 from flask_bcrypt import Bcrypt 
 from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt
+from .sendemail import sendMail
 import datetime 
 from firebase_admin import storage
 import tempfile
@@ -268,3 +269,13 @@ def mostrar_factura(informe_id):
 def historial_calificaciones(id_tecnico):
     historial = Calificacion.query.get(id_tecnico)
     return jsonify(historial.serialize())
+
+@api.route('/testmail', methods=['GET'])
+def testmail():
+    try:
+        sendMail("arnaldoeperezb@gmail.com","Para recuperar su cuenta ingrese en la siguiente direccion http://tallerapp.com")
+        return "ok", 201
+    except  Exception as e:
+        print(e)
+        raise APIException("Error al enviar el correo", status_code=403)
+
