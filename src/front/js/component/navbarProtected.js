@@ -1,18 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const Navbar = () => {
+export const NavbarProtected = () => {
   return (
-    <nav className="navbar navbar-dark bg-primary">
+    <nav className="navbar navbar-light bg-light">
       <div className="container">
         <Link to="/">
           <span className="navbar-brand mb-0 h1">Find your handy man</span>
         </Link>
-        <Link to="/signup">
-          <button className="btn btn-primary mx-2">SignUp</button>
-        </Link>
-        <Link to="/tecnicos">
-          <button className="btn btn-primary mx-2">SignUp Technician</button>
+        <Link to="/falla">
+          <button className="btn btn-primary mx-2">Nueva Falla</button>
         </Link>
         <Link to="/">
           <span className="navbar-brand mb-0 h1">Tallerapp</span>

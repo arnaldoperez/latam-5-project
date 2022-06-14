@@ -1,3 +1,4 @@
+const apiURL = process.env.BACKEND_URL + "/api";
 const getState = ({ getStore, getActions, setStore }) => {
   const apiURL = process.env.BACKEND_URL + "/api";
   return {
@@ -19,21 +20,24 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
       token: "",
       refreshToken: "",
+      loginInfo: {},
     },
     actions: {
       // Use getActions to call a function within a fuction
       exampleFunction: () => {
         getActions().changeColor(0, "green");
       },
-
       getMessage: () => {
         // fetching data from the backend
         fetch(process.env.BACKEND_URL + "/api/hello")
           .then((resp) => resp.json())
           .then((data) => setStore({ message: data.message }))
-          .catch((error) =>
-            console.log("Error loading message from backend", error)
-          );
+          .catch((error) => {
+            console.log(
+              "Error loading message from backend",
+              JSON.stringify(error)
+            );
+          });
       },
       changeColor: (index, color) => {
         //get the store
@@ -48,6 +52,52 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         //reset the global store
         setStore({ demo: demo });
+      },
+      login: async (email, password) => {
+        const params = {
+          method: "POST",
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const resp = await fetch(`${apiURL}/login`, params);
+        if (resp.status !== 200) {
+          return { code: resp.status, msg: resp.statusText };
+        }
+
+        const data = await resp.json();
+        console.log(data);
+        const token = data.token;
+        const refreshToken = data.refreshToken;
+
+        setStore({ token, refreshToken });
+        localStorage.setItem("token", token);
+        localStorage.setItem("refreshToken", refreshToken);
+        return { code: 200, msg: "Access granted" };
+      },
+
+      logout: async () => {
+        const store = getStore();
+        console.log(store);
+        const params = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const resp = await fetch(`${apiURL}/logout`, params);
+        if (resp.status !== 200) {
+          return { code: resp.status, msg: resp.statusText };
+        }
+
+        setStore({ token: "" });
+        localStorage.removeItem("token");
+        return { code: 200, msg: "Sesion cerrada" };
       },
 
       signUp: async (email, password, nombre, apellido) => {
@@ -72,30 +122,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         return { code: 201, msg: "Usuario registrado" };
       },
-      
-      signUpTech: async (historial, ubicacion, descripcion, url,id_user ) => {//mi peticion es asincrona es decir espera por el resultado
-				console.log(historial, ubicacion, descripcion, url,id_user)
-				id_user=parseInt(id_user)
-				const params = {
-				  method: "POST", //ingreso el metodo de mi peticion
-				  body: JSON.stringify({//ingreso el contenido del body y los parametros de mi peticion
-					historial,
-					ubicacion,
-					descripcion,
-					url,
-					id_user
-				  }),
-				  headers: {
-					"Content-Type": "application/json",
-				  },
-				};
-				const resp = await fetch(`${apiURL}/tecnicos`, params); //esperar a mi peticion mediante la funcion fetch con los parametros en el cuerpo y encabezado del mensaje para realizar el sgnup en este caso se busca regitrar un usuario
-				if (resp.status !== 201) {
-				  return { code: resp.status, msg: resp.statusText };
-				}
-				//
-				return { code: 201, msg: "Tecnico registrado" };
-			},
+
+      signUpTech: async (historial, ubicacion, descripcion, url, id_user) => {
+        //mi peticion es asincrona es decir espera por el resultado
+        console.log(historial, ubicacion, descripcion, url, id_user);
+        id_user = parseInt(id_user);
+        const params = {
+          method: "POST", //ingreso el metodo de mi peticion
+          body: JSON.stringify({
+            //ingreso el contenido del body y los parametros de mi peticion
+            historial,
+            ubicacion,
+            descripcion,
+            url,
+            id_user,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const resp = await fetch(`${apiURL}/tecnicos`, params); //esperar a mi peticion mediante la funcion fetch con los parametros en el cuerpo y encabezado del mensaje para realizar el sgnup en este caso se busca regitrar un usuario
+        if (resp.status !== 201) {
+          return { code: resp.status, msg: resp.statusText };
+        }
+        //
+        return { code: 201, msg: "Tecnico registrado" };
+      },
 
       listarFallas: async () => {
         const url =
