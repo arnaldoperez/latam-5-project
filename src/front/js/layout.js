@@ -7,6 +7,9 @@ import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import ListadoFallas from "./pages/ListadoFallas";
 import DetalleFallas from "./pages/DetalleFallas";
+import FormInfoTecnico from "./pages/FormInfoTecnico";
+import Propuesta from "./pages/Propuesta";
+import ListadoPropuestas from "./pages/ListadoPropuestas";
 import injectContext from "./store/appContext";
 import { SignUp } from "./pages/signUp";
 
@@ -42,6 +45,12 @@ const Layout = () => {
             </Route>
             <Route exact path="/falla/:id">
               <DetalleFallas />
+            </Route>
+            <Route exact path="/informe">
+              <FormInfoTecnico />
+            </Route>
+            <Route exact path="/propuestas">
+              <ListadoPropuestas />
             </Route>
             <Route>
               <h1>Not found!</h1>

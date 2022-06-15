@@ -8,12 +8,12 @@
     "method": "POST",
     "sortNum": 5000,
     "created": "2022-05-28T00:56:01.087Z",
-    "modified": "2022-06-09T01:49:57.119Z",
+    "modified": "2022-06-15T04:47:10.203Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"javier3@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Javier\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
+      "raw": "{\n    \"email\":\"javier3@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Javier\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}\n",
       "form": []
     },
     "tests": []
@@ -156,12 +156,12 @@
     "method": "POST",
     "sortNum": 25000,
     "created": "2022-06-05T17:19:10.406Z",
-    "modified": "2022-06-09T01:56:39.273Z",
+    "modified": "2022-06-15T04:50:13.948Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"20.00\",\n    \"estado\":\"estado\",\n    \"id_falla\":1,\n    \"id_tecnico\":1\n}",
+      "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"20.00\",\n    \"estado\":\"estado\",\n    \"id_falla\":2,\n    \"id_tecnico\":1\n}",
       "form": []
     },
     "tests": []
@@ -175,12 +175,12 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-06-05T17:19:36.498Z",
-    "modified": "2022-06-13T22:00:34.306Z",
+    "modified": "2022-06-15T04:49:06.128Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"descripcion\":\"Cuando freno sobre los 180 km/h escucho un fuerte golpeteo metálico que pareciera provenir del motor. Hace dos meses le cambiaron los pistones porque tenian un juego excesivo. Tambien hay un olor a quemado que viene del tanque de combustible\",\n    \"modelo\":\"Honda Kiuva\",\n    \"fecha_creacion\":\"3-3-22\",\n    \"fecha_cierre\":\"3-3-22\",\n    \"titulo\":\"No frena bien a altas velocidades\",\n    \"estado\":\"open\",\n    \"ubicacion\":\"Castilla, Buenos Aires\",\n    \"id_cliente\":2,\n    \"usuario\":1,\n    \"imagen_id\": 1\n}",
+      "raw": "{\n    \"descripcion\":\"Cuando freno sobre los 180 km/h escucho un fuerte golpeteo metálico que pareciera provenir del motor. Hace dos meses le cambiaron los pistones porque tenian un juego excesivo. Tambien hay un olor a quemado que viene del tanque de combustible\",\n    \"modelo\":\"Honda Kiuva\",\n    \"fecha_creacion\":\"3-3-22\",\n    \"fecha_cierre\":\"3-3-22\",\n    \"titulo\":\"No frena bien a altas velocidades\",\n    \"estado\":\"open\",\n    \"ubicacion\":\"Castilla, Buenos Aires\",\n    \"id_cliente\":1,\n    \"usuario\":1,\n    \"imagen_id\": null\n}",
       "form": []
     },
     "tests": []
@@ -194,12 +194,12 @@
     "method": "POST",
     "sortNum": 30000,
     "created": "2022-06-05T18:51:19.847Z",
-    "modified": "2022-06-10T23:34:55.829Z",
+    "modified": "2022-06-15T04:52:27.530Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"comentario_servicio\":\"comentario_servicio\",\n    \"recomendacion\":\"recomendacion\",\n    \"usuario_id\":2,\n    \"falla_id\":1,\n    \"estado\":\"terminado\",\n    \"importe\":100\n}",
+      "raw": "{\n    \"comentario_servicio\":\"comentario_servicio\",\n    \"recomendacion\":\"recomendacion\",\n    \"usuario_id\":1,\n    \"falla_id\":1,\n    \"estado\":\"terminado\",\n    \"importe\":100\n}",
       "form": []
     },
     "tests": []
@@ -252,25 +252,6 @@
     "tests": []
   },
   {
-    "_id": "de503881-bd6c-4d36-88f6-14bb1e2611bd",
-    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
-    "name": "CrearUsuarioTecnico",
-    "url": "{{url}}/signup",
-    "method": "POST",
-    "sortNum": 7500,
-    "created": "2022-06-09T01:47:09.554Z",
-    "modified": "2022-06-10T23:34:02.613Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n    \"email\":\"arnald244@4gks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
     "_id": "2958434d-60cc-4884-923b-d159f4d238c5",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
@@ -313,6 +294,39 @@
     "sortNum": 130000,
     "created": "2022-06-08T01:52:17.703Z",
     "modified": "2022-06-08T01:52:38.486Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "de503881-bd6c-4d36-88f6-14bb1e2611bd",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "CrearUsuarioTecnico",
+    "url": "{{url}}/signup",
+    "method": "POST",
+    "sortNum": 7500,
+    "created": "2022-06-09T01:47:09.554Z",
+    "modified": "2022-06-10T23:34:02.613Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\":\"arnald244@4gks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5787aa5e-4065-4480-958b-2440fabfbbfc",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "",
+    "name": "Listar propuestas",
+    "url": "{{url}}/propuestas",
+    "method": "GET",
+    "sortNum": 140000,
+    "created": "2022-06-14T17:12:20.913Z",
+    "modified": "2022-06-14T17:12:54.537Z",
     "headers": [],
     "params": [],
     "tests": []

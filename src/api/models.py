@@ -12,7 +12,10 @@ class User(db.Model):
     apellido = db.Column(db.String(120), nullable=False)
     fecha_ing = db.Column(db.String(120), nullable=False)
     is_active = db.Column(db.Boolean(), nullable=False)
-    
+    perfil_tecnico = db.relationship('Perfil_tecnico', backref='user')
+    falla = db.relationship('Falla',lazy=True,backref='user')
+    informe_tecnico = db.relationship('InformeTecnico',lazy=True,backref='user')
+
     def __repr__(self):
         return f'<User {self.email}>'
 
@@ -50,8 +53,9 @@ class Perfil_tecnico(db.Model):
     descripcion = db.Column(db.String(120), nullable=False)
     url = db.Column(db.String(120), nullable=False)
     id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
-    user = db.relationship('User',lazy=True,backref='perfil_tecnico')
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    propuesta = db.relationship('Propuesta',lazy=True, backref='perfil_tecnico')
+    calificacion = db.relationship('Calificacion', backref='perfil_tecnico')
   
     def __repr__(self):
         return f'<User {self.historial}>'
@@ -64,8 +68,12 @@ class Perfil_tecnico(db.Model):
             "descripcion": self.descripcion,
             "url": self.url,
             "fecha_ing": self.fecha_ing,
-            "id_user":self.id_user 
-            # do not serialize the password, its a security breach
+            "id_user":self.id_user, 
+            "is_active":self.is_active,
+            "user_email":self.user.email,
+            "user_nombre":self.user.nombre,
+            "user_apellido":self.user.apellido
+
         }
 
 class Imagenes(db.Model):
@@ -73,7 +81,9 @@ class Imagenes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     detalle = db.Column(db.String(120), nullable=True)
     firebase_id = db.Column(db.String(80), unique=True, nullable=True)
-  
+    falla = db.relationship('Falla', backref='imagenes')
+    informe_tecnico = db.relationship('InformeTecnico', backref='imagenes')
+
     def __repr__(self):
         return f'<User {self.id}>'
 
@@ -92,15 +102,15 @@ class Falla(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     descripcion = db.Column(db.String(500),  nullable=False)  
     modelo = db.Column(db.String(120),  nullable=False)    
-    fecha_creacion= db.Column(db.String(10),  nullable=False)  
+    fecha_creacion= db.Column(db.Date, nullable=False)
     fecha_cierre= db.Column(db.String(10), nullable=True)
     titulo = db.Column(db.String(100), nullable=False)
-    estado = db.Column(db.String(5), nullable=False)
+    estado = db.Column(db.String(20), nullable=False)
     ubicacion = db.Column(db.String(200),  nullable=False)
     id_cliente = db.Column(db.Integer, db.ForeignKey('user.id'))
-    usuario = db.relationship('User',lazy=True,backref='falla')
     imagen_id = db.Column(db.Integer, db.ForeignKey('imagenes.id'))
-    imagen = db.relationship(Imagenes)
+    informe_tecnico = db.relationship('InformeTecnico',lazy=True,backref='falla')
+    propuesta = db.relationship('Propuesta', backref="falla")
 
     def serialize(self):
         return{
@@ -113,7 +123,11 @@ class Falla(db.Model):
             "estado" : self.estado,
             "ubicacion" : self.ubicacion,
             "usuario" : self.id_cliente,
-            "imagen" : self.imagen_id
+            "imagen" : self.imagen_id,
+            "user_email" : self.user.email,
+            "user_nombre" : self.user.nombre,
+            "user_apellido" : self.user.apellido,
+            "user_is_active" : self.user.is_active
             }
 
 class Propuesta(db.Model):
@@ -123,9 +137,8 @@ class Propuesta(db.Model):
     costo_servicio = db.Column(db.String(80), nullable=False)
     estado = db.Column(db.String(120),  nullable=False)
     id_falla = db.Column(db.Integer, db.ForeignKey('falla.id'))
-    falla = db.relationship(Falla)
+    calificacion = db.relationship('Calificacion',lazy=True,backref='propuesta')
     id_tecnico = db.Column(db.Integer, db.ForeignKey('perfil_tecnico.id'))
-    perfil_tecnico = db.relationship('Perfil_tecnico',lazy=True,backref='propuesta')
     is_active = db.Column(db.Boolean(),  nullable=False)
   
     def __repr__(self):
@@ -138,7 +151,15 @@ class Propuesta(db.Model):
             "costo_servicio": self.costo_servicio,
             "estado": self.estado,
             "id_falla": self.id_falla,
-            "id_tecnico": self.id_tecnico
+            "id_tecnico": self.id_tecnico,
+            "falla_titulo": self.falla.titulo,
+            "falla_fecha_creacion": self.falla.fecha_creacion,
+            "falla_fecha_cierre": self.falla.fecha_cierre,
+            "falla_estado": self.falla.estado,
+            "falla_descripcion": self.falla.descripcion,
+            "tecnico_user_nombre": self.perfil_tecnico.user.nombre,
+            "tecnico_user_apellido": self.perfil_tecnico.user.apellido,
+            "tecnico_user_email": self.perfil_tecnico.user.email
 
             # do not serialize the password, its a security breach
         }
@@ -150,9 +171,7 @@ class Calificacion(db.Model):
     calificacion = db.Column(db.String(50), nullable=False)
     comentario = db.Column(db.String(250), nullable=False)
     id_tecnico = db.Column(db.Integer, db.ForeignKey('perfil_tecnico.id'))
-    perfil_tecnico = db.relationship(Perfil_tecnico)
     propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))
-    propuesta = db.relationship('Propuesta',lazy=True,backref='calificacion')
     fecha_cierre= db.Column(db.String(10), nullable=False)
     
 
@@ -163,7 +182,8 @@ class Calificacion(db.Model):
             'comentario': self.comentario,
             'id_tecnico': self.id_tecnico,
             'propuesta_id': self.propuesta_id,
-            'fecha_cierre': self.fecha_cierre
+            'fecha_cierre': self.fecha_cierre,
+            'tecnico_historial': self.perfil_tecnico.historial
         }
 
 
@@ -175,13 +195,11 @@ class InformeTecnico(db.Model):
     comentario_servicio = db.Column(db.String(250), nullable=False)
     recomendacion = db.Column(db.String(250), nullable=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    usuario = db.relationship('User',lazy=True,backref='informe_tecnico')
     falla_id = db.Column(db.Integer, db.ForeignKey('falla.id'))
-    falla = db.relationship('Falla',lazy=True,backref='informe_tecnico')
     importe = db.Column(db.Float)
     estado = db.Column(db.String(40), nullable=False)
     imagen_id = db.Column(db.Integer, db.ForeignKey('imagenes.id'))
-    imagen = db.relationship(Imagenes)
+    
 
     def serialize(self):
         return {
@@ -192,5 +210,6 @@ class InformeTecnico(db.Model):
             'usuario_id': self.usuario_id,
             'falla_id': self.falla_id,
             'importe': self.importe,
-            'estado': self.estado
+            'estado': self.estado,
+            'imagen_id': self.imagen_id
         }
