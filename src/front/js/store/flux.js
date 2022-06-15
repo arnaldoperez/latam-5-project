@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   const apiURL = process.env.BACKEND_URL + "/api";
   return {
     store: {
+      propuestas: [],
       fallas: [],
       detalle: [],
       message: null,
@@ -150,13 +151,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       listarFallas: async () => {
-        const url =
-          "https://3001-arnaldopere-latam5proje-eut884jccbg.ws-us47.gitpod.io/api";
-        //const res = await fetch(`${url}/fallas`);
         const res = await fetch(process.env.BACKEND_URL + "/api/fallas");
         const listado = await res.json();
         const store = getStore();
-        //setStore({ fallas: [...store.fallas, listado] });
         setStore({ fallas: listado });
         return store.fallas;
       },
@@ -166,6 +163,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         setStore({ detalle: datos });
         return store.detalle;
+      },
+      listarPropuestas: async () => {
+        const res = await fetch(process.env.BACKEND_URL + "/api/propuestas");
+        const listado = await res.json();
+        const store = getStore();
+        setStore({ propuestas: listado });
+        return store.propuestas;
       },
     },
   };

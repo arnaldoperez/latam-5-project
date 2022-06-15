@@ -5,8 +5,11 @@
 .mainMargin {
   margin: 20px 60px 20px 60px;
 }
-
-.fechaFalla {
+.mainMargin h2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.paralelo {
   display: flex;
   justify-content: space-between;
 }
@@ -16,4 +19,8 @@
 .detalles {
   display: flex;
   justify-content: space-evenly;
+}
+
+Button {
+  margin-right: 10px;
 }
