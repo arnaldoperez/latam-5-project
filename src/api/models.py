@@ -144,8 +144,6 @@ class Propuesta(db.Model):
             "estado": self.estado,
             "id_falla": self.id_falla,
             "id_tecnico": self.id_tecnico
-
-            # do not serialize the password, its a security breach
         }
 
 
