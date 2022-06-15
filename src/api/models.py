@@ -69,7 +69,7 @@ class Perfil_tecnico(db.Model):
             "url": self.url,
             "fecha_ing": self.fecha_ing,
             "id_user":self.id_user, 
-            "is_active":self.is_active,
+            "is_active":self.is_active
         }
 
 class Imagenes(db.Model):
@@ -119,7 +119,7 @@ class Falla(db.Model):
             "estado" : self.estado,
             "ubicacion" : self.ubicacion,
             "usuario" : self.id_cliente,
-            "imagen" : self.imagen_id,
+            "imagen" : self.imagen_id
             }
 
 class Propuesta(db.Model):
@@ -144,8 +144,6 @@ class Propuesta(db.Model):
             "estado": self.estado,
             "id_falla": self.id_falla,
             "id_tecnico": self.id_tecnico
-
-            # do not serialize the password, its a security breach
         }
 
 
@@ -166,8 +164,7 @@ class Calificacion(db.Model):
             'comentario': self.comentario,
             'id_tecnico': self.id_tecnico,
             'propuesta_id': self.propuesta_id,
-            'fecha_cierre': self.fecha_cierre,
-            'tecnico_historial': self.perfil_tecnico.historial
+            'fecha_cierre': self.fecha_cierre
         }
 
 
