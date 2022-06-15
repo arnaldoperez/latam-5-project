@@ -70,10 +70,6 @@ class Perfil_tecnico(db.Model):
             "fecha_ing": self.fecha_ing,
             "id_user":self.id_user, 
             "is_active":self.is_active,
-            "user_email":self.user.email,
-            "user_nombre":self.user.nombre,
-            "user_apellido":self.user.apellido
-
         }
 
 class Imagenes(db.Model):
@@ -124,10 +120,6 @@ class Falla(db.Model):
             "ubicacion" : self.ubicacion,
             "usuario" : self.id_cliente,
             "imagen" : self.imagen_id,
-            "user_email" : self.user.email,
-            "user_nombre" : self.user.nombre,
-            "user_apellido" : self.user.apellido,
-            "user_is_active" : self.user.is_active
             }
 
 class Propuesta(db.Model):
@@ -151,15 +143,7 @@ class Propuesta(db.Model):
             "costo_servicio": self.costo_servicio,
             "estado": self.estado,
             "id_falla": self.id_falla,
-            "id_tecnico": self.id_tecnico,
-            "falla_titulo": self.falla.titulo,
-            "falla_fecha_creacion": self.falla.fecha_creacion,
-            "falla_fecha_cierre": self.falla.fecha_cierre,
-            "falla_estado": self.falla.estado,
-            "falla_descripcion": self.falla.descripcion,
-            "tecnico_user_nombre": self.perfil_tecnico.user.nombre,
-            "tecnico_user_apellido": self.perfil_tecnico.user.apellido,
-            "tecnico_user_email": self.perfil_tecnico.user.email
+            "id_tecnico": self.id_tecnico
 
             # do not serialize the password, its a security breach
         }
