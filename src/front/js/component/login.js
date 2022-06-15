@@ -22,7 +22,7 @@ export const Login = () => {
   }
   useEffect(() => {}, [store.token]);
   return (
-    <div className="col-6 col-md-4 container-fluid">
+    <div className="col-12 col-md-9 container-fluid">
       <form onSubmit={handleSubmission}>
         <div className="form-group">
           <div className="input-group">
