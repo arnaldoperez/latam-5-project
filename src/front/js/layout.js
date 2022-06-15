@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
@@ -8,31 +8,46 @@ import { Single } from "./pages/single";
 import ListadoFallas from "./pages/ListadoFallas";
 import DetalleFallas from "./pages/DetalleFallas";
 import FormInfoTecnico from "./pages/FormInfoTecnico";
-import Propuesta from "./pages/Propuesta";
 import ListadoPropuestas from "./pages/ListadoPropuestas";
-import injectContext from "./store/appContext";
+
+import injectContext, { Context } from "./store/appContext";
 import { SignUp } from "./pages/signUp";
+import { SignUp_Tech } from "./pages/signUp_Tech";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Login } from "./component/login";
+import { NavbarProtected } from "./component/navbarProtected";
 
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
+  const { store, actions } = useContext(Context);
+
+  function navbar() {
+    if (store.token) {
+      return <NavbarProtected />;
+    } else {
+      return <Navbar />;
+    }
+  }
 
   return (
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          <Navbar />
+          {navbar()}
           <Switch>
+            <Route exact path="/tecnicos">
+              <SignUp_Tech />
+            </Route>
             <Route exact path="/signup">
               <SignUp />
             </Route>
             <Route exact path="/">
-              <Home />
+              <Login />
             </Route>
             <Route exact path="/demo">
               <Demo />

@@ -7,41 +7,38 @@ import { Card, Row, Container, Column } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export const SignUp = () => {
+export const SignUp_Tech = () => {
   const { store, actions } = useContext(Context);
   const navigate = useHistory();
 
-  function signUpUser(event) {
+  function signTech(event) {
     // Previene el comportamiento por defecto, evitando que la pagina se recargue
     event.preventDefault();
     // Se crea un objeto "FormData" con los datos del formulario
     let data = new FormData(event.target); //en esta variable estoy capturando controladamente todos los valores que el usuario ingreso en el formulario una vez realice el evento submit
     // capturo los valores que el usuario ingreso en el formulario
-    let email = data.get("email"); //lo estoy sacando directamente de mi form.Control name="email"
-    let password = data.get("password"); //lo estoy sacando directamente de mi form.Control name="password"
-    let confirm = data.get("confirm");
-    let nombre = data.get("nombre");
-    let apellido = data.get("apellido");
+    let historial = data.get("historial"); //lo estoy sacando directamente de mi form.Control name="email"
+    let ubicacion = data.get("ubicacion"); //lo estoy sacando directamente de mi form.Control name="password"
+    let descripcion = data.get("descripcion");
+    let url = data.get("url");
+    let id_user = data.get("id_user");
     let check = data.get("check");
-    if (password !== confirm) {
-      console.error("Las claves no coinciden");
-      return;
-    }
+   
     if (!check) {
       console.error("El usuario no acepto los terminos");
       return;
     }
 
     actions //importe las actions y el store
-      .signUp(email, password, nombre, apellido) //evaluo mi funcion signup que me retorna una promesa
+      .signUpTech(historial, ubicacion, descripcion, url, id_user) //evaluo mi funcion signup que me retorna una promesa
       .then((resp) => {
         //evalua la respuesta en sus dos casos
         if (resp.code == 201) navigate.push("/");
         //caso exitoso
-        else console.log("Problema en el registro de usuario: ", resp); //caso no exitoso
+        else console.log("Problema en el registro de tecnico: ", resp); //caso no exitoso
       })
       .catch((error) => {
-        console.log("Error en el registro: ", error);
+        console.log("Error en el registro de tecnico: ", error);
       });
   }
 
@@ -50,26 +47,22 @@ export const SignUp = () => {
       <Row  >
         <Card className="text-center" border="light" >
           <h2 className="text-primary" >Taller@pp</h2>
-          <Form onSubmit={signUpUser}>
-          <h3 className="bg-secondary text-light">Sign Up</h3>
+          <Form onSubmit={signTech}>
+          <h3 className="bg-secondary text-light">Sign Up Technician</h3>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Control
-                type="email"
-                placeholder="Enter email"
-                name="email"
+                type="text"
+                placeholder="Enter history"
+                name="historial"
                 required
               />
-              {/*Este email es el que se toma en la funcion SignUpUser con el evento submit*/}
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
+              {/*Este email es el que se toma en la funcion SignUpUser con el evento submit*/}            </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Control
-                type="password"
-                placeholder="Password"
-                name="password"
+                type="text"
+                placeholder="ubication"
+                name="ubicacion"
                 required
               />
               {/*Este password es el que se toma en la funcion SignUpUser con el evento submit*/}
@@ -77,9 +70,9 @@ export const SignUp = () => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">            
               <Form.Control
-                type="password"
-                placeholder="Confirm Password"
-                name="confirm"
+                type="text"
+                placeholder="Description"
+                name="descripcion"
                 required
               />
               {/*Este password es el que se toma en la funcion SignUpUser con el evento submit*/}
@@ -88,17 +81,17 @@ export const SignUp = () => {
             <Form.Group className="mb-3">            
               <Form.Control
                 type="text"
-                placeholder="Enter your name"
-                name="nombre"
+                placeholder="Enter your url"
+                name="url"
               />
               {/*Este nombre es el que se toma en la funcion SignUpUser con el evento submit*/}
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Control
-                type="text"
-                placeholder="Enter your Last name"
-                name="apellido"
+                type="number"
+                placeholder="Enter your id_user"
+                name="id_user"
               />
               {/*Este phoneNumber es el que se toma en la funcion SignUpUser con el evento submit*/}
             </Form.Group>
