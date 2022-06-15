@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
-import { Login } from "../component/login";
+import "../../styles/home.css";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -13,8 +13,51 @@ export const Home = () => {
           <h4 className="card-title text-center mb-4 mt-1">Sign in</h4>
 
           <p className="text-success text-center">Let's find your handyman!</p>
+          <form>
+            <div className="form-group">
+              <div className="input-group">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">
+                    {" "}
+                    <i className="fa fa-user"></i>{" "}
+                  </span>
+                </div>
+                <input
+                  name=""
+                  className="form-control"
+                  placeholder="Email or login"
+                  type="email"
+                ></input>
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="input-group">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">
+                    {" "}
+                    <i className="fa fa-lock"></i>{" "}
+                  </span>
+                </div>
+                <input
+                  className="form-control"
+                  placeholder="******"
+                  type="password"
+                ></input>
+              </div>
+            </div>
+            <div className="form-group text-center">
+              <button type="submit" className="btn btn-primary btn-block">
+                {" "}
+                Login{" "}
+              </button>
+            </div>
+            <p className="text-center">
+              <a href="#" className="btn">
+                Forgot password?
+              </a>
+            </p>
+          </form>
         </article>
-        <Login />
       </div>
       <div className="jumbotron container-fluid">
         <div className="container col-6 text-center">
