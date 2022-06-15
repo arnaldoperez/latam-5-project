@@ -34,6 +34,14 @@ const Layout = () => {
     }
   }
 
+  function home() {
+    if (store.token) {
+      return <HomeProtected />;
+    } else {
+      return <Home />;
+    }
+  }
+
   return (
     <div>
       <BrowserRouter basename={basename}>
@@ -47,7 +55,7 @@ const Layout = () => {
               <SignUp />
             </Route>
             <Route exact path="/">
-              <Login />
+              {home()}
             </Route>
             <Route exact path="/demo">
               <Demo />
