@@ -10,6 +10,7 @@ import DetalleFallas from "./pages/DetalleFallas";
 import injectContext from "./store/appContext";
 import { SignUp } from "./pages/signUp";
 import { SignUp_Tech } from "./pages/signUp_Tech";
+import { Profile } from "./pages/Profile";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -31,6 +32,9 @@ const Layout = () => {
             </Route>
             <Route exact path="/signup">
               <SignUp />
+            </Route>
+            <Route exact path="/calificaciones">
+              <Profile />
             </Route>
             <Route exact path="/">
               <Home />
