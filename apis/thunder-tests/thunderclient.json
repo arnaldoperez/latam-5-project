@@ -42,11 +42,11 @@
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "",
     "name": "consultar falla",
-    "url": "{{url}}/falla/3",
+    "url": "{{url}}/falla/1",
     "method": "GET",
     "sortNum": 30000,
     "created": "2022-05-28T01:49:17.094Z",
-    "modified": "2022-06-07T20:10:43.895Z",
+    "modified": "2022-06-16T00:14:08.219Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -296,6 +296,25 @@
     "modified": "2022-06-08T01:52:38.486Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "de503881-bd6c-4d36-88f6-14bb1e2611bd",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "CrearUsuarioTecnico",
+    "url": "{{url}}/signup",
+    "method": "POST",
+    "sortNum": 7500,
+    "created": "2022-06-09T01:47:09.554Z",
+    "modified": "2022-06-10T23:34:02.613Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\":\"arnald244@4gks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
