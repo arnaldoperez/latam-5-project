@@ -19,6 +19,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Login } from "./component/login";
 import { NavbarProtected } from "./component/navbarProtected";
+import { HomeProtected } from "./pages/homeProtected";
 
 //create your first component
 const Layout = () => {
@@ -32,6 +33,14 @@ const Layout = () => {
       return <NavbarProtected />;
     } else {
       return <Navbar />;
+    }
+  }
+
+  function home() {
+    if (store.token) {
+      return <HomeProtected />;
+    } else {
+      return <Home />;
     }
   }
 
@@ -51,7 +60,7 @@ const Layout = () => {
               <Profile />
             </Route>
             <Route exact path="/">
-              <Login />
+              {home()}
             </Route>
             <Route exact path="/demo">
               <Demo />
