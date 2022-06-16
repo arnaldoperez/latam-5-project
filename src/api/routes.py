@@ -149,6 +149,12 @@ def nuevapropuesta():
     }
     return jsonify(response_body), 201
 
+@api.route('/propuestas', methods=['GET'])
+def mostrarPropuestas():
+    propuestas = Propuesta.query.all()
+    propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))
+    return jsonify(propuestas)
+
 @api.route('/imagen', methods=['POST'])
 def subir_imagen():
     # Se recibe un archivo en la peticion

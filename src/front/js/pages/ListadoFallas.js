@@ -14,13 +14,6 @@ const ListadoFallas = () => {
     actions.listarFallas();
   };
 
-  function selectBackground(e) {
-    e.target.style.background = "red";
-  }
-  function unselectBackground(e) {
-    e.target.style.background = "white";
-  }
-
   console.log(store.fallas);
   //console.log(lista);
   return (
@@ -35,14 +28,20 @@ const ListadoFallas = () => {
             key={index}
           >
             <ListGroup.Item as="li" className="activation">
-              <div className="fechaFalla">
+              <div className="paralelo">
                 <h4>{falla.titulo}</h4>
 
                 <p>{falla.fecha_creacion}</p>
               </div>
 
               <p>{falla.descripcion}</p>
-              <p>{falla.usuario}</p>
+
+              <div className="paralelo">
+                <p>{falla.usuario}</p>
+                <p>
+                  <strong>{falla.ubicacion}</strong>
+                </p>
+              </div>
             </ListGroup.Item>
           </Link>
         ))}
