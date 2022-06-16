@@ -4,16 +4,16 @@
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
     "name": "SignUp",
-    "url": "https://3001-arnaldopere-latam5proje-yw6hu1r4kdf.ws-us47.gitpod.io/api/signup",
+    "url": "https://3001-arnaldopere-latam5proje-71ayra9ivye.ws-us47.gitpod.io/api/signup",
     "method": "POST",
     "sortNum": 5000,
     "created": "2022-05-28T00:56:01.087Z",
-    "modified": "2022-06-14T00:40:30.796Z",
+    "modified": "2022-06-16T02:37:15.250Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"javier3@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Javier\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}\n",
+      "raw": "{\n    \"email\":\"javier5@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Javier\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}\n",
       "form": []
     },
     "tests": []
@@ -27,13 +27,16 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-28T01:09:17.256Z",
-    "modified": "2022-06-14T00:40:07.247Z",
+    "modified": "2022-06-16T02:51:24.631Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"id_user\":1,\n    \"historial\":\"historial\",\n    \"descripcion\":\"descripcion\",\n    \"ubicacion\":\"ubicacion\",\n    \"url\":\"url\"\n}",
+      "raw": "{\n    \"historial\":\"historial\",\n    \"descripcion\":\"descripcion\",\n    \"ubicacion\":\"ubicacion\",\n    \"url\":\"url\"\n}",
       "form": []
+    },
+    "auth": {
+      "type": "oauth2"
     },
     "tests": []
   },
@@ -345,12 +348,12 @@
     "method": "POST",
     "sortNum": 140000,
     "created": "2022-06-12T02:31:30.867Z",
-    "modified": "2022-06-12T02:33:16.943Z",
+    "modified": "2022-06-16T02:38:23.459Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"javier3@4geeks.com\",\n    \"password\":\"123456\"\n}",
+      "raw": "{\n    \"email\":\"javier5@4geeks.com\",\n    \"password\":\"123456\"\n}",
       "form": []
     },
     "tests": []
@@ -364,13 +367,9 @@
     "method": "POST",
     "sortNum": 150000,
     "created": "2022-06-12T02:35:23.193Z",
-    "modified": "2022-06-12T02:40:48.758Z",
+    "modified": "2022-06-16T02:53:34.975Z",
     "headers": [],
     "params": [],
-    "auth": {
-      "type": "bearer",
-      "bearer": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1NTAwMTE5NiwianRpIjoiYzM2YWRhMTAtYTE2MC00YzgwLWEzM2MtMDg5YjU5YmQ2MjE4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImphdmllcjNANGdlZWtzLmNvbSIsIm5iZiI6MTY1NTAwMTE5NiwiZXhwIjoxNjU1MDAyMDk2fQ.2WVHK8W58ELlfc8e8BQdvB_8ufX0sQGqMtxZ9o2_DEY"
-    },
     "tests": []
   }
 ]

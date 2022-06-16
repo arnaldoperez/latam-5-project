@@ -120,11 +120,10 @@ def crearFalla():
 @jwt_required()
 def create_tecnico():
 
-    userId=get_jwt_identity()
     historial=request.json.get("historial")
     ubicacion=request.json.get("ubicacion")
     descripcion=request.json.get("descripcion")
-    id_user=userId
+    id_user=get_jwt_identity()
     url=request.json.get("url")
     nombre=request.json.get("nombre")
         

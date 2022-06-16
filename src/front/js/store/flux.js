@@ -139,7 +139,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             id_user,
           }),
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json",            
+            Authorization: `Bearer ${store.token}`,
           },
         };
         const resp = await fetch(`${apiURL}/tecnicos`, params); //esperar a mi peticion mediante la funcion fetch con los parametros en el cuerpo y encabezado del mensaje para realizar el sgnup en este caso se busca regitrar un usuario
