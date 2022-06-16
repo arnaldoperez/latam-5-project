@@ -9,21 +9,17 @@ export const NavbarProtected = () => {
           <span className="navbar-brand mb-0 h1">Find your handy man</span>
         </Link>
         <Link to="/falla">
-          <button className="btn btn-primary mx-2">Nueva Falla</button>
+          <button className="btn btn-primary mx-2">New Failure</button>
         </Link>
-        <Link to="/">
-          <span className="navbar-brand mb-0 h1">Tallerapp</span>
+        <Link to="/fallas">
+          <span className="btn btn-primary mx-2">My Reports</span>
+        </Link>
+        <Link to="/calificaciones">
+          <span className="btn btn-primary mx-2">Ratings</span>
         </Link>
         <div className="ml-auto">
           <Link to="/logout">
             <button className="btn btn-primary">Logout</button>
-          </Link>
-        </div>
-        <div className="ml-auto">
-          <Link to="/demo">
-            <button className="btn btn-primary">
-              Check the Context in action
-            </button>
           </Link>
         </div>
       </div>
