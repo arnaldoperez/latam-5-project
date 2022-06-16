@@ -13,6 +13,12 @@ export const NavbarProtected = () => {
         </Link>
         <Link to="/">
           <span className="navbar-brand mb-0 h1">Tallerapp</span>
+        </Link>        
+        <Link to="/calificaciones">
+          <button className="btn btn-primary mx-2">Calificaciones</button>
+        </Link>
+        <Link to="/tecnicos">
+          <button className="btn btn-primary mx-2">SignUp Technician</button>
         </Link>
         <div className="ml-auto">
           <Link to="/logout">

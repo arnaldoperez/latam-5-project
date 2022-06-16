@@ -8,12 +8,12 @@
     "method": "POST",
     "sortNum": 5000,
     "created": "2022-05-28T00:56:01.087Z",
-    "modified": "2022-06-16T02:37:15.250Z",
+    "modified": "2022-06-16T03:17:21.721Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"javier5@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Javier\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}\n",
+      "raw": "{\n    \"email\":\"javier@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Javier\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}\n",
       "form": []
     },
     "tests": []
@@ -27,7 +27,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-28T01:09:17.256Z",
-    "modified": "2022-06-16T02:51:24.631Z",
+    "modified": "2022-06-16T03:43:53.640Z",
     "headers": [],
     "params": [],
     "body": {
@@ -310,13 +310,17 @@
     "method": "POST",
     "sortNum": 7500,
     "created": "2022-06-09T01:47:09.554Z",
-    "modified": "2022-06-10T23:34:02.613Z",
+    "modified": "2022-06-16T03:41:33.081Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
       "raw": "{\n    \"email\":\"arnald244@4gks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Arnaldo\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}",
       "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{token}"
     },
     "tests": []
   },
@@ -348,12 +352,12 @@
     "method": "POST",
     "sortNum": 140000,
     "created": "2022-06-12T02:31:30.867Z",
-    "modified": "2022-06-16T02:38:23.459Z",
+    "modified": "2022-06-16T03:17:14.822Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"javier5@4geeks.com\",\n    \"password\":\"123456\"\n}",
+      "raw": "{\n    \"email\":\"javier@4geeks.com\",\n    \"password\":\"123456\"\n}",
       "form": []
     },
     "tests": []
@@ -367,7 +371,7 @@
     "method": "POST",
     "sortNum": 150000,
     "created": "2022-06-12T02:35:23.193Z",
-    "modified": "2022-06-16T02:53:34.975Z",
+    "modified": "2022-06-16T03:58:10.493Z",
     "headers": [],
     "params": [],
     "tests": []
