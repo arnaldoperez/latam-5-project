@@ -117,12 +117,14 @@ def crearFalla():
     return jsonify(response_body), 201    
 
 @api.route('/tecnicos', methods=['POST'])
+@jwt_required()
 def create_tecnico():
 
+    userId=get_jwt_identity()
     historial=request.json.get("historial")
     ubicacion=request.json.get("ubicacion")
     descripcion=request.json.get("descripcion")
-    id_user=request.json.get("id_user")
+    id_user=userId
     url=request.json.get("url")
     nombre=request.json.get("nombre")
         
