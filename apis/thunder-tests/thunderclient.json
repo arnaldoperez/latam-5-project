@@ -4,19 +4,11 @@
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
     "name": "SignUp",
-<<<<<<< HEAD
     "url": "https://3001-arnaldopere-latam5proje-wbptribx16i.ws-us47.gitpod.io/api/signup",
     "method": "POST",
     "sortNum": 5000,
     "created": "2022-05-28T00:56:01.087Z",
     "modified": "2022-06-17T23:07:44.074Z",
-=======
-    "url": "https://3001-arnaldopere-latam5proje-z12im8fp64b.ws-us47.gitpod.io/api/signup",
-    "method": "POST",
-    "sortNum": 5000,
-    "created": "2022-05-28T00:56:01.087Z",
-    "modified": "2022-06-16T17:30:03.878Z",
->>>>>>> desarrollo
     "headers": [],
     "params": [],
     "body": {

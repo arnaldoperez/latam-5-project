@@ -12,17 +12,14 @@ export const NavbarProtected = () => {
           <button className="btn btn-primary mx-2">New Failure</button>
         </Link>
         <Link to="/fallas">
-<<<<<<< HEAD
           <button className="btn btn-primary mx-2">Ver Fallas</button>
         </Link>
         <Link to="/">
           <span className="navbar-brand mb-0 h1">Tallerapp</span>
-=======
           <span className="btn btn-primary mx-2">My Reports</span>
         </Link>
         <Link to="/calificaciones">
           <span className="btn btn-primary mx-2">Ratings</span>
->>>>>>> desarrollo
         </Link>
         <div className="ml-auto">
           <Link to="/logout">
