@@ -124,10 +124,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         return { code: 201, msg: "Usuario registrado" };
       },
 
-      signUpTech: async (historial, ubicacion, descripcion, url, id_user) => {
+      signUpTech: async (historial, ubicacion, descripcion, url) => {
+        const store = getStore();
         //mi peticion es asincrona es decir espera por el resultado
-        console.log(historial, ubicacion, descripcion, url, id_user);
-        id_user = parseInt(id_user);
+        console.log(historial, ubicacion, descripcion, url);
+
         const params = {
           method: "POST", //ingreso el metodo de mi peticion
           body: JSON.stringify({
@@ -136,10 +137,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             ubicacion,
             descripcion,
             url,
-            id_user,
           }),
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
           },
         };
         const resp = await fetch(`${apiURL}/tecnicos`, params); //esperar a mi peticion mediante la funcion fetch con los parametros en el cuerpo y encabezado del mensaje para realizar el sgnup en este caso se busca regitrar un usuario
@@ -170,6 +171,43 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         setStore({ propuestas: listado });
         return store.propuestas;
+      },
+      listarPropuestas: async () => {
+        const res = await fetch(process.env.BACKEND_URL + "/api/propuestas");
+        const listado = await res.json();
+        const store = getStore();
+        setStore({ propuestas: listado });
+        return store.propuestas;
+      },
+      grabarPropuesta: async (detalle, costo_servicio, estado, id_falla) => {
+        const store = getStore();
+        //mi peticion es asincrona es decir espera por el resultado
+        console.log(detalle, costo_servicio, estado, id_falla);
+
+        const params = {
+          method: "POST", //ingreso el metodo de mi peticion
+          body: JSON.stringify({
+            //ingreso el contenido del body y los parametros de mi peticion
+            detalle,
+            costo_servicio,
+            estado,
+            id_falla,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const resp = await fetch(
+          process.env.BACKEND_URL + "/api/propuesta",
+          params
+        );
+        console.log(resp.status);
+        if (resp.status !== 201) {
+          return { code: resp.status, msg: resp.statusText };
+        }
+        //
+        return { code: 201, msg: "Propuesta registrada" };
       },
     },
   };

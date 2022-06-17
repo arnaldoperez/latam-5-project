@@ -36,6 +36,29 @@ const DetalleFallas = () => {
 
   console.log(datos);
 
+  function grabarPropuesta(event) {
+    event.preventDefault();
+    // Se crea un objeto "FormData" con los datos del formulario
+    let data = new FormData(event.target); //en esta variable estoy capturando controladamente todos los valores que el usuario ingreso en el formulario una vez realice el evento submit
+    // capturo los valores que el usuario ingreso en el formulario
+    let detalle = data.get("detalle"); //lo estoy sacando directamente de mi form.Control name="email"
+    let costo_servicio = data.get("costo_servicio"); //lo estoy sacando directamente de mi form.Control name="password"
+    let estado = "open";
+    let id_falla = datos.id;
+
+    actions
+      .grabarPropuesta(detalle, costo_servicio, estado, id_falla)
+      .then((resp) => {
+        //evalua la respuesta en sus dos casos
+        if (resp.code == 201) navigate.push("/fallas");
+        //caso exitoso
+        else console.log("Problema en el registro de la propuesta: ", resp);
+      })
+      .catch((error) => {
+        console.log("Error en el registro de la propuesta: ", error);
+      });
+  }
+
   function MydModalWithGrid(props) {
     return (
       <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
@@ -46,7 +69,7 @@ const DetalleFallas = () => {
         </Modal.Header>
         <Modal.Body className="show-grid">
           <div className="mainMargin">
-            <Form>
+            <Form onSubmit={grabarPropuesta}>
               <Form.Group>
                 <Form.Label>Detalle</Form.Label>
                 <FloatingLabel controlId="floatingTextarea2">
@@ -54,23 +77,25 @@ const DetalleFallas = () => {
                     as="textarea"
                     placeholder="Detalles de la propuesta"
                     style={{ height: "100px" }}
+                    name="detalle"
                   />
                 </FloatingLabel>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Group className="mb-3" controlId="floatingTextarea3">
                 <Form.Label>Costo Estimado</Form.Label>
                 <InputGroup className="mb-3">
                   <InputGroup.Text>$</InputGroup.Text>
-                  <Form.Control aria-label="Ingresa el costo estimado" />
+                  <Form.Control
+                    aria-label="Ingresa el costo estimado"
+                    name="costo_servicio"
+                  />
                 </InputGroup>
               </Form.Group>
 
               <Button variant="primary" type="submit">
                 Guardar
               </Button>
-              <Button variant="secondary" type="submit">
-                Cancelar
-              </Button>
+              <Button variant="secondary">Cancelar</Button>
             </Form>
           </div>
         </Modal.Body>

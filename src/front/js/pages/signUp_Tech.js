@@ -23,7 +23,7 @@ export const SignUp_Tech = () => {
     let url = data.get("url");
     let id_user = data.get("id_user");
     let check = data.get("check");
-   
+
     if (!check) {
       console.error("El usuario no acepto los terminos");
       return;
@@ -43,12 +43,12 @@ export const SignUp_Tech = () => {
   }
 
   return (
-    <Container style={{ width: '30rem' }}>
-      <Row  >
-        <Card className="text-center" border="light" >
-          <h2 className="text-primary" >Taller@pp</h2>
+    <Container style={{ width: "30rem" }}>
+      <Row>
+        <Card className="text-center" border="light">
+          <h2 className="text-primary">Taller@pp</h2>
           <Form onSubmit={signTech}>
-          <h3 className="bg-secondary text-light">Sign Up Technician</h3>
+            <h3 className="bg-secondary text-light">Sign Up Technician</h3>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Control
                 type="text"
@@ -56,19 +56,20 @@ export const SignUp_Tech = () => {
                 name="historial"
                 required
               />
-              {/*Este email es el que se toma en la funcion SignUpUser con el evento submit*/}            </Form.Group>
+              {/*Este email es el que se toma en la funcion SignUpUser con el evento submit*/}{" "}
+            </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Control
                 type="text"
-                placeholder="ubication"
+                placeholder="ubicación"
                 name="ubicacion"
                 required
               />
               {/*Este password es el que se toma en la funcion SignUpUser con el evento submit*/}
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">            
+            <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Control
                 type="text"
                 placeholder="Description"
@@ -78,7 +79,7 @@ export const SignUp_Tech = () => {
               {/*Este password es el que se toma en la funcion SignUpUser con el evento submit*/}
             </Form.Group>
 
-            <Form.Group className="mb-3">            
+            <Form.Group className="mb-3">
               <Form.Control
                 type="text"
                 placeholder="Enter your url"
@@ -95,7 +96,7 @@ export const SignUp_Tech = () => {
               />
               {/*Este phoneNumber es el que se toma en la funcion SignUpUser con el evento submit*/}
             </Form.Group>
-          
+
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check
                 type="checkbox"
@@ -104,8 +105,7 @@ export const SignUp_Tech = () => {
                 name="check"
               />
             </Form.Group>
-            
-            
+
             <Button variant="primary" type="submit">
               Save
             </Button>

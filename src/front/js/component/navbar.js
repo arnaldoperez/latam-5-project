@@ -25,13 +25,7 @@ export const Navbar = () => {
             <button className="btn btn-primary">Logout</button>
           </Link>
         </div>
-        <div className="ml-auto">
-          <Link to="/demo">
-            <button className="btn btn-primary">
-              Check the Context in action
-            </button>
-          </Link>
-        </div>
+        <div className="ml-auto"></div>
       </div>
     </nav>
   );

@@ -11,6 +11,9 @@ export const NavbarProtected = () => {
         <Link to="/falla">
           <button className="btn btn-primary mx-2">Nueva Falla</button>
         </Link>
+        <Link to="/fallas">
+          <button className="btn btn-primary mx-2">Ver Fallas</button>
+        </Link>
         <Link to="/">
           <span className="navbar-brand mb-0 h1">Tallerapp</span>
         </Link>
