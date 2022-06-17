@@ -11,21 +11,29 @@ export const Navbar = () => {
         <Link to="/signup">
           <button className="btn btn-primary mx-2">SignUp</button>
         </Link>
-        <Link to="/calificaciones">
-          <button className="btn btn-primary mx-2">Calificaciones</button>
-        </Link>
         <Link to="/tecnicos">
           <button className="btn btn-primary mx-2">SignUp Technician</button>
         </Link>
         <Link to="/">
           <span className="navbar-brand mb-0 h1">Tallerapp</span>
         </Link>
+<<<<<<< HEAD
         <div className="ml-auto">
           <Link to="/logout">
             <button className="btn btn-primary">Logout</button>
           </Link>
         </div>
         <div className="ml-auto"></div>
+=======
+        <div className="ml-auto"></div>
+        <div className="ml-auto">
+          <Link to="/demo">
+            <button className="btn btn-primary">
+              Check the Context in action
+            </button>
+          </Link>
+        </div>
+>>>>>>> desarrollo
       </div>
     </nav>
   );

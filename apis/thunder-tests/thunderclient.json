@@ -4,11 +4,19 @@
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
     "name": "SignUp",
-    "url": "https://3001-arnaldopere-latam5proje-yw6hu1r4kdf.ws-us47.gitpod.io/api/signup",
+<<<<<<< HEAD
+    "url": "https://3001-arnaldopere-latam5proje-wbptribx16i.ws-us47.gitpod.io/api/signup",
     "method": "POST",
     "sortNum": 5000,
     "created": "2022-05-28T00:56:01.087Z",
-    "modified": "2022-06-14T00:40:30.796Z",
+    "modified": "2022-06-17T23:07:44.074Z",
+=======
+    "url": "https://3001-arnaldopere-latam5proje-z12im8fp64b.ws-us47.gitpod.io/api/signup",
+    "method": "POST",
+    "sortNum": 5000,
+    "created": "2022-05-28T00:56:01.087Z",
+    "modified": "2022-06-16T17:30:03.878Z",
+>>>>>>> desarrollo
     "headers": [],
     "params": [],
     "body": {
@@ -341,11 +349,23 @@
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
     "name": "Login",
-    "url": "{{url}}/login",
+<<<<<<< HEAD
+    "url": "https://3001-arnaldopere-latam5proje-wbptribx16i.ws-us47.gitpod.io/api/login",
     "method": "POST",
     "sortNum": 140000,
     "created": "2022-06-12T02:31:30.867Z",
+    "modified": "2022-06-17T23:08:14.159Z",
+=======
+    "url": "https://3001-arnaldopere-latam5proje-z12im8fp64b.ws-us47.gitpod.io/api/login",
+    "method": "POST",
+    "sortNum": 140000,
+    "created": "2022-06-12T02:31:30.867Z",
+<<<<<<< HEAD
     "modified": "2022-06-17T23:23:49.687Z",
+=======
+    "modified": "2022-06-16T17:32:58.211Z",
+>>>>>>> desarrollo
+>>>>>>> desarrollo
     "headers": [],
     "params": [],
     "body": {
