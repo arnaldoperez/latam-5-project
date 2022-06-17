@@ -9,9 +9,7 @@ export const HomeProtected = () => {
 
   return (
     <div>
-      <div className="card col-4 container-fluid">
-        <Profile />
-      </div>
+      <Profile />
     </div>
   );
 };
