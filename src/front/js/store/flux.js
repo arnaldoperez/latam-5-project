@@ -124,9 +124,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         return { code: 201, msg: "Usuario registrado" };
       },
 
-      signUpTech: async (historial, ubicacion, descripcion, url) => {
+      signUpTech: async ( historial, ubicacion, descripcion, url) => {
+        const store = getStore();
         //mi peticion es asincrona es decir espera por el resultado
-        console.log(historial, ubicacion, descripcion, url);
+        console.log( historial, ubicacion, descripcion, url);
         
         const params = {
           method: "POST", //ingreso el metodo de mi peticion
