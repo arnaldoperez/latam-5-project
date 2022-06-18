@@ -1,4 +1,4 @@
-from .db import db
+from ..db import db
 
 class InformeTecnico(db.Model):
     __tablename__ = 'informe_tecnico'

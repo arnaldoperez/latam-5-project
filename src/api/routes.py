@@ -2,7 +2,8 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Perfil_tecnico, Falla, Imagenes, Calificacion, TokenBlockedList, Propuesta, InformeTecnico
+from .db import db
+from api.modelos import User, Perfil_tecnico, Falla, Imagenes, Calificacion, TokenBlockedList, Propuesta, InformeTecnico
 from api.utils import generate_sitemap, APIException
 from flask_bcrypt import Bcrypt 
 from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt
@@ -10,12 +11,13 @@ import datetime
 from firebase_admin import storage
 import tempfile
 
+
 app = Flask(__name__)
 api = Blueprint('api', __name__)
 bcrypt = Bcrypt(app)
 #db = SQLAlchemy(app)
 #jwt = JWTManager(app)
-
+from api.rutas import signup, login, verifyToken, listado_fallas, crearFalla, falla, subir_imagen
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -27,19 +29,19 @@ def handle_hello():
     return jsonify(response_body), 200
 
 
-@api.route('/fallas', methods=['GET'])
+""" @api.route('/fallas', methods=['GET'])
 def listado_fallas():
     fallas = Falla.query.all()
     fallas = list(map(lambda falla: falla.serialize(), fallas ))
     return jsonify(fallas)
+ """
 
-
-@api.route('/falla/<int:falla_id>/', methods=['GET'])
+""" @api.route('/falla/<int:falla_id>/', methods=['GET'])
 def falla(falla_id):
     falla = Falla.query.get_or_404(falla_id)
-    return jsonify(falla.serialize())
+    return jsonify(falla.serialize()) """
 
-@api.route('/signup', methods=['POST']) #ENDPOINT DE REGISTRAR
+""" @api.route('/signup', methods=['POST']) #ENDPOINT DE REGISTRAR
 def signup():
     email=request.json.get("email")#capturando mi usuario email del requerimiento
     password=request.json.get("password")#capturando la contraseña de mi ususario
@@ -75,11 +77,11 @@ def login():
 
 @api.route('/verify-token',methods=['POST'])
 @jwt_required()
-def verifyToken():    
+def verifyToken():     
     userEmail=get_jwt_identity()
     if not userEmail:
         return "Token invalido", 401
-    return "Token correcto", 200    
+    return "Token correcto", 200    """
 
 @api.route('/logout', methods=['POST'])
 @jwt_required()
@@ -90,7 +92,7 @@ def destroyToken():
     db.session.commit()
     return jsonify(msg="Access token revoked")    
 
-@api.route('/falla', methods=['POST']) #ENDPOINT DE REGISTRAR
+""" @api.route('/falla', methods=['POST']) #ENDPOINT DE REGISTRAR
 def crearFalla():
     id=request.json.get("id")#capturando mi usuario email del requerimiento
     descripcion=request.json.get("descripcion")#capturando la contraseña de mi ususario
@@ -108,7 +110,7 @@ def crearFalla():
     response_body = {
         "message": "Falla creada exitosamente"
     }
-    return jsonify(response_body), 201    
+    return jsonify(response_body), 201   """  
 
 @api.route('/tecnicos', methods=['POST'])
 def create_tecnico():
@@ -143,7 +145,7 @@ def nuevapropuesta():
     }
     return jsonify(response_body), 201
 
-@api.route('/imagen', methods=['POST'])
+""" @api.route('/imagen', methods=['POST'])
 def subir_imagen():
     # Se recibe un archivo en la peticion
     file=request.files['file']
@@ -167,7 +169,7 @@ def subir_imagen():
     blob = bucket.blob(filename)
     blob.upload_from_filename(temp.name)
     
-    return "Ok"
+    return "Ok" """
 
 @api.route('/informe_tecnico', methods=['POST']) 
 def crear_informe_tecnico():
