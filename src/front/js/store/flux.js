@@ -66,7 +66,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         const resp = await fetch(
-          `https://3001-arnaldopere-latam5proje-z12im8fp64b.ws-us47.gitpod.io/login`,
+          apiURL+`/login`,
           params
         );
         if (resp.status !== 200) {
@@ -127,10 +127,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         return { code: 201, msg: "Usuario registrado" };
       },
 
-      signUpTech: async (historial, ubicacion, descripcion, url, id_user) => {
+      signUpTech: async ( historial, ubicacion, descripcion, url) => {
+        const store = getStore();
         //mi peticion es asincrona es decir espera por el resultado
-        console.log(historial, ubicacion, descripcion, url, id_user);
-        id_user = parseInt(id_user);
+        console.log( historial, ubicacion, descripcion, url);
+        
         const params = {
           method: "POST", //ingreso el metodo de mi peticion
           body: JSON.stringify({
@@ -139,10 +140,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             ubicacion,
             descripcion,
             url,
-            id_user,
           }),
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json",            
+            Authorization: `Bearer ${store.token}`,
           },
         };
         const resp = await fetch(`${apiURL}/tecnicos`, params); //esperar a mi peticion mediante la funcion fetch con los parametros en el cuerpo y encabezado del mensaje para realizar el sgnup en este caso se busca regitrar un usuario

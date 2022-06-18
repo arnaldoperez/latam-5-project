@@ -72,8 +72,13 @@ def login():
     clave_valida=bcrypt.check_password_hash(newUser.password, password)
     if not clave_valida:
         raise APIException("Clave invalida", status_code=401)
+    # Consultar si tiene id tecnico para agregarlo al payload
+    idTecnico=0
+    perfilTecnico=Perfil_tecnico.query.filter_by(id_user=newUser.id).first()
+    if(perfilTecnico!=None):
+        idTecnico=perfilTecnico.id
     # Se genera un token y se retorna como respuesta
-    token=create_access_token(email)
+    token=create_access_token(newUser.id, additional_claims={"idTecnico":idTecnico})
     refreshToken=create_refresh_token(email)
     return jsonify({"token":token, "refreshToken":refreshToken}), 200    
 
@@ -117,15 +122,16 @@ def crearFalla():
     return jsonify(response_body), 201    
 
 @api.route('/tecnicos', methods=['POST'])
+@jwt_required()
 def create_tecnico():
-
+    
+    id_user=get_jwt_identity()
+    token=get_jwt()
     historial=request.json.get("historial")
     ubicacion=request.json.get("ubicacion")
-    descripcion=request.json.get("descripcion")
-    id_user=request.json.get("id_user")
+    descripcion=request.json.get("descripcion")    
     url=request.json.get("url")
-    nombre=request.json.get("nombre")
-        
+    nombre=request.json.get("nombre")        
     newTecnico= Perfil_tecnico(id_user=id_user,historial=historial,ubicacion=ubicacion,descripcion=descripcion, url=url,is_active= True )
     db.session.add(newTecnico)
     db.session.commit()
@@ -135,12 +141,21 @@ def create_tecnico():
     return jsonify(response_body), 200
 
 @api.route('/propuesta', methods=['POST']) #ENDPOINT DE PROPUESTA
+@jwt_required()
 def nuevapropuesta():
+    userId=get_jwt_identity()
+    token=get_jwt()
+    print(token)
+    print(userId)
+    idTecnico=token['idTecnico']
+    if(idTecnico==0):
+        return "Acceso no autorizado", 403
+
     detalle=request.json.get("detalle")#capturando destalle del requerimiento
     costo_servicio=request.json.get("costo_servicio")#capturando servicio del requerimiento
     estado=request.json.get("estado")#capturando estado del requerimiento
     id_falla=request.json.get("id_falla")#capturando falla del requerimiento
-    id_tecnico=request.json.get("id_tecnico")#capturando tecnico del requerimiento
+    id_tecnico=idTecnico#request.json.get("id_tecnico")#capturando tecnico del requerimiento
     newPropuesta=Propuesta(detalle=detalle, costo_servicio=costo_servicio, estado=estado, id_falla=id_falla, id_tecnico=id_tecnico, is_active=True)#creando propuesta con el modelo (clase) que importe
     db.session.add(newPropuesta)
     db.session.commit()
