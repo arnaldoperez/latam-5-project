@@ -65,10 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Content-Type": "application/json",
           },
         };
-        const resp = await fetch(
-          `https://3001-arnaldopere-latam5proje-z12im8fp64b.ws-us47.gitpod.io/login`,
-          params
-        );
+        const resp = await fetch(apiURL + `/login`, params);
         if (resp.status !== 200) {
           return { code: resp.status, msg: resp.statusText };
         }

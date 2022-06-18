@@ -5,11 +5,11 @@
     "default": true,
     "sortNum": 5000,
     "created": "2022-05-28T00:54:58.513Z",
-    "modified": "2022-06-11T00:24:08.172Z",
+    "modified": "2022-06-18T00:11:16.420Z",
     "data": [
       {
         "name": "url",
-        "value": "https://3001-arnaldopere-latam5proje-eut884jccbg.ws-us47.gitpod.io/api"
+        "value": "https://3001-arnaldopere-latam5proje-71ayra9ivye.ws-us47.gitpod.io/api"
       },
       {
         "name": "id_usr_1",
@@ -18,6 +18,10 @@
       {
         "name": "id_usr_2",
         "value": "2"
+      },
+      {
+        "name": "user-token",
+        "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1NTUxMTA3NiwianRpIjoiNjcxOThkMGMtMjcxZC00MjY0LTllYjEtMTIwNzk2Mzc2OTVjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTIsIm5iZiI6MTY1NTUxMTA3NiwiZXhwIjoxNjU1NTExOTc2LCJpZFRlY25pY28iOjB9.Q4Iid0EnzdXD2WjUB0qDnZrjHEtckIQEkGP9Kl93AEU"
       }
     ]
   }

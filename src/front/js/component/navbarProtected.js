@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 export const NavbarProtected = () => {
   return (
     <nav className="navbar navbar-light bg-light">
-      <div className="container">
+      <div className="container">        
+        <Link to="/tecnicos">
+          <button className="btn btn-primary mx-2">SignUp Technician</button>
+        </Link>
         <Link to="/">
           <span className="navbar-brand mb-0 h1">Find your handy man</span>
         </Link>

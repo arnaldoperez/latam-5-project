@@ -75,7 +75,7 @@ def login():
     if(perfilTecnico!=None):
         idTecnico=perfilTecnico.id
     # Se genera un token y se retorna como respuesta
-    token=create_access_token(newUser.id, additional_claims={idTecnico})
+    token=create_access_token(newUser.id, additional_claims={"idTecnico":idTecnico})
     refreshToken=create_refresh_token(email)
     return jsonify({"token":token, "refreshToken":refreshToken}), 200    
 
@@ -143,8 +143,8 @@ def nuevapropuesta():
     userId=get_jwt_identity()
     token=get_jwt()
     print(token)
-    idTecnico=token['idTecnico']
     print(userId)
+    idTecnico=token['idTecnico']
     if(idTecnico==0):
         return "Acceso no autorizado", 403
 
@@ -152,7 +152,7 @@ def nuevapropuesta():
     costo_servicio=request.json.get("costo_servicio")#capturando servicio del requerimiento
     estado=request.json.get("estado")#capturando estado del requerimiento
     id_falla=request.json.get("id_falla")#capturando falla del requerimiento
-    id_tecnico = idTecnico
+    id_tecnico=idTecnico#request.json.get("id_tecnico")#capturando tecnico del requerimiento
     newPropuesta=Propuesta(detalle=detalle, costo_servicio=costo_servicio, estado=estado, id_falla=id_falla, id_tecnico=id_tecnico, is_active=True)#creando propuesta con el modelo (clase) que importe
     db.session.add(newPropuesta)
     db.session.commit()

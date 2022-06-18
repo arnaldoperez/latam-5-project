@@ -21,7 +21,6 @@ export const SignUp_Tech = () => {
     let ubicacion = data.get("ubicacion"); //lo estoy sacando directamente de mi form.Control name="password"
     let descripcion = data.get("descripcion");
     let url = data.get("url");
-    let id_user = data.get("id_user");
     let check = data.get("check");
 
     if (!check) {
@@ -30,10 +29,10 @@ export const SignUp_Tech = () => {
     }
 
     actions //importe las actions y el store
-      .signUpTech(historial, ubicacion, descripcion, url, id_user) //evaluo mi funcion signup que me retorna una promesa
+      .signUpTech(historial, ubicacion, descripcion, url) //evaluo mi funcion signup que me retorna una promesa
       .then((resp) => {
         //evalua la respuesta en sus dos casos
-        if (resp.code == 201) navigate.push("/");
+        if (resp.code == 200) navigate.push("/");
         //caso exitoso
         else console.log("Problema en el registro de tecnico: ", resp); //caso no exitoso
       })
@@ -88,14 +87,7 @@ export const SignUp_Tech = () => {
               {/*Este nombre es el que se toma en la funcion SignUpUser con el evento submit*/}
             </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Control
-                type="number"
-                placeholder="Enter your id_user"
-                name="id_user"
-              />
-              {/*Este phoneNumber es el que se toma en la funcion SignUpUser con el evento submit*/}
-            </Form.Group>
+            {/*Este phoneNumber es el que se toma en la funcion SignUpUser con el evento submit*/}
 
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check
