@@ -9,7 +9,7 @@ export const Home = () => {
 
   return (
     <div>
-      <div className="card col-4 container-fluid">
+      <div className="card col-lg-4 col-sm-12 container-fluid ">
         <article className="card-body">
           <h4 className="card-title text-center mb-4 mt-1">Sign in</h4>
 
