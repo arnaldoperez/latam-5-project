@@ -1,8 +1,8 @@
 from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt
 from ..routes import app, api, bcrypt, request, jsonify
-from ..modelos import User
-import datetime 
+from ..modelos import User, Perfil_tecnico
 from ..db import db
+import datetime
 
 @api.route('/signup', methods=['POST']) #ENDPOINT DE REGISTRAR
 def signup():
@@ -35,10 +35,15 @@ def login():
     clave_valida=bcrypt.check_password_hash(newUser.password, password)
     if not clave_valida:
         raise APIException("Clave invalida", status_code=401)
+    # Consultar si tiene id tecnico para agregarlo al payload
+    idTecnico=0
+    perfilTecnico=Perfil_tecnico.query.filter_by(id_user=newUser.id).first()
+    if(perfilTecnico!=None):
+        idTecnico=perfilTecnico.id
     # Se genera un token y se retorna como respuesta
-    token=create_access_token(email)
+    token=create_access_token(newUser.id, additional_claims={"idTecnico":idTecnico})
     refreshToken=create_refresh_token(email)
-    return jsonify({"token":token, "refreshToken":refreshToken}), 200    
+    return jsonify({"token":token, "refreshToken":refreshToken}), 200     
 
 @api.route('/verify-token',methods=['POST'])
 @jwt_required()
@@ -48,3 +53,11 @@ def verifyToken():
         return "Token invalido", 401
     return "Token correcto", 200   
 
+@api.route('/logout', methods=['POST'])
+@jwt_required()
+def destroyToken():
+    jti = get_jwt()["jti"]
+    now = datetime.now(timezone.utc)
+    db.session.add(TokenBlockedList(token=jti, created_at=now, email=get_jwt_identity()))
+    db.session.commit()
+    return jsonify(msg="Access token revoked")

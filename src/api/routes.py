@@ -17,7 +17,7 @@ api = Blueprint('api', __name__)
 bcrypt = Bcrypt(app)
 #db = SQLAlchemy(app)
 #jwt = JWTManager(app)
-from api.rutas import signup, login, verifyToken, listado_fallas, crearFalla, falla, subir_imagen
+from api.rutas import signup, login, verifyToken, listado_fallas, crearFalla, falla, subir_imagen, create_tecnico, destroyToken,nuevapropuesta, crear_informe_tecnico,listar_informes,mostrar_informe, create_calification, historial_calificacionestodos,historial_calificaciones
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -83,14 +83,14 @@ def verifyToken():
         return "Token invalido", 401
     return "Token correcto", 200    """
 
-@api.route('/logout', methods=['POST'])
+"""@api.route('/logout', methods=['POST'])
 @jwt_required()
 def destroyToken():
     jti = get_jwt()["jti"]
     now = datetime.now(timezone.utc)
     db.session.add(TokenBlockedList(token=jti, created_at=now, email=get_jwt_identity()))
     db.session.commit()
-    return jsonify(msg="Access token revoked")    
+    return jsonify(msg="Access token revoked")"""    
 
 """ @api.route('/falla', methods=['POST']) #ENDPOINT DE REGISTRAR
 def crearFalla():
@@ -112,7 +112,7 @@ def crearFalla():
     }
     return jsonify(response_body), 201   """  
 
-@api.route('/tecnicos', methods=['POST'])
+"""@api.route('/tecnicos', methods=['POST'])
 def create_tecnico():
 
     historial=request.json.get("historial")
@@ -128,9 +128,9 @@ def create_tecnico():
     response_body = {
         "message": "usuario creado exitosamente"
     }
-    return jsonify(response_body), 200
+    return jsonify(response_body), 200"""
 
-@api.route('/propuesta', methods=['POST']) #ENDPOINT DE PROPUESTA
+"""@api.route('/propuesta', methods=['POST']) #ENDPOINT DE PROPUESTA
 def nuevapropuesta():
     detalle=request.json.get("detalle")#capturando destalle del requerimiento
     costo_servicio=request.json.get("costo_servicio")#capturando servicio del requerimiento
@@ -143,7 +143,7 @@ def nuevapropuesta():
     response_body = {
         "message": "propuesta creada exitosamente"
     }
-    return jsonify(response_body), 201
+    return jsonify(response_body), 201"""
 
 """ @api.route('/imagen', methods=['POST'])
 def subir_imagen():
@@ -171,7 +171,7 @@ def subir_imagen():
     
     return "Ok" """
 
-@api.route('/informe_tecnico', methods=['POST']) 
+"""@api.route('/informe_tecnico', methods=['POST']) 
 def crear_informe_tecnico():
 
     # Recibiendo los datos de la peticion
@@ -225,9 +225,9 @@ def listar_informes():
 @api.route('/informe/<int:informe_id>', methods=['GET'])
 def mostrar_informe(informe_id):
     informe = InformeTecnico.query.get_or_404(informe_id)
-    return jsonify(informe.serialize())
+    return jsonify(informe.serialize())"""
 
-@api.route('/calificaciones', methods=['POST'])
+"""@api.route('/calificaciones', methods=['POST'])
 def create_calification():
 
     calificacion=request.json.get("calificacion")
@@ -253,4 +253,4 @@ def historial_calificacionestodos():
 @api.route('/calificaciones/<id_tecnico>', methods=['GET'])
 def historial_calificaciones(id_tecnico):
     historial = Calificacion.query.get(id_tecnico)
-    return jsonify(historial.serialize())
+    return jsonify(historial.serialize())"""

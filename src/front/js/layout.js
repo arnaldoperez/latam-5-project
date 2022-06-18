@@ -14,6 +14,7 @@ import injectContext, { Context } from "./store/appContext";
 import { SignUp } from "./pages/signUp";
 import { SignUp_Tech } from "./pages/signUp_Tech";
 import { Profile } from "./pages/Profile";
+import { Logout } from "./pages/logout";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -79,6 +80,9 @@ const Layout = () => {
             </Route>
             <Route exact path="/propuestas">
               <ListadoPropuestas />
+            </Route>
+            <Route exact path="/logout">
+              <Logout />
             </Route>
             <Route>
               <h1>Not found!</h1>
