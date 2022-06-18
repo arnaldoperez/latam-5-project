@@ -1,4 +1,5 @@
 from ..db import db
+from ..modelos import User
 
 class Perfil_tecnico(db.Model):
 
