@@ -1,18 +1,24 @@
 from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt
 from ..routes import app, api, bcrypt, request, jsonify
 from ..modelos import User
+import datetime 
+from ..db import db
+
 @api.route('/signup', methods=['POST']) #ENDPOINT DE REGISTRAR
 def signup():
     email=request.json.get("email")#capturando mi usuario email del requerimiento
     password=request.json.get("password")#capturando la contraseña de mi ususario
-    password_encryptado = bcrypt.generate_password_hash(password, rounds=None).decode("utf-8") 
+    password_encryptado = bcrypt.generate_password_hash(password, rounds=None).decode("utf-8") # se procede a encriptar el password
     nombre=request.json.get("nombre")
     apellido=request.json.get("apellido")
-    fecha_ing=request.json.get("fecha_ing")
+    #fecha_ing=request.json.get("fecha_ing")
+    date=datetime.datetime.now()
+    fecha_ing= date.strftime("%x")#creando la fecha de ingreso
     newUser=User(email=email, password=password_encryptado, nombre=nombre, apellido=apellido, fecha_ing=fecha_ing, is_active= True)#creando mi nuevo usuario con el modelo (clase) que importe
     db.session.add(newUser)
     db.session.commit()
     response_body = {
+        "id":newUser.id,
         "message": "usuario creado exitosamente"
     }
     return jsonify(response_body), 201
