@@ -1,4 +1,4 @@
-const apiURL = process.env.BACKEND_URL + "/api";
+//const apiURL = process.env.BACKEND_URL + "/api";
 const getState = ({ getStore, getActions, setStore }) => {
   const apiURL = process.env.BACKEND_URL + "/api";
   return {
@@ -65,7 +65,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Content-Type": "application/json",
           },
         };
-        const resp = await fetch(`${apiURL}/login`, params);
+        const resp = await fetch(
+          apiURL+`/login`,
+          params
+        );
         if (resp.status !== 200) {
           return { code: resp.status, msg: resp.statusText };
         }

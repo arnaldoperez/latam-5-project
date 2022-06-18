@@ -8,12 +8,12 @@
     "method": "POST",
     "sortNum": 5000,
     "created": "2022-05-28T00:56:01.087Z",
-    "modified": "2022-06-16T03:17:21.721Z",
+    "modified": "2022-06-18T00:08:31.278Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"javier@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Javier\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}\n",
+      "raw": "{\n    \"email\":\"javier10@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Javier\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}\n",
       "form": []
     },
     "tests": []
@@ -361,15 +361,22 @@
     "method": "POST",
     "sortNum": 140000,
     "created": "2022-06-12T02:31:30.867Z",
-    "modified": "2022-06-17T02:45:05.163Z",
+    "modified": "2022-06-18T00:11:16.421Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"arnaldo20@4geeks.com\",\n    \"password\":\"123\"\n}",
+      "raw": "{\n    \"email\":\"javier10@4geeks.com\",\n    \"password\":\"123456\"\n}",
       "form": []
     },
-    "tests": []
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.token",
+        "action": "setto",
+        "value": "{{user-token}}"
+      }
+    ]
   },
   {
     "_id": "2a5a0ee6-565c-439e-818b-cd417b6194f6",
@@ -380,7 +387,7 @@
     "method": "POST",
     "sortNum": 150000,
     "created": "2022-06-12T02:35:23.193Z",
-    "modified": "2022-06-17T02:42:52.865Z",
+    "modified": "2022-06-18T00:12:17.213Z",
     "headers": [],
     "params": [],
     "body": {
@@ -389,16 +396,8 @@
       "form": []
     },
     "auth": {
-      "type": "oauth2",
-      "oauth2": {
-        "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1NTQzMzUwMiwianRpIjoiMjU2YzdjNTAtMTk2My00YjZjLWEzN2YtOGU5Y2Y5MjNjMTNhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjU1NDMzNTAyLCJleHAiOjE2NTU0MzQ0MDIsImlkVGVjbmljbyI6MX0.5QgX45F1Y3GDKZ9OMXxt4g6JgFTZP9HOhb1FK3Qs570",
-        "grantType": "authorization_code",
-        "callbackUrl": "https://www.thunderclient.com/oauth/callback",
-        "tokenUrl": "",
-        "clientId": "",
-        "clientSecret": "",
-        "clientAuth": "in-header"
-      }
+      "type": "bearer",
+      "bearer": "{{user-token}}"
     },
     "tests": []
   }
