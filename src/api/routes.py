@@ -1,17 +1,20 @@
+"""
+This module takes care of starting the API Server, Loading the DB and Adding the endpoints
+"""
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Perfil_tecnico, Falla, Imagenes, Calificacion, TokenBlockedList, Propuesta, InformeTecnico
 from api.utils import generate_sitemap, APIException
-from flask_bcrypt import Bcrypt #libreria de encriptacion para el hash
-from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt#librerias necesarias para la creacion del token
+from flask_bcrypt import Bcrypt 
+from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt
 import datetime 
 from firebase_admin import storage
 import tempfile
 
-app = Flask(__name__) #base de datos de flask
+app = Flask(__name__)
 api = Blueprint('api', __name__)
-bcrypt = Bcrypt(app) #aca 
-#db = SQLAlchemy(app) 
-jwt = JWTManager(app)
+bcrypt = Bcrypt(app)
+#db = SQLAlchemy(app)
+#jwt = JWTManager(app)
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -40,21 +43,17 @@ def falla(falla_id):
 def signup():
     email=request.json.get("email")#capturando mi usuario email del requerimiento
     password=request.json.get("password")#capturando la contraseña de mi ususario
-    password_encryptado = bcrypt.generate_password_hash(password, rounds=None).decode("utf-8") # se procede a encriptar el password
+    password_encryptado = bcrypt.generate_password_hash(password, rounds=None).decode("utf-8") 
     nombre=request.json.get("nombre")
     apellido=request.json.get("apellido")
-    #fecha_ing=request.json.get("fecha_ing")
-    date=datetime.datetime.now()
-    fecha_ing= date.strftime("%x")#creando la fecha de ingreso
+    fecha_ing=request.json.get("fecha_ing")
     newUser=User(email=email, password=password_encryptado, nombre=nombre, apellido=apellido, fecha_ing=fecha_ing, is_active= True)#creando mi nuevo usuario con el modelo (clase) que importe
     db.session.add(newUser)
     db.session.commit()
     response_body = {
-        "id":newUser.id,
         "message": "usuario creado exitosamente"
     }
     return jsonify(response_body), 201
-
 
 # Login: endpoint que reciba un nombre de usuario y clave, lo verifique en la base de datos y genere el token
 @api.route('/login', methods=['POST'])
@@ -69,16 +68,10 @@ def login():
     clave_valida=bcrypt.check_password_hash(newUser.password, password)
     if not clave_valida:
         raise APIException("Clave invalida", status_code=401)
-    # Consultar si tiene id tecnico para agregarlo al payload
-    idTecnico=0
-    perfilTecnico=Perfil_tecnico.query.filter_by(id_user=newUser.id).first()
-    if(perfilTecnico!=None):
-        idTecnico=perfilTecnico.id
     # Se genera un token y se retorna como respuesta
-    token=create_access_token(newUser.id, additional_claims={"idTecnico":idTecnico})
+    token=create_access_token(email)
     refreshToken=create_refresh_token(email)
     return jsonify({"token":token, "refreshToken":refreshToken}), 200    
-
 
 @api.route('/verify-token',methods=['POST'])
 @jwt_required()
@@ -109,8 +102,7 @@ def crearFalla():
     estado = request.json.get("estado")
     ubicacion = request.json.get("ubicacion")
     id_cliente = request.json.get("id_cliente")
-    imagen_id = request.json.get("imagen_id")
-    newPost=Falla(descripcion=descripcion, modelo=modelo, fecha_creacion=fecha_creacion, fecha_cierre=fecha_cierre, titulo=titulo, estado=estado, ubicacion=ubicacion, id_cliente=id_cliente, imagen_id=imagen_id)#creando mi nuevo usuario con el modelo (clase) que importe
+    newPost=Falla(descripcion=descripcion, modelo=modelo, fecha_creacion=fecha_creacion, fecha_cierre=fecha_cierre, titulo=titulo, estado=estado, ubicacion=ubicacion, id_cliente=id_cliente)#creando mi nuevo usuario con el modelo (clase) que importe
     db.session.add(newPost)
     db.session.commit()
     response_body = {
@@ -119,16 +111,15 @@ def crearFalla():
     return jsonify(response_body), 201    
 
 @api.route('/tecnicos', methods=['POST'])
-@jwt_required()
 def create_tecnico():
-    
-    id_user=get_jwt_identity()
-    token=get_jwt()
+
     historial=request.json.get("historial")
     ubicacion=request.json.get("ubicacion")
-    descripcion=request.json.get("descripcion")    
+    descripcion=request.json.get("descripcion")
+    id_user=request.json.get("id_user")
     url=request.json.get("url")
-    nombre=request.json.get("nombre")        
+    nombre=request.json.get("nombre")
+        
     newTecnico= Perfil_tecnico(id_user=id_user,historial=historial,ubicacion=ubicacion,descripcion=descripcion, url=url,is_active= True )
     db.session.add(newTecnico)
     db.session.commit()
@@ -138,21 +129,12 @@ def create_tecnico():
     return jsonify(response_body), 200
 
 @api.route('/propuesta', methods=['POST']) #ENDPOINT DE PROPUESTA
-@jwt_required()
 def nuevapropuesta():
-    userId=get_jwt_identity()
-    token=get_jwt()
-    print(token)
-    print(userId)
-    idTecnico=token['idTecnico']
-    if(idTecnico==0):
-        return "Acceso no autorizado", 403
-
     detalle=request.json.get("detalle")#capturando destalle del requerimiento
     costo_servicio=request.json.get("costo_servicio")#capturando servicio del requerimiento
     estado=request.json.get("estado")#capturando estado del requerimiento
     id_falla=request.json.get("id_falla")#capturando falla del requerimiento
-    id_tecnico=idTecnico#request.json.get("id_tecnico")#capturando tecnico del requerimiento
+    id_tecnico=request.json.get("id_tecnico")#capturando tecnico del requerimiento
     newPropuesta=Propuesta(detalle=detalle, costo_servicio=costo_servicio, estado=estado, id_falla=id_falla, id_tecnico=id_tecnico, is_active=True)#creando propuesta con el modelo (clase) que importe
     db.session.add(newPropuesta)
     db.session.commit()
@@ -160,12 +142,6 @@ def nuevapropuesta():
         "message": "propuesta creada exitosamente"
     }
     return jsonify(response_body), 201
-
-@api.route('/propuestas', methods=['GET'])
-def mostrarPropuestas():
-    propuestas = Propuesta.query.all()
-    propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))
-    return jsonify(propuestas)
 
 @api.route('/imagen', methods=['POST'])
 def subir_imagen():
@@ -256,15 +232,10 @@ def create_calification():
     comentario=request.json.get("comentario")
     id_tecnico=request.json.get("id_tecnico")
     propuesta_id=request.json.get("propuesta_id")
-    date=datetime.datetime.now()
-    fecha_cierre= date.strftime("%x")
-    #fecha_cierre=request.json.get("fecha_cierre")
-    newCalificacion= Calificacion(calificacion=calificacion,comentario=comentario,propuesta_id=propuesta_id, fecha_cierre=fecha_cierre)
+    fecha_cierre=request.json.get("fecha_cierre")
+        
+    newCalificacion= Calificacion(calificacion=calificacion,comentario=comentario,id_tecnico=id_tecnico,propuesta_id=propuesta_id, fecha_cierre=fecha_cierre)
     db.session.add(newCalificacion)
-    db.session.flush()
-    cierre_falla=newCalificacion.propuesta.falla
-    cierre_falla.fecha_cierre=newCalificacion.fecha_cierre
-    db.session.add(cierre_falla)
     db.session.commit()
     response_body = {
         "message": "Calificacion creado exitosamente"
@@ -277,11 +248,6 @@ def historial_calificacionestodos():
     historial = list(map(lambda calificacion: calificacion.serialize(), historial ))
     return jsonify(historial)
 
-@api.route('/informe_tecnico/<int:informe_id>/', methods=['GET'])
-def mostrar_factura(informe_id):
-    informe = InformeTecnico.query.get_or_404(informe_id)
-    return "Detalle Informe Técnico ok"
-    
 @api.route('/calificaciones/<id_tecnico>', methods=['GET'])
 def historial_calificaciones(id_tecnico):
     historial = Calificacion.query.get(id_tecnico)

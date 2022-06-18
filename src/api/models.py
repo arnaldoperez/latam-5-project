@@ -1,33 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
+from api.modelos import User
 
 db = SQLAlchemy()
 
-
-class User(db.Model):
-    __tablename__ = 'user'
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), nullable=False)
-    nombre = db.Column(db.String(120), nullable=False)
-    apellido = db.Column(db.String(120), nullable=False)
-    fecha_ing = db.Column(db.String(120), nullable=False)
-    is_active = db.Column(db.Boolean(), nullable=False)
-    perfil_tecnico = db.relationship('Perfil_tecnico', backref='user')
-    falla = db.relationship('Falla',lazy=True,backref='user')
-    informe_tecnico = db.relationship('InformeTecnico',lazy=True,backref='user')
-
-    def __repr__(self):
-        return f'<User {self.email}>'
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "email": self.email,
-            "nombre": self.nombre,
-            "apellido": self.apellido,
-            "fecha_ing": self.fecha_ing
-            # do not serialize the password, its a security breach
-        }
 
 class TokenBlockedList(db.Model):
     id=db.Column(db.Integer, primary_key=True)
@@ -91,7 +66,6 @@ class Imagenes(db.Model):
             "public_url":self.public_url
         }
 
-
 class Falla(db.Model):
 
     __tablename_ = 'falla'
@@ -146,7 +120,6 @@ class Propuesta(db.Model):
             "id_tecnico": self.id_tecnico
         }
 
-
 class Calificacion(db.Model):
     __tablename__ = 'calificacion'
     id = db.Column(db.Integer, primary_key=True)
@@ -166,8 +139,6 @@ class Calificacion(db.Model):
             'propuesta_id': self.propuesta_id,
             'fecha_cierre': self.fecha_cierre
         }
-
-
 
 class InformeTecnico(db.Model):
     __tablename__ = 'informe_tecnico'
