@@ -26,3 +26,9 @@ def nuevapropuesta():
         "message": "propuesta creada exitosamente"
     }
     return jsonify(response_body), 201
+
+@api.route('/propuestas', methods=['GET'])
+def listado_propuestas():
+    propuestas = Propuesta.query.all()
+    propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))
+    return jsonify(propuestas)

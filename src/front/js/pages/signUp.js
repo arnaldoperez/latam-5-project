@@ -46,12 +46,12 @@ export const SignUp = () => {
   }
 
   return (
-    <Container style={{ width: '30rem' }}>
-      <Row  >
-        <Card className="text-center" border="light" >
-          <h2 className="text-primary" >Taller@pp</h2>
+    <Container style={{ width: "30rem" }}>
+      <Row>
+        <Card className="text-center" border="light">
+          <h2 className="text-primary">Taller@pp</h2>
           <Form onSubmit={signUpUser}>
-          <h3 className="bg-secondary text-light">Sign Up</h3>
+            <h3 className="bg-secondary text-light">Sign Up</h3>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Control
                 type="email"
@@ -75,7 +75,7 @@ export const SignUp = () => {
               {/*Este password es el que se toma en la funcion SignUpUser con el evento submit*/}
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">            
+            <Form.Group className="mb-3" controlId="formBasicPassword1">
               <Form.Control
                 type="password"
                 placeholder="Confirm Password"
@@ -85,7 +85,7 @@ export const SignUp = () => {
               {/*Este password es el que se toma en la funcion SignUpUser con el evento submit*/}
             </Form.Group>
 
-            <Form.Group className="mb-3">            
+            <Form.Group className="mb-3">
               <Form.Control
                 type="text"
                 placeholder="Enter your name"
@@ -102,7 +102,7 @@ export const SignUp = () => {
               />
               {/*Este phoneNumber es el que se toma en la funcion SignUpUser con el evento submit*/}
             </Form.Group>
-          
+
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check
                 type="checkbox"
@@ -111,8 +111,7 @@ export const SignUp = () => {
                 name="check"
               />
             </Form.Group>
-            
-            
+
             <Button variant="primary" type="submit">
               Save
             </Button>

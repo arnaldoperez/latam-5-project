@@ -17,7 +17,7 @@ api = Blueprint('api', __name__)
 bcrypt = Bcrypt(app)
 #db = SQLAlchemy(app)
 #jwt = JWTManager(app)
-from api.rutas import signup, login, verifyToken, listado_fallas, crearFalla, falla, subir_imagen, create_tecnico, destroyToken,nuevapropuesta, crear_informe_tecnico,listar_informes,mostrar_informe, create_calification, historial_calificacionestodos,historial_calificaciones
+from api.rutas import signup, login, verifyToken, listado_fallas, crearFalla, falla, subir_imagen, create_tecnico, destroyToken,nuevapropuesta, listado_propuestas, crear_informe_tecnico,listar_informes,mostrar_informe, create_calification, historial_calificacionestodos,historial_calificaciones
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():

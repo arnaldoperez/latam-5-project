@@ -37,7 +37,10 @@ const ListadoFallas = () => {
               <p>{falla.descripcion}</p>
 
               <div className="paralelo">
-                <p>{falla.usuario}</p>
+                <p>
+                  <strong>Publicado por: </strong>
+                  {falla.user_nombre} {falla.user_apellido}
+                </p>
                 <p>
                   <strong>{falla.ubicacion}</strong>
                 </p>

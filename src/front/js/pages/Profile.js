@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col";
 import Accordion from "react-bootstrap/Accordion";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Modal from "react-bootstrap/Modal";
+import { Link } from "react-router-dom";
 
 import { Card, Row, Container, Column } from "react-bootstrap";
 
@@ -52,7 +53,7 @@ export const Profile = () => {
     <Container>
       <Row>
         <Col>
-        {/*acaempieza el acordion */}
+          {/*acaempieza el acordion */}
           <Accordion>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Accordion Item #1</Accordion.Header>
@@ -96,7 +97,7 @@ export const Profile = () => {
           </Modal.Dialog>
         </Col>
         <Col>
-        {/*acaempieza el card con la imagen */}
+          {/*acaempieza el card con la imagen */}
           <Card style={{ width: "25rem" }}>
             <Card.Img variant="top" src={rigoImageUrl} />
             <Card.Body>
@@ -121,7 +122,7 @@ export const Profile = () => {
         </Col>
 
         <Col>
-        {/*acaempieza los comentarios */}
+          {/*acaempieza los comentarios */}
           <Card>
             <Card.Header>Quote</Card.Header>
             <Card.Body>
@@ -166,6 +167,7 @@ export const Profile = () => {
                 <footer className="blockquote-footer">
                   Someone famous in{" "}
                   <cite title="Source Title">Source Title</cite>
+                  {/* <Link to="/subidaprueba">subidaprueba</Link> */}
                 </footer>
               </blockquote>
             </Card.Body>

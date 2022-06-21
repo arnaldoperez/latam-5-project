@@ -1,7 +1,10 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
-
+body {
+  font-family: "Proxima Nova", -apple-system, "Helvetica Neue", Helvetica,
+    Roboto, Arial, sans-serif;
+}
 .mainMargin {
   margin: 20px 60px 20px 60px;
 }

@@ -21,6 +21,7 @@ import { Footer } from "./component/footer";
 import { Login } from "./component/login";
 import { NavbarProtected } from "./component/navbarProtected";
 import { HomeProtected } from "./pages/homeProtected";
+import { SubidaPrueba } from "./pages/subirImagen";
 
 //create your first component
 const Layout = () => {
@@ -83,6 +84,9 @@ const Layout = () => {
             </Route>
             <Route exact path="/logout">
               <Logout />
+            </Route>
+            <Route exact path="/subidaprueba">
+              <SubidaPrueba />
             </Route>
             <Route>
               <h1>Not found!</h1>
