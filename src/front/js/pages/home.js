@@ -3,11 +3,15 @@ import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { Login } from "../component/login";
+import { Profile } from "./Profile";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
-
-  return (
+  return store.token && store.token != "" ? (
+    <div>
+      <Profile />
+    </div>
+  ) : (
     <div>
       <div className="card col-lg-4 col-sm-12 container-fluid ">
         <article className="card-body">

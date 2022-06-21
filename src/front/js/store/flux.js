@@ -98,6 +98,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         setStore({ token: "" });
         localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken");
         return { code: 200, msg: "Sesion cerrada" };
       },
 

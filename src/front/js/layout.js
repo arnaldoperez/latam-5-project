@@ -27,29 +27,29 @@ const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
-  const { store, actions } = useContext(Context);
+  //const { store, actions } = useContext(Context);
 
-  function navbar() {
-    if (store.token) {
-      return <NavbarProtected />;
-    } else {
-      return <Navbar />;
-    }
-  }
+  //function navbar() {
+  //  if (store.token) {
+  //    return <NavbarProtected />;
+  //  } else {
+  //    return <Navbar />;
+  //  }
+  //}
 
-  function home() {
-    if (store.token) {
-      return <HomeProtected />;
-    } else {
-      return <Home />;
-    }
-  }
+  //function home() {//
+  //  if (store.token) {
+  //    return <HomeProtected />;
+  //  } else {
+  //    return <Home />;
+  //  }
+  //}
 
   return (
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          {navbar()}
+          <Navbar />
           <Switch>
             <Route exact path="/tecnicos">
               <SignUp_Tech />
@@ -61,7 +61,7 @@ const Layout = () => {
               <Profile />
             </Route>
             <Route exact path="/">
-              {home()}
+              <Home />
             </Route>
             <Route exact path="/demo">
               <Demo />
