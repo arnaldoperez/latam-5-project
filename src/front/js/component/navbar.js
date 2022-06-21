@@ -5,6 +5,10 @@ import { Context } from "../store/appContext";
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
 
+  useEffect(() => {
+    console.log(store.token);
+  }, [store.token]);
+
   return store.token && store.token != "" ? (
     <nav className="navbar navbar-dark bg-primary">
       <div className="container">
