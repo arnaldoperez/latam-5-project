@@ -21,6 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
       token: "",
       refreshToken: "",
+      esTecnico: "",
       loginInfo: {},
     },
     actions: {
@@ -74,10 +75,12 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log(data);
         const token = data.token;
         const refreshToken = data.refreshToken;
+        const esTecnico = data.esTecnico;
 
-        setStore({ token, refreshToken });
+        setStore({ token, refreshToken, esTecnico });
         localStorage.setItem("token", token);
         localStorage.setItem("refreshToken", refreshToken);
+        localStorage.setItem("esTecnico", esTecnico);
         return { code: 200, msg: "Access granted" };
       },
 
@@ -204,7 +207,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       grabarInforme: async (
-        falla_id,
+        idFalla,
         comentario,
         recomendacion,
         importe,
@@ -216,7 +219,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         data.append("comentario", comentario);
         data.append("recomendacion", recomendacion);
-        data.append("falla_id", falla_id);
+        data.append("idFalla", idFalla);
         data.append("importe", importe);
         data.append("imagen", imagen);
 

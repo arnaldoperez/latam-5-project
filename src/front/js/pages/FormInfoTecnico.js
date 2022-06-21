@@ -39,6 +39,7 @@ const FormInfoTecnico = () => {
     let recomendacion = data.get("recomendacion");
     let importe = data.get("importe");
     let imagen = data.get("imagen");
+
     console.log("id falla", idFalla);
     actions
       .grabarInforme(

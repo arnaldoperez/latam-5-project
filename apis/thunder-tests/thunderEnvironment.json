@@ -5,7 +5,7 @@
     "default": true,
     "sortNum": 5000,
     "created": "2022-05-28T00:54:58.513Z",
-    "modified": "2022-06-21T00:45:48.325Z",
+    "modified": "2022-06-21T03:29:28.607Z",
     "data": [
       {
         "name": "url",
@@ -25,7 +25,7 @@
       },
       {
         "name": "tecnico-token",
-        "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1NTc3MjM0OCwianRpIjoiZDZhNTI1ZTItMWRlYS00ZDFiLTlkNzUtZjIyMDkyZDI1NDhlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNjU1NzcyMzQ4LCJleHAiOjE2NTU3NzMyNDgsImlkVGVjbmljbyI6Mn0.78iOk-RjFY4qsj9r4Ba4buY1BC4DJrHUTI1DbNQPbds"
+        "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1NTc4MjE2OCwianRpIjoiOGRiOGQ5N2EtNjEzNy00N2MwLWIzODUtNDFhOGM5Y2RiNTQxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNjU1NzgyMTY4LCJleHAiOjE2NTU3ODMwNjgsImlkVGVjbmljbyI6Mn0.zlMy1W8Qr3QoctBUawiYQCcpS5-n5g86p8U2DHJZK2s"
       }
     ]
   }

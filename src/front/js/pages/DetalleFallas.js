@@ -23,6 +23,7 @@ const DetalleFallas = () => {
   const handleShow = () => setShow(true);
 
   const { store, actions } = useContext(Context);
+
   let param = useParams();
   param = parseInt(param.id);
 
@@ -169,25 +170,32 @@ const DetalleFallas = () => {
                   <strong>Ubicación:</strong>
                 </Card.Title>
                 <Card.Text>{datos.ubicacion}</Card.Text>
-                <Button
-                  variant="primary"
-                  onClick={() => ModalPropuesta(setModalShow(true))}
-                >
-                  Crear Propuesta
-                </Button>
-                <Link
-                  className="btn btn-primary"
-                  to={{
-                    pathname: "/informe",
-                    state: {
-                      idFalla: datos.id,
-                      tituloFalla: datos.titulo,
-                      modeloFalla: datos.modelo,
-                    },
-                  }}
-                >
-                  Crear Informe
-                </Link>
+
+                {store.esTecnico == true ? (
+                  <>
+                    <Button
+                      variant="primary"
+                      onClick={() => ModalPropuesta(setModalShow(true))}
+                    >
+                      Crear Propuesta
+                    </Button>{" "}
+                    <Link
+                      className="btn btn-primary"
+                      to={{
+                        pathname: "/informe",
+                        state: {
+                          idFalla: datos.id,
+                          tituloFalla: datos.titulo,
+                          modeloFalla: datos.modelo,
+                        },
+                      }}
+                    >
+                      Crear Informe
+                    </Link>
+                  </>
+                ) : (
+                  ""
+                )}
               </Card.Body>
             </Card>
           </Col>

@@ -19,13 +19,13 @@ def crear_informe_tecnico():
     fecha_creacion = datetime.datetime.now()    
     recomendacion=request.form['recomendacion']
     comentario_servicio=request.form['comentario']
-    idFalla=request.form['falla_id']
+    falla_id=request.form['idFalla']
     importe=request.form['importe']
     imagen=request.files['imagen']
     estado="open"
     
     # Creamos el objeto del informe tecnico para la BD y lo guardamos
-    newInforme= InformeTecnico(fecha_creacion=fecha_creacion,comentario_servicio=comentario_servicio,recomendacion=recomendacion,usuario_id=idTecnico, falla_id=idFalla,importe=importe,estado=estado)
+    newInforme= InformeTecnico(fecha_creacion=fecha_creacion,comentario_servicio=comentario_servicio,recomendacion=recomendacion,usuario_id=idTecnico, falla_id=falla_id,importe=importe,estado=estado)
     print(newInforme)
     db.session.add(newInforme)
     db.session.flush()
