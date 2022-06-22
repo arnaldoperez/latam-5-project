@@ -96,8 +96,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           return { code: resp.status, msg: resp.statusText };
         }
 
-        setStore({ token: "" });
+        setStore({ token: "", refreshToken: "" });
         localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken");
         return { code: 200, msg: "Sesion cerrada" };
       },
 
