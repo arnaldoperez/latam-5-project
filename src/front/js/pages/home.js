@@ -4,6 +4,7 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { Login } from "../component/login";
 import { Profile } from "./Profile";
+import { Landing } from "./landing";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -13,6 +14,7 @@ export const Home = () => {
     </div>
   ) : (
     <div>
+      <Landing />
       <div className="card col-lg-4 col-sm-12 container-fluid ">
         <article className="card-body">
           <h4 className="card-title text-center mb-4 mt-1">Sign in</h4>

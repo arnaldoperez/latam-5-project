@@ -1,0 +1,23 @@
+.bg {
+  /* The image used */
+  background-image: url("https://www.teahub.io/photos/full/54-546207_auto-mechanic-wallpaper-images-pictures-auto-repair.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.95;
+}
+.bold {
+  color: rgb(0, 0, 0);
+  opacity: 0.85;
+}
+.logo {
+  background-size: cover;
+  background-position: center;
+  opacity: 0.95;
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.vhv.rs%2Fdpng%2Fd%2F295-2958228_tool-clipart-hand-tool-tools-you-don-t.png&f=1&nofb=1");
+}
