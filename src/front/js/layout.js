@@ -75,6 +75,9 @@ const Layout = () => {
             <Route exact path="/falla/:id">
               <DetalleFallas />
             </Route>
+            <Route exact path="/propuestas">
+              <ListadoPropuestas />
+            </Route>           
             <Route exact path="/informe">
               <FormInfoTecnico />
             </Route>

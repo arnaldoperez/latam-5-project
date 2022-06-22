@@ -16,7 +16,7 @@ class Perfil_tecnico(db.Model):
     calificacion = db.relationship('Calificacion', backref='perfil_tecnico')
   
     def __repr__(self):
-        return f'<User {self.historial}>'
+        return f'<Perfil_tecnico {self.id}>'
 
     def serialize(self):
         return {

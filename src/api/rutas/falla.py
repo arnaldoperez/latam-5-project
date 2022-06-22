@@ -1,6 +1,7 @@
 from ..routes import app, api, request, jsonify
 from ..modelos import Falla
-
+import datetime
+from ..db import db
 
 @api.route('/fallas', methods=['GET'])
 def listado_fallas():

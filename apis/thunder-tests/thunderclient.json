@@ -8,12 +8,12 @@
     "method": "POST",
     "sortNum": 5000,
     "created": "2022-05-28T00:56:01.087Z",
-    "modified": "2022-06-18T00:08:31.278Z",
+    "modified": "2022-06-22T02:28:44.074Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"javier10@4geeks.com\",\n    \"password\":\"123456\",\n    \"nombre\":\"Javier\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}\n",
+      "raw": "{\n    \"email\":\"user6@4geeks.com\",\n    \"password\":\"123\",\n    \"nombre\":\"Javier\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}\n",
       "form": []
     },
     "tests": []
@@ -27,25 +27,17 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-28T01:09:17.256Z",
-    "modified": "2022-06-17T02:45:49.167Z",
+    "modified": "2022-06-22T02:27:59.327Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"historial\":\"historial\",\n    \"descripcion\":\"descripcion\",\n    \"ubicacion\":\"ubicacion\",\n    \"url\":\"url\"\n}",
+      "raw": "{\n    \"historial\":\"tecnico3\",\n    \"descripcion\":\"descripcion1\",\n    \"ubicacion\":\"ubicacion1\",\n    \"url\":\"url\"\n}",
       "form": []
     },
     "auth": {
-      "type": "oauth2",
-      "oauth2": {
-        "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1NTQzMzkwNSwianRpIjoiMTUyZjYzODUtMDEyYy00MDFiLWI4YTAtMGI2ODg5MzY5ODhhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTAsIm5iZiI6MTY1NTQzMzkwNSwiZXhwIjoxNjU1NDM0ODA1LCJpZFRlY25pY28iOjB9.f2FlMNR7fhpRkjmSCul9x1QroNWV4uz5emPMGv_AGB4",
-        "grantType": "authorization_code",
-        "callbackUrl": "https://www.thunderclient.com/oauth/callback",
-        "tokenUrl": "",
-        "clientId": "",
-        "clientSecret": "",
-        "clientAuth": "in-header"
-      }
+      "type": "bearer",
+      "bearer": "{{user-token}}"
     },
     "tests": []
   },
@@ -164,17 +156,21 @@
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
     "name": "Crear Propuesta",
-    "url": "{{url}}/propuesta",
+    "url": "{{url}}/propuestas",
     "method": "POST",
     "sortNum": 25000,
     "created": "2022-06-05T17:19:10.406Z",
-    "modified": "2022-06-15T04:50:13.948Z",
+    "modified": "2022-06-22T02:32:53.786Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"20.00\",\n    \"estado\":\"estado\",\n    \"id_falla\":2,\n    \"id_tecnico\":1\n}",
+      "raw": "{\n    \"detalle\":\"detalle\",\n    \"costo_servicio\": \"10.00\",\n    \"estado\":\"estado\",\n    \"id_falla\":9\n}",
       "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{user-token}}"
     },
     "tests": []
   },
@@ -187,12 +183,12 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-06-05T17:19:36.498Z",
-    "modified": "2022-06-15T04:49:06.128Z",
+    "modified": "2022-06-22T02:32:22.637Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"descripcion\":\"Cuando freno sobre los 180 km/h escucho un fuerte golpeteo metálico que pareciera provenir del motor. Hace dos meses le cambiaron los pistones porque tenian un juego excesivo. Tambien hay un olor a quemado que viene del tanque de combustible\",\n    \"modelo\":\"Honda Kiuva\",\n    \"fecha_creacion\":\"3-3-22\",\n    \"fecha_cierre\":\"3-3-22\",\n    \"titulo\":\"No frena bien a altas velocidades\",\n    \"estado\":\"open\",\n    \"ubicacion\":\"Castilla, Buenos Aires\",\n    \"id_cliente\":1,\n    \"usuario\":1,\n    \"imagen_id\": null\n}",
+      "raw": "{\n    \"descripcion\":\"Cuando freno sobre los 180 km/h escucho un fuerte golpeteo metálico que pareciera provenir del motor. Hace dos meses le cambiaron los pistones porque tenian un juego excesivo. Tambien hay un olor a quemado que viene del tanque de combustible\",\n    \"modelo\":\"Honda Kiuva\",\n    \"fecha_creacion\":\"3-3-22\",\n    \"fecha_cierre\":\"3-3-22\",\n    \"titulo\":\"No frena bien a altas velocidades\",\n    \"estado\":\"open\",\n    \"ubicacion\":\"Castilla, Buenos Aires\",\n    \"id_cliente\":3,\n    \"usuario\":6,\n    \"imagen_id\": null\n}",
       "form": []
     },
     "tests": []
@@ -225,12 +221,12 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2022-06-05T19:02:14.594Z",
-    "modified": "2022-06-09T02:04:08.104Z",
+    "modified": "2022-06-22T02:35:29.453Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"calificacion\":\"calificacion\",\n    \"comentario\":\"comentario\",\n    \"propuesta_id\":1\n}",
+      "raw": "{\n    \"calificacion\":10,\n    \"comentario\":\"Some quick example text to build on the card title\",\n    \"propuesta_id\":4,\n    \"id_tecnico\":1\n}",
       "form": []
     },
     "tests": []
@@ -301,11 +297,11 @@
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "",
     "name": "Historial de calificaciones por usuario",
-    "url": "{{url}}/calificaciones/1",
+    "url": "{{url}}/calificaciones/2",
     "method": "GET",
     "sortNum": 130000,
     "created": "2022-06-08T01:52:17.703Z",
-    "modified": "2022-06-08T01:52:38.486Z",
+    "modified": "2022-06-20T01:23:39.401Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -359,16 +355,14 @@
     "name": "Login",
     "url": "{{url}}/login",
     "method": "POST",
-    "sortNum": 140000,
+    "sortNum": 8750,
     "created": "2022-06-12T02:31:30.867Z",
-
-    "modified": "2022-06-16T17:32:58.211Z",
-
+    "modified": "2022-06-22T02:31:50.483Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"javier10@4geeks.com\",\n    \"password\":\"123456\"\n}",
+      "raw": "{\n    \"email\":\"user1@4geeks.com\",\n    \"password\":\"123\"\n}",
       "form": []
     },
     "tests": [
@@ -397,6 +391,38 @@
       "raw": "{\"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1NTQzMzUwMiwianRpIjoiMjU2YzdjNTAtMTk2My00YjZjLWEzN2YtOGU5Y2Y5MjNjMTNhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjU1NDMzNTAyLCJleHAiOjE2NTU0MzQ0MDIsImlkVGVjbmljbyI6MX0.5QgX45F1Y3GDKZ9OMXxt4g6JgFTZP9HOhb1FK3Qs570\"}",
       "form": []
     },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{user-token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "ef3bd064-d530-46ea-8eb1-c38948e4dfea",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "ConsultarPropuestas",
+    "url": "{{url}}/propuestas",
+    "method": "GET",
+    "sortNum": 160000,
+    "created": "2022-06-19T20:39:55.219Z",
+    "modified": "2022-06-19T22:16:08.652Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "c7336731-2ef1-47e8-9d68-ec8986fab230",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "ConsultarPropuestas por usuario",
+    "url": "{{url}}/propuestas/detalles",
+    "method": "GET",
+    "sortNum": 170000,
+    "created": "2022-06-21T01:12:34.830Z",
+    "modified": "2022-06-21T01:49:58.051Z",
+    "headers": [],
+    "params": [],
     "auth": {
       "type": "bearer",
       "bearer": "{{user-token}}"

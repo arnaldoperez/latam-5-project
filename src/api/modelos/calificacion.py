@@ -3,7 +3,7 @@ from ..db import db
 class Calificacion(db.Model):
     __tablename__ = 'calificacion'
     id = db.Column(db.Integer, primary_key=True)
-    calificacion = db.Column(db.String(50), nullable=False)
+    calificacion = db.Column(db.Integer, nullable=False)
     comentario = db.Column(db.String(250), nullable=False)
     id_tecnico = db.Column(db.Integer, db.ForeignKey('perfil_tecnico.id'))
     propuesta_id = db.Column(db.Integer, db.ForeignKey('propuesta.id'))

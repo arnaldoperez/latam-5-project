@@ -2,10 +2,12 @@
 const getState = ({ getStore, getActions, setStore }) => {
   const apiURL = process.env.BACKEND_URL + "/api";
   return {
-    store: {
+    store: {      
       propuestas: [],
       fallas: [],
       detalle: [],
+      historialTodos:[],
+      historialTecnico:[],     
       message: null,
       demo: [
         {
@@ -151,6 +153,20 @@ const getState = ({ getStore, getActions, setStore }) => {
         //
         return { code: 201, msg: "Tecnico registrado" };
       },
+      listarCalificacionesTodos: async () => {
+        const res = await fetch(`${apiURL}/calificaciones`);
+        const listado = await res.json();
+        const store = getStore();
+        setStore({ historialTodos: listado });
+        return store.historialTodos;
+      },
+      listarCalificacionesTecnico: async (id_tecnico) => {        
+        const res = await fetch(`${apiURL}/calificaciones/${id_tecnico}`);
+        const listado = await res.json();
+        const store = getStore();
+        setStore({ historialTecnico: listado });
+        return store.historialTecnico;
+      },   
 
       listarFallas: async () => {
         const res = await fetch(process.env.BACKEND_URL + "/api/fallas");
@@ -165,16 +181,9 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         setStore({ detalle: datos });
         return store.detalle;
-      },
+      },     
       listarPropuestas: async () => {
-        const res = await fetch(process.env.BACKEND_URL + "/api/propuestas");
-        const listado = await res.json();
-        const store = getStore();
-        setStore({ propuestas: listado });
-        return store.propuestas;
-      },
-      listarPropuestas: async () => {
-        const res = await fetch(process.env.BACKEND_URL + "/api/propuestas");
+        const res = await fetch(`${apiURL}/propuestas`);
         const listado = await res.json();
         const store = getStore();
         setStore({ propuestas: listado });
