@@ -13,7 +13,7 @@ import {
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
 
-const DetalleFallas = () => {
+const DetallePropuesta = () => {
   const [modalShow, setModalShow] = useState(false);
   const [show, setShow] = useState(false);
 
@@ -176,4 +176,4 @@ const DetalleFallas = () => {
   );
 };
 
-export default DetalleFallas;
+export default DetallePropuesta;

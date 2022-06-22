@@ -7,7 +7,7 @@ export const Navbar = () => {
       <div className="container">       
         <Link to="/signup">
           <button className="btn btn-primary mx-2">SignUp</button>
-        </Link>
+        </Link>        
         <Link to="/">
           <span className="navbar-brand mb-0 h1">Tallerapp</span>
         </Link>        

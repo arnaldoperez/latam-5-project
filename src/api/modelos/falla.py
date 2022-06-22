@@ -1,4 +1,6 @@
 from ..db import db
+from .propuesta import Propuesta
+
 class Falla(db.Model):
     __tablename_ = 'falla'
     id = db.Column(db.Integer, primary_key=True)
@@ -27,3 +29,6 @@ class Falla(db.Model):
             "usuario" : self.id_cliente,
             "imagen" : self.imagen_id
             }
+
+    def propuestas(self):
+        return {"id_propuesta": Propuesta.id}

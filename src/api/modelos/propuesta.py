@@ -12,7 +12,7 @@ class Propuesta(db.Model):
     is_active = db.Column(db.Boolean(),  nullable=False)
   
     def __repr__(self):
-        return f'<User {self.estado}>'
+        return f'<Propuesta {self.id}>'
 
     def serialize(self):
         return {
@@ -23,3 +23,4 @@ class Propuesta(db.Model):
             "id_falla": self.id_falla,
             "id_tecnico": self.id_tecnico
         }
+    
