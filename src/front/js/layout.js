@@ -24,15 +24,10 @@ import { Footer } from "./component/footer";
 import { Login } from "./component/login";
 import { NavbarProtected } from "./component/navbarProtected";
 import { HomeProtected } from "./pages/homeProtected";
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import { SubidaPrueba } from "./pages/subirImagen";
-=======
+
 import { Landing } from "./pages/landing";
->>>>>>> desarrollo
-=======
-import { Landing } from "./pages/landing";
->>>>>>> desarrollo
 
 //create your first component
 const Layout = () => {
@@ -90,18 +85,15 @@ const Layout = () => {
             <Route exact path="/falla/:id">
               <DetalleFallas />
             </Route>
-<<<<<<< HEAD
-          
+
+            <Route exact path="/propuestas">
+              <ListadoPropuestas />
+            </Route>
+
             <Route exact path="/propuestas">
               <ListadoPropuestas />
             </Route>
             <Route exact path="/crear_informe">
-=======
-            <Route exact path="/propuestas">
-              <ListadoPropuestas />
-            </Route>
-            <Route exact path="/informe">
->>>>>>> desarrollo
               <FormInfoTecnico />
             </Route>
             <Route exact path="/informes">
