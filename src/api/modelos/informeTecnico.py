@@ -23,5 +23,8 @@ class InformeTecnico(db.Model):
             'falla_id': self.falla_id,
             'importe': self.importe,
             'estado': self.estado,
-            'imagen_id': self.imagen_id
+            'imagen_id': self.imagen_id,
+            'falla_titulo': self.falla.titulo,
+            'cliente_nombre': self.falla.user.nombre,
+            'cliente_apellido': self.falla.user.apellido
         }

@@ -9,6 +9,7 @@ import ListadoFallas from "./pages/ListadoFallas";
 import DetalleFallas from "./pages/DetalleFallas";
 import FormInfoTecnico from "./pages/FormInfoTecnico";
 import ListadoPropuestas from "./pages/ListadoPropuestas";
+import ListadoInformes from "./pages/ListadoInformes";
 import DetalleInforme from "./pages/DetalleInforme";
 import ProfileTecnico from "./pages/ProfileTecnico";
 
@@ -78,8 +79,11 @@ const Layout = () => {
             <Route exact path="/falla/:id">
               <DetalleFallas />
             </Route>
-            <Route exact path="/informe">
+            <Route exact path="/crear_informe">
               <FormInfoTecnico />
+            </Route>
+            <Route exact path="/informes">
+              <ListadoInformes />
             </Route>
             <Route exact path="/propuestas">
               <ListadoPropuestas />
@@ -90,7 +94,7 @@ const Layout = () => {
             <Route exact path="/subidaprueba">
               <SubidaPrueba />
             </Route>
-            <Route exact path="/detalle_informe">
+            <Route exact path="/detalle_informe/:id">
               <DetalleInforme />
             </Route>
             <Route exact path="/perfil_tecnico">

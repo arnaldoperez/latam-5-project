@@ -193,7 +193,7 @@ const DetalleFallas = () => {
                     <Link
                       className="btn btn-primary"
                       to={{
-                        pathname: "/informe",
+                        pathname: "/crear_informe",
                         state: {
                           idFalla: datos.id,
                           tituloFalla: datos.titulo,

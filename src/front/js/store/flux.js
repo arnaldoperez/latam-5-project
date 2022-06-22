@@ -4,6 +4,8 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       propuestas: [],
+      informes: [],
+      detalle_informe: [],
       fallas: [],
       detalle: [],
       message: null,
@@ -167,6 +169,20 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         setStore({ detalle: datos });
         return store.detalle;
+      },
+      detalleInforme: async (id) => {
+        const res = await fetch(process.env.BACKEND_URL + "/api/informe/" + id);
+        const datos = await res.json();
+        const store = getStore();
+        setStore({ detalle_informe: datos });
+        return store.detalle;
+      },
+      listarInformes: async () => {
+        const res = await fetch(process.env.BACKEND_URL + "/api/informes");
+        const listado = await res.json();
+        const store = getStore();
+        setStore({ informes: listado });
+        return store.informes;
       },
       listarPropuestas: async () => {
         const store = setStore();
