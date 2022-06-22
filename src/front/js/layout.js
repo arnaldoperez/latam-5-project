@@ -55,6 +55,9 @@ const Layout = () => {
             <Route exact path="/tecnicos">
               <SignUp_Tech />
             </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
             <Route exact path="/signup">
               <SignUp />
             </Route>
@@ -62,7 +65,7 @@ const Layout = () => {
               <Profile />
             </Route>
             <Route exact path="/">
-              <Landing />
+              <Home />
             </Route>
             <Route exact path="/demo">
               <Demo />

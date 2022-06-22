@@ -11,8 +11,8 @@ import { Single } from "./single";
 
 export const Landing = () => {
   return (
-    <div className="container-fluid row ">
-      <div className=" row bg pageholder">
+    <div className="container-fluid row">
+      <div className="row bg pageholder">
         <div className="col-md-5 p-lg-5 mx-auto my-5">
           <h1 className="display-4 bold card">Dr. Motor</h1>
           <p className="lead bold card">
