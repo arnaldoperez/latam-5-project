@@ -9,6 +9,8 @@ import ListadoFallas from "./pages/ListadoFallas";
 import DetalleFallas from "./pages/DetalleFallas";
 import FormInfoTecnico from "./pages/FormInfoTecnico";
 import ListadoPropuestas from "./pages/ListadoPropuestas";
+import DetalleInforme from "./pages/DetalleInforme";
+import ProfileTecnico from "./pages/ProfileTecnico";
 
 import injectContext, { Context } from "./store/appContext";
 import { SignUp } from "./pages/signUp";
@@ -87,6 +89,12 @@ const Layout = () => {
             </Route>
             <Route exact path="/subidaprueba">
               <SubidaPrueba />
+            </Route>
+            <Route exact path="/detalle_informe">
+              <DetalleInforme />
+            </Route>
+            <Route exact path="/perfil_tecnico">
+              <ProfileTecnico />
             </Route>
             <Route>
               <h1>Not found!</h1>

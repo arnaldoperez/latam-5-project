@@ -5,6 +5,9 @@ body {
   font-family: "Proxima Nova", -apple-system, "Helvetica Neue", Helvetica,
     Roboto, Arial, sans-serif;
 }
+label {
+  font-weight: 700;
+}
 .mainMargin {
   margin: 20px 60px 20px 60px;
 }

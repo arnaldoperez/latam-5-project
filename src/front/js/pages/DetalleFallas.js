@@ -150,6 +150,17 @@ const DetalleFallas = () => {
                 <Button variant="danger" onClick={handleShow}>
                   Reportar
                 </Button>
+                <Link
+                  className="btn btn-success"
+                  to={{
+                    pathname: "/detalle_informe",
+                    state: {
+                      idFalla: datos.id,
+                    },
+                  }}
+                >
+                  Ver Informe Técnico
+                </Link>
               </Card.Body>
             </Card>
           </Col>
