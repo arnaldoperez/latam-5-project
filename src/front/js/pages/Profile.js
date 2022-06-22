@@ -32,16 +32,14 @@ export const Profile = () => {
   }
 
   function media(list) {
-    var prom = 0;
-    var newprom = 0;
+    var suma = 0;
+    let prom =0;
+    console.log(list);
     for (var index in list) {
-      console.log(index);
-      prom = parseFloat(index.calificacion);
-
-      newprom = newprom + prom;
-      console.log(newprom);
+      prom = parseFloat(list[index].calificacion);
+      suma = suma + prom;
     }
-    return <strong>{typeof newprom}</strong>;
+    return <strong>{suma / list.length}</strong>;
   }
   media(store.historialTecnico);
 
@@ -94,7 +92,7 @@ export const Profile = () => {
                 <Accordion.Header>Proposals list</Accordion.Header>
                 <Accordion.Body>
                   {store.propuestas.map((propuesta, index) => (
-                    <ListGroup.Item>
+                    <ListGroup.Item key={index}>
                       <div className="paralelo">
                         <h3>
                           <strong>${propuesta.costo_servicio}</strong>
@@ -116,37 +114,32 @@ export const Profile = () => {
               <Accordion.Item eventKey="1">
                 <Accordion.Header>Fails </Accordion.Header>
                 <Accordion.Body>
-
-                 <ListGroup as="ul">
-                      {store.fallas.map((falla, index) => (
-                  <Link
-                          to={`/falla/${falla.id}`}
-                          style={{ textDecoration: "none" }}
-                          key={index}
-                        >   
-
-                   <ListGroup.Item>
-                     <div className="paralelo">
-                       <footer className="blockquote-footer">
-                       {falla.id}
-                       </footer>                       
-                       <footer className="blockquote-footer">
-                       {falla.fecha_creacion}
-                       </footer>
-                       <footer className="blockquote-footer">
-                        ubicacion: {falla.ubicacion}
-                       </footer>
-                     </div>
-                     <blockquote className="blockquote mb-0">
-                       <cite title="Source Title">
-                       {falla.titulo}
-                       </cite>
-                     </blockquote>
-                   </ListGroup.Item>
-                  </Link>
-                  ))}
-               </ListGroup>
-
+                  <ListGroup  as="ul">
+                    {store.fallas.map((falla, index) => (
+                      <Link
+                        to={`/falla/${falla.id}`}
+                        style={{ textDecoration: "none" }}
+                        key={index}
+                      >
+                        <ListGroup.Item >
+                          <div className="paralelo">
+                            <footer className="blockquote-footer">
+                              {falla.id}
+                            </footer>
+                            <footer className="blockquote-footer">
+                              {falla.fecha_creacion}
+                            </footer>
+                            <footer className="blockquote-footer">
+                              ubicacion: {falla.ubicacion}
+                            </footer>
+                          </div>
+                          <blockquote className="blockquote mb-0">
+                            <cite title="Source Title">{falla.titulo}</cite>
+                          </blockquote>
+                        </ListGroup.Item>
+                      </Link>
+                    ))}
+                  </ListGroup>
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
@@ -188,11 +181,11 @@ export const Profile = () => {
               <Card.Title>
                 Taller Name {media(store.historialTecnico)}{" "}
               </Card.Title>
-              <Card.Text>
+              <Card.Text >
                 Calificacion promedio Some quick example text to build on the
                 card title and make up the bulk of the card's content.{" "}
                 {store.historialTecnico.map((calificacion, index) => (
-                  <strong>{calificacion.calificacion}</strong>
+                  <strong  key={{index}}>{calificacion.calificacion}</strong>
                 ))}
               </Card.Text>
             </Card.Body>
