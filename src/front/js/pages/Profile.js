@@ -1,5 +1,7 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
+import { ListGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import "../../styles/home.css";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
@@ -9,6 +11,7 @@ import Accordion from "react-bootstrap/Accordion";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
+import Form from "react-bootstrap/Form";
 
 import { Card, Row, Container, Column } from "react-bootstrap";
 
@@ -24,66 +27,131 @@ export const Profile = () => {
     // Se crea un objeto "FormData" con los datos del formulario
     let data = new FormData(event.target); //en esta variable estoy capturando controladamente todos los valores que el usuario ingreso en el formulario una vez realice el evento submit
     // capturo los valores que el usuario ingreso en el formulario
-    let historial = data.get("historial"); //lo estoy sacando directamente de mi form.Control name="email"
-    let ubicacion = data.get("ubicacion"); //lo estoy sacando directamente de mi form.Control name="password"
-    let descripcion = data.get("descripcion");
-    let url = data.get("url");
-    let id_user = data.get("id_user");
-    let check = data.get("check");
+    let id_tecnico = data.get("id_tecnico"); //lo estoy sacando directamente de mi form.Control name="email"
 
-    if (!check) {
-      console.error("El usuario no acepto los terminos");
-      return;
-    }
-
-    actions //importe las actions y el store
-      .signUpTech(historial, ubicacion, descripcion, url, id_user) //evaluo mi funcion signup que me retorna una promesa
-      .then((resp) => {
-        //evalua la respuesta en sus dos casos
-        if (resp.code == 201) navigate.push("/");
-        //caso exitoso
-        else console.log("Problema en el registro de tecnico: ", resp); //caso no exitoso
-      })
-      .catch((error) => {
-        console.log("Error en el registro de tecnico: ", error);
-      });
+    return actions.listarCalificacionesTecnico(id_tecnico);
   }
+
+  function media(list) {
+    var prom = 0;
+    var newprom = 0;
+    for (var index in list) {
+      console.log(index);
+      prom = parseFloat(index.calificacion);
+
+      newprom = newprom + prom;
+      console.log(newprom);
+    }
+    return <strong>{typeof newprom}</strong>;
+  }
+  media(store.historialTecnico);
+
+  /*useEffect(() => {
+    cargarListado();
+  }, []);
+
+  const cargarListado = () => {
+    actions.listarCalificacionesTodos();
+  };*/
+
+  useEffect(() => {
+    cargarListadoFallas();
+    cargarListadoPropuestas();
+  }, []);
+
+  const cargarListadoFallas = () => {
+    actions.listarFallas();
+  };
+  const cargarListadoPropuestas = () => {
+    actions.listarPropuestas();
+  };
 
   return (
     <Container>
       <Row>
+        {/*ACA EMPIEZA LA COLUMNA 1 */}
         <Col>
-          {/*acaempieza el acordion */}
-          <Accordion>
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>Accordion Item #1</Accordion.Header>
-              <Accordion.Body>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>Accordion Item #2</Accordion.Header>
-              <Accordion.Body>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
+          {/*acaempieza el card con la imagen */}
+          <Card>
+            <Card.Img variant="top" src="http://placeimg.com/640/360/any" />
+            <Card.Body>
+              <Card.Title>User Name</Card.Title>
+              <Card.Text>
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        {/*ACA EMPIEZA LA COLUMNA 2 */}
+        <Col>
+          <Modal.Dialog>
+            <Modal.Header>
+              <Modal.Title>Propuses</Modal.Title>
+            </Modal.Header>
+            {/*acaempieza el acordion */}
+            <Accordion>
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Proposals list</Accordion.Header>
+                <Accordion.Body>
+                  {store.propuestas.map((propuesta, index) => (
+                    <ListGroup.Item>
+                      <div className="paralelo">
+                        <h3>
+                          <strong>${propuesta.costo_servicio}</strong>
+                        </h3>
+                        <footer className="blockquote-footer">
+                          {propuesta.estado}
+                        </footer>
+                        <footer className="blockquote-footer">
+                          Falla: {propuesta.id_falla}
+                        </footer>
+                      </div>
+                      <blockquote className="blockquote mb-0">
+                        <cite title="Source Title">{propuesta.detalle}</cite>
+                      </blockquote>
+                    </ListGroup.Item>
+                  ))}
+                </Accordion.Body>
+              </Accordion.Item>
+              <Accordion.Item eventKey="1">
+                <Accordion.Header>Fails </Accordion.Header>
+                <Accordion.Body>
+                  <ListGroup as="ul">
+                    {store.fallas.map((falla, index) => (
+                      <Link
+                        to={`/falla/${falla.id}`}
+                        style={{ textDecoration: "none" }}
+                        key={index}
+                      >
+                        <ListGroup.Item>
+                          <div className="paralelo">
+                            <footer className="blockquote-footer">
+                              {falla.id}
+                            </footer>
+                            <footer className="blockquote-footer">
+                              {falla.fecha_creacion}
+                            </footer>
+                            <footer className="blockquote-footer">
+                              ubicacion: {falla.ubicacion}
+                            </footer>
+                          </div>
+                          <blockquote className="blockquote mb-0">
+                            <cite title="Source Title">{falla.titulo}</cite>
+                          </blockquote>
+                        </ListGroup.Item>
+                      </Link>
+                    ))}
+                  </ListGroup>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          </Modal.Dialog>
+
           {/*acaempieza el modal */}
           <Modal.Dialog>
             <Modal.Header closeButton>
-              <Modal.Title>Modal title</Modal.Title>
+              <Modal.Title>I need a new service</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
@@ -96,82 +164,74 @@ export const Profile = () => {
             </Modal.Footer>
           </Modal.Dialog>
         </Col>
+
+        {/*ACA EMPIEZA LA COLUMNA 3 */}
         <Col>
-          {/*acaempieza el card con la imagen */}
-          <Card style={{ width: "25rem" }}>
-            <Card.Img variant="top" src={rigoImageUrl} />
+          <Form onSubmit={profile}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Control
+                type="integer"
+                placeholder="Enter id Technician"
+                name="id_tecnico"
+                required
+              />
+              {/*Este email es el que se toma en la funcion SignUpUser con el evento submit*/}{" "}
+            </Form.Group>
+          </Form>
+          {/*acaempieza el card con la imagen opcional del taller prestador del servicio */}
+          <Card>
             <Card.Body>
-              <Card.Title>Name</Card.Title>
+              <Card.Title>
+                Taller Name {media(store.historialTecnico)}{" "}
+              </Card.Title>
               <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                Calificacion promedio Some quick example text to build on the
+                card title and make up the bulk of the card's content.{" "}
+                {store.historialTecnico.map((calificacion, index) => (
+                  <strong>{calificacion.calificacion}</strong>
+                ))}
               </Card.Text>
             </Card.Body>
           </Card>
+
           <div>
             {/*acaempieza la calificacion */}
             <Card>
-              <Card.Title className="text-center">Calificacion</Card.Title>
+              <Card.Title className="text-center">Score</Card.Title>
               <ProgressBar>
-                <ProgressBar striped variant="success" now={35} key={1} />
-                <ProgressBar variant="warning" now={20} key={2} />
-                <ProgressBar striped variant="danger" now={10} key={3} />
+                <ProgressBar striped variant="success" now={65} key={1} />
               </ProgressBar>
             </Card>
           </div>
-        </Col>
 
-        <Col>
-          {/*acaempieza los comentarios */}
-          <Card>
-            <Card.Header>Quote</Card.Header>
-            <Card.Body>
-              <blockquote className="blockquote mb-0">
-                <p>
-                  {" "}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer posuere erat a ante.{" "}
-                </p>
-                <footer className="blockquote-footer">
-                  Someone famous in{" "}
-                  <cite title="Source Title">Source Title</cite>
-                </footer>
-              </blockquote>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Header>Quote</Card.Header>
-            <Card.Body>
-              <blockquote className="blockquote mb-0">
-                <p>
-                  {" "}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer posuere erat a ante.{" "}
-                </p>
-                <footer className="blockquote-footer">
-                  Someone famous in{" "}
-                  <cite title="Source Title">Source Title</cite>
-                </footer>
-              </blockquote>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Header>Quote</Card.Header>
-            <Card.Body>
-              <blockquote className="blockquote mb-0">
-                <p>
-                  {" "}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer posuere erat a ante.{" "}
-                </p>
-                <footer className="blockquote-footer">
-                  Someone famous in{" "}
-                  <cite title="Source Title">Source Title</cite>
-                  {/* <Link to="/subidaprueba">subidaprueba</Link> */}
-                </footer>
-              </blockquote>
-            </Card.Body>
-          </Card>
+          <Accordion>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>History</Accordion.Header>
+              <Accordion.Body>
+                <div>
+                  <h3>History</h3>
+
+                  {store.historialTecnico.map((calificacion, index) => (
+                    <ListGroup.Item>
+                      <div className="paralelo">
+                        <h3>
+                          <strong>{calificacion.calificacion}</strong>
+                        </h3>
+                        <footer className="blockquote-footer">
+                          {calificacion.fecha_cierre}
+                        </footer>
+                      </div>
+                      <blockquote className="blockquote mb-0">
+                        <cite title="Source Title">
+                          {calificacion.comentario}
+                        </cite>
+                      </blockquote>
+                    </ListGroup.Item>
+                  ))}
+                </div>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
         </Col>
       </Row>
     </Container>

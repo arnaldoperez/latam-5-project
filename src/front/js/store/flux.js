@@ -8,6 +8,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       detalle_informe: [],
       fallas: [],
       detalle: [],
+      historialTodos: [],
+      historialTecnico: [],
       message: null,
       demo: [
         {
@@ -101,8 +103,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           return { code: resp.status, msg: resp.statusText };
         }
 
-        setStore({ token: "" });
+        setStore({ token: "", refreshToken: "" });
         localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken");
         return { code: 200, msg: "Sesion cerrada" };
       },
 
@@ -154,6 +157,20 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
         //
         return { code: 201, msg: "Tecnico registrado" };
+      },
+      listarCalificacionesTodos: async () => {
+        const res = await fetch(`${apiURL}/calificaciones`);
+        const listado = await res.json();
+        const store = getStore();
+        setStore({ historialTodos: listado });
+        return store.historialTodos;
+      },
+      listarCalificacionesTecnico: async (id_tecnico) => {
+        const res = await fetch(`${apiURL}/calificaciones/${id_tecnico}`);
+        const listado = await res.json();
+        const store = getStore();
+        setStore({ historialTecnico: listado });
+        return store.historialTecnico;
       },
 
       listarFallas: async () => {

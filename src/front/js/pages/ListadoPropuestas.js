@@ -22,6 +22,7 @@ const ListadoPropuestas = () => {
 
       <ListGroup as="ul">
         {store.propuestas.map((propuesta, index) => (
+         
           <ListGroup.Item as="li" className="activation" key={index}>
             <div className="paralelo">
               <h4>{propuesta.falla_titulo}</h4>
@@ -42,8 +43,10 @@ const ListadoPropuestas = () => {
               </p>
             </div>
           </ListGroup.Item>
+         
         ))}
       </ListGroup>
+      
     </div>
   );
 };

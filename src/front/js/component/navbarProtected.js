@@ -21,6 +21,9 @@ export const NavbarProtected = () => {
         <Link to="/calificaciones">
           <span className="btn btn-primary mx-2">Ratings</span>
         </Link>
+        <Link to="/propuestas">
+          <button className="btn btn-primary mx-2">Propuesta</button>
+        </Link>
         <Link to="/logout">
             <button className="btn btn-primary">Logout</button>
         </Link>

@@ -14,7 +14,7 @@ def create_calification():
     date=datetime.datetime.now()
     fecha_cierre= date.strftime("%x")
     #fecha_cierre=request.json.get("fecha_cierre")
-    newCalificacion= Calificacion(calificacion=calificacion,comentario=comentario,propuesta_id=propuesta_id, fecha_cierre=fecha_cierre)
+    newCalificacion= Calificacion(id_tecnico=id_tecnico, calificacion=calificacion,comentario=comentario,propuesta_id=propuesta_id, fecha_cierre=fecha_cierre)
     db.session.add(newCalificacion)
     db.session.flush()
     cierre_falla=newCalificacion.propuesta.falla#aca se crea objeto con parametros de falla a partir de las relaciones definidas en Los modelos Calificacion y Propuesta
@@ -28,11 +28,20 @@ def create_calification():
 
 @api.route('/calificaciones', methods=['GET'])
 def historial_calificacionestodos():
-    historial = Calificacion.query.all()
-    historial = list(map(lambda calificacion: calificacion.serialize(), historial ))
-    return jsonify(historial)
+    historialTodos = Calificacion.query.all()
+    historialTodos = list(map(lambda calificacion: calificacion.serialize(), historialTodos ))
+    return jsonify(historialTodos)
 
 @api.route('/calificaciones/<id_tecnico>', methods=['GET'])
-def historial_calificaciones(id_tecnico):
-    historial = Calificacion.query.get(id_tecnico)
-    return jsonify(historial.serialize())
+def historial_calificaciones(id_tecnico):    
+    
+    historialTecnico = Calificacion.query.filter_by(id_tecnico=id_tecnico).all()
+    """print(historialTecnico)    
+    return jsonify(historialTecnico)"""
+    
+
+    #historialTecnico = Calificacion.query.all()    
+    historialTecnico = list(map(lambda calificacion: calificacion.serialize(), historialTecnico ))
+    #result=list(filter(lambda obj: obj["id_tecnico"]==1, historialTecnico))
+    print(historialTecnico)
+    return jsonify(historialTecnico)

@@ -1,8 +1,8 @@
 from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt
 from ..routes import app, api, bcrypt, request, jsonify
-from ..modelos import User, Perfil_tecnico
+from ..modelos import User, Perfil_tecnico, TokenBlockedList
 from ..db import db
-import datetime
+from datetime import datetime, timezone, timedelta
 
 @api.route('/signup', methods=['POST']) #ENDPOINT DE REGISTRAR
 def signup():
