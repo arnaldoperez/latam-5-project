@@ -21,6 +21,7 @@ import { Footer } from "./component/footer";
 import { Login } from "./component/login";
 import { NavbarProtected } from "./component/navbarProtected";
 import { HomeProtected } from "./pages/homeProtected";
+import { Landing } from "./pages/landing";
 
 //create your first component
 const Layout = () => {
@@ -54,6 +55,9 @@ const Layout = () => {
             <Route exact path="/tecnicos">
               <SignUp_Tech />
             </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
             <Route exact path="/signup">
               <SignUp />
             </Route>
@@ -77,7 +81,7 @@ const Layout = () => {
             </Route>
             <Route exact path="/propuestas">
               <ListadoPropuestas />
-            </Route>           
+            </Route>
             <Route exact path="/informe">
               <FormInfoTecnico />
             </Route>
