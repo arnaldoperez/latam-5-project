@@ -76,3 +76,12 @@ def mostrar_informe(informe_id):
         # Allow GET requests using this URL.
         method="GET")
     return jsonify(respuesta)
+
+
+'''@api.route('/propuestas', methods=['GET'])
+@jwt_required()
+def listado_propuestas():
+id_user=get_jwt_identity()
+propuestas = Falla.query.filter(Falla.id_cliente==id_user).filter(Falla.id==Propuesta.id_falla).all() #propuestas asociadas a la falla de mi usuario
+propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))
+return jsonify(propuestas)'''
