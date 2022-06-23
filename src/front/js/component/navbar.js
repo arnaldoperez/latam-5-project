@@ -26,7 +26,7 @@ export const Navbar = () => {
         <span className="navbar-brand mb-0 h1">Tallerapp</span>
       </Link>
       <div className="collapse navbar-collapse " id="navbarNavAltMarkup">
-        <div className="navbar-nav justify-content-between">
+        <div className="container navbar-nav justify-content-between">
           <Link to="/tecnicos">
             <button className="btn btn-primary mx-2 nav-item">
               SignUp Technician
@@ -45,11 +45,9 @@ export const Navbar = () => {
           <Link to="/">
             <span className="btn btn-primary mx-2 nav-item">My Reports</span>
           </Link>
-          <Link to="/calificaciones">
-          Link
-          </Link>
+          <Link to="/calificaciones">Link</Link>
           <Link to="/propuestas">
-          <span className="btn btn-primary mx-2 nav-item">My proporsals</span>
+            <span className="btn btn-primary mx-2 nav-item">My proporsals</span>
           </Link>
           <Link to="/logout">
             <button className="btn btn-primary nav-item">Logout</button>
