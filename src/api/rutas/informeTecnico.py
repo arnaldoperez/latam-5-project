@@ -58,12 +58,14 @@ def crear_informe_tecnico():
     return jsonify(response_body), 201
 
 @api.route('/informes', methods=['GET'])
+@jwt_required()
 def listar_informes():
     informes = InformeTecnico.query.all()
     informes = list(map(lambda informe: informe.serialize(), informes ))
     return jsonify(informes)
 
 @api.route('/informe/<int:informe_id>', methods=['GET'])
+@jwt_required()
 def mostrar_informe(informe_id):
     informe = InformeTecnico.query.get_or_404(informe_id)
     imagen=Imagenes.query.filter(Imagenes.id==informe.imagen_id).first()

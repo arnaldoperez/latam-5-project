@@ -1,21 +1,25 @@
+from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt
 from ..routes import app, api, request, jsonify
 from ..modelos import Falla
 import datetime
 from ..db import db
 
 @api.route('/fallas', methods=['GET'])
+@jwt_required()
 def listado_fallas():
     fallas = Falla.query.all()
     fallas = list(map(lambda falla: falla.serialize(), fallas ))
     return jsonify(fallas)
 
 @api.route('/falla/<int:falla_id>/', methods=['GET'])
+@jwt_required()
 def falla(falla_id):
     falla = Falla.query.get_or_404(falla_id)
     #prueba = "valor"
     return jsonify(falla.serialize())
 
 @api.route('/falla', methods=['POST']) #ENDPOINT DE REGISTRAR
+@jwt_required()
 def crearFalla():
     id=request.json.get("id")#capturando mi usuario email del requerimiento
     descripcion=request.json.get("descripcion")#capturando la contraseña de mi ususario
