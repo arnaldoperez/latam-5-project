@@ -10,12 +10,12 @@ export const Navbar = () => {
   }, [store.token]);
 
   return store.token && store.token != "" ? (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary container-fluid justify-content-between">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary container-fluid ">
       <button
         className="navbar-toggler"
         type="button"
         data-toggle="collapse"
-        data-target="#navbarNavAltMarkup"
+        data-target="navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup"
         aria-expanded="false"
         aria-label="Toggle navigation"
@@ -25,7 +25,7 @@ export const Navbar = () => {
       <Link to="/">
         <span className="navbar-brand mb-0 h1">Tallerapp</span>
       </Link>
-      <div className="collapse navbar-collapse " id="navbarNavAltMarkup">
+      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="container navbar-nav justify-content-between">
           <Link to="/tecnicos">
             <button className="btn btn-primary mx-2 nav-item">
