@@ -83,11 +83,11 @@ function ProfileTecnico() {
             <ListGroup>
               {datos.map((dato, index) => (
                 <Link
-                  to={`/propuesta/${datos.id}`}
+                  to={`/propuesta/${dato.id}`}
                   style={{ textDecoration: "none" }}
                   key={index}
                 >
-                  <ListGroup.Item key={index}>
+                  <ListGroup.Item>
                     {index + 1}. {dato.falla_titulo} <strong>Cliente:</strong>{" "}
                     {dato.cliente_nombre} {dato.cliente_apellido}
                   </ListGroup.Item>

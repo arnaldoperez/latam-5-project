@@ -23,6 +23,7 @@ class Propuesta(db.Model):
             "id_falla": self.id_falla,
             "id_tecnico": self.id_tecnico,
             "falla_titulo": self.falla.titulo,
+            "falla_detalle": self.falla.descripcion,
             "cliente_nombre": self.falla.user.nombre,
             "cliente_apellido": self.falla.user.apellido
         }

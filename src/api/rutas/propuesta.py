@@ -83,4 +83,9 @@ def listar_propuestas_user(tecnico_id):
     propuestas = Propuesta.query.filter(Propuesta.id_tecnico==tecnico_id).all() #propuestas asociadas a la falla de mi usuario
     propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))
     return jsonify(propuestas)
-    
+
+@api.route('/detalle_propuesta/<int:id>', methods=['GET'])
+@jwt_required()
+def mostrar_propuesta(id):
+    propuesta = Propuesta.query.get_or_404(id)
+    return jsonify(propuesta.serialize())
