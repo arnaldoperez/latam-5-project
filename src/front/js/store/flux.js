@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       propuestas: [],
-      fallas_user:[],
+      fallas_user: [],
       informes: [],
       detalle_informe: [],
       fallas: [],
@@ -27,6 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       token: "",
       refreshToken: "",
       esTecnico: "",
+      id_tecnico: "",
       loginInfo: {},
     },
     actions: {
@@ -81,11 +82,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         const token = data.token;
         const refreshToken = data.refreshToken;
         const esTecnico = data.esTecnico;
+        const id_tecnico = data.id_tecnico;
 
-        setStore({ token, refreshToken, esTecnico });
+        setStore({ token, refreshToken, esTecnico, id_tecnico });
         localStorage.setItem("token", token);
         localStorage.setItem("refreshToken", refreshToken);
         localStorage.setItem("esTecnico", esTecnico);
+        localStorage.setItem("id_tecnico", id_tecnico);
         return { code: 200, msg: "Access granted" };
       },
 
@@ -175,9 +178,20 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       listarFallas: async () => {
-        const res = await fetch(process.env.BACKEND_URL + "/api/fallas");
-        const listado = await res.json();
         const store = getStore();
+        const params = {
+          method: "GET", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(
+          process.env.BACKEND_URL + "/api/fallas",
+          params
+        );
+        const listado = await res.json();
+
         setStore({ fallas: listado });
         return store.fallas;
       },
@@ -190,29 +204,62 @@ const getState = ({ getStore, getActions, setStore }) => {
             Authorization: `Bearer ${store.token}`,
           },
         };
-        const res = await fetch(process.env.BACKEND_URL + "/api/falla_user",params);
+        const res = await fetch(
+          process.env.BACKEND_URL + "/api/falla_user",
+          params
+        );
         const listado = await res.json();
         setStore({ fallas_user: listado });
         return store.fallas_user;
       },
       detalleFallas: async (id) => {
-        const res = await fetch(process.env.BACKEND_URL + "/api/falla/" + id);
-        const datos = await res.json();
         const store = getStore();
+        const params = {
+          method: "GET", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(
+          process.env.BACKEND_URL + "/api/falla/" + id,
+          params
+        );
+        const datos = await res.json();
         setStore({ detalle: datos });
         return store.detalle;
       },
       detalleInforme: async (id) => {
-        const res = await fetch(process.env.BACKEND_URL + "/api/informe/" + id);
-        const datos = await res.json();
         const store = getStore();
+        const params = {
+          method: "GET", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(
+          process.env.BACKEND_URL + "/api/informe/" + id,
+          params
+        );
+        const datos = await res.json();
         setStore({ detalle_informe: datos });
         return store.detalle;
       },
       listarInformes: async () => {
-        const res = await fetch(process.env.BACKEND_URL + "/api/informes");
-        const listado = await res.json();
         const store = getStore();
+        const params = {
+          method: "GET", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(
+          process.env.BACKEND_URL + "/api/informes",
+          params
+        );
+        const listado = await res.json();
         setStore({ informes: listado });
         return store.informes;
       },
@@ -226,6 +273,20 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         const res = await fetch(`${apiURL}/propuestas`, params);
+        const listado = await res.json();
+        setStore({ propuestas: listado });
+        return store.propuestas;
+      },
+      listarPropuestasTecnico: async (id) => {
+        const store = getStore();
+        const params = {
+          method: "GET", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(`${apiURL}/propuestas_`, params);
         const listado = await res.json();
         setStore({ propuestas: listado });
         return store.propuestas;
@@ -250,7 +311,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         const resp = await fetch(
-          process.env.BACKEND_URL + "/api/propuesta",
+          process.env.BACKEND_URL + "/api/propuestas",
           params
         );
         console.log(resp.status);

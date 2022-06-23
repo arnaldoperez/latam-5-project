@@ -25,14 +25,14 @@ const DetallePropuesta = () => {
   const { store, actions } = useContext(Context);
 
   let param = useParams();
-  param = parseInt(param.id);
+  let id = parseInt(param.id);
 
   useEffect(() => {
-    cargarDetalle(param);
+    cargarDetalle(id);
   }, []);
 
-  function cargarDetalle(param) {
-    actions.detalleFallas(param);
+  function cargarDetalle(id) {
+    actions.detalleFallas(id);
   }
 
   const datos = store.detalle;

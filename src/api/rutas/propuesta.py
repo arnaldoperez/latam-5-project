@@ -68,3 +68,16 @@ def historial_propuestauser():
     
     print(historialpropuestas)
     return jsonify(historialpropuestas)
+
+
+
+@api.route('/propuesta_user', methods=['GET'])
+def listar_propuestas_user():
+    token=get_jwt()
+    idTecnico=token['idTecnico']
+    if(idTecnico==0):
+        return "Acceso no autorizado", 403
+    propuestas = Propuesta.query.filter(Propuesta.id_tecnico==idTecnico).all() #propuestas asociadas a la falla de mi usuario
+    propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))
+    return jsonify(propuestas)
+    

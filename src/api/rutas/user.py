@@ -41,7 +41,7 @@ def login():
     # Se genera un token y se retorna como respuesta
     token=create_access_token(newUser.id, additional_claims={"idTecnico":idTecnico})
     refreshToken=create_refresh_token(email)
-    return jsonify({"token":token, "refreshToken":refreshToken, "esTecnico":perfilTecnico!=None}), 200     
+    return jsonify({"token":token, "refreshToken":refreshToken, "esTecnico":perfilTecnico!=None, "id_tecnico": idTecnico}), 200     
 
 @api.route('/verify-token',methods=['POST'])
 @jwt_required()
