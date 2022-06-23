@@ -1,6 +1,6 @@
 from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt
 from ..routes import app, api, request, jsonify
-from ..modelos import Falla
+from ..modelos import Falla, Propuesta
 import datetime
 from ..db import db
 
@@ -38,3 +38,11 @@ def crearFalla():
         "message": "Falla creada exitosamente"
     }
     return jsonify(response_body), 201  
+
+@api.route('/falla_user', methods=['GET'])
+@jwt_required()
+def listado_fallas_user():
+    id_user=get_jwt_identity()
+    fallas_user = Falla.query.filter(Falla.id_cliente==id_user).filter(Falla.id==Propuesta.id_falla).all() #Fallas asociadas a mi usuario
+    fallas_user = list(map(lambda propuesta: propuesta.serialize(), fallas_user ))#me trajo fue las fallas asocidas a mi usuario
+    return jsonify(fallas_user)

@@ -31,17 +31,19 @@ export const Profile = () => {
     return actions.listarCalificacionesTecnico(id_tecnico);
   }
 
+  
   function media(list) {
-    var prom = 0;
-    var newprom = 0;
+    var suma = 0;
+    let prom =0;
+    let promedio=0;
+    console.log(list);
     for (var index in list) {
-      console.log(index);
-      prom = parseFloat(index.calificacion);
-
-      newprom = newprom + prom;
-      console.log(newprom);
+      prom = parseFloat(list[index].calificacion);
+      suma = suma + prom;
     }
-    return <strong>{typeof newprom}</strong>;
+    promedio=suma / list.length
+    promedio=parseInt(promedio*10)
+    return promedio;
   }
   media(store.historialTecnico);
 
@@ -53,13 +55,13 @@ export const Profile = () => {
     actions.listarCalificacionesTodos();
   };*/
 
-  useEffect(() => {
+  useEffect(() =>  {
     cargarListadoFallas();
     cargarListadoPropuestas();
   }, []);
 
   const cargarListadoFallas = () => {
-    actions.listarFallas();
+    actions.listarFallas_user();
   };
   const cargarListadoPropuestas = () => {
     actions.listarPropuestas();
@@ -93,31 +95,39 @@ export const Profile = () => {
               <Accordion.Item eventKey="0">
                 <Accordion.Header>Proposals list</Accordion.Header>
                 <Accordion.Body>
+                <ListGroup as="ul">                    
+                <div>
+                  <h3>History</h3>
+
                   {store.propuestas.map((propuesta, index) => (
-                    <ListGroup.Item>
+                    <ListGroup.Item key={index}>
                       <div className="paralelo">
                         <h3>
-                          <strong>${propuesta.costo_servicio}</strong>
+                          <strong>{propuesta.costo_servicio}</strong>
                         </h3>
                         <footer className="blockquote-footer">
-                          {propuesta.estado}
+                        {propuesta.estado}
                         </footer>
                         <footer className="blockquote-footer">
-                          Falla: {propuesta.id_falla}
+                        id_tecnico : {propuesta.id_tecnico}
                         </footer>
                       </div>
                       <blockquote className="blockquote mb-0">
-                        <cite title="Source Title">{propuesta.detalle}</cite>
+                        <cite title="Source Title">
+                        {propuesta.detalle}
+                        </cite>
                       </blockquote>
                     </ListGroup.Item>
                   ))}
+                </div>
+                </ListGroup>
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="1">
                 <Accordion.Header>Fails </Accordion.Header>
                 <Accordion.Body>
                   <ListGroup as="ul">
-                    {store.fallas.map((falla, index) => (
+                    {store.fallas_user.map((falla, index) => (
                       <Link
                         to={`/falla/${falla.id}`}
                         style={{ textDecoration: "none" }}
@@ -181,13 +191,13 @@ export const Profile = () => {
           <Card>
             <Card.Body>
               <Card.Title>
-                Taller Name {media(store.historialTecnico)}{" "}
+                Taller Name {" "} Cailificacion <strong >{media(store.historialTecnico)}</strong>
               </Card.Title>
-              <Card.Text>
+              <Card.Text >
                 Calificacion promedio Some quick example text to build on the
                 card title and make up the bulk of the card's content.{" "}
                 {store.historialTecnico.map((calificacion, index) => (
-                  <strong>{calificacion.calificacion}</strong>
+                  <strong  key={{index}}>{calificacion.calificacion}</strong>
                 ))}
               </Card.Text>
             </Card.Body>
@@ -198,7 +208,7 @@ export const Profile = () => {
             <Card>
               <Card.Title className="text-center">Score</Card.Title>
               <ProgressBar>
-                <ProgressBar striped variant="success" now={65} key={1} />
+                <ProgressBar striped variant="success" now={media(store.historialTecnico)} key={1} />
               </ProgressBar>
             </Card>
           </div>
@@ -211,7 +221,7 @@ export const Profile = () => {
                   <h3>History</h3>
 
                   {store.historialTecnico.map((calificacion, index) => (
-                    <ListGroup.Item>
+                    <ListGroup.Item key={index}>
                       <div className="paralelo">
                         <h3>
                           <strong>{calificacion.calificacion}</strong>

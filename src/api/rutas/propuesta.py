@@ -30,15 +30,25 @@ def nuevapropuesta():
 @api.route('/propuestas', methods=['GET'])
 @jwt_required()
 def listado_propuestas():
-    propuestas = Propuesta.query.all()
-    propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))
-    return jsonify(propuestas)
-def historial_propuestasTodos():
-    propuestas = Propuesta.query.all()
-    propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))
-    return jsonify(propuestas)
+    id_user=get_jwt_identity()
+    id_fallas = Falla.query.filter(Falla.id_cliente==id_user).filter(Falla.id==Propuesta.id_falla).all() #Fallas asociadas a mi usuario
+    id_fallas=list(map(lambda falla: falla.id, id_fallas))
+    propuestastodos = Propuesta.query.all()
+    propuestastodos =list(map(lambda propuesta: propuesta.serialize(), propuestastodos ))
+    propuestas_user=[]
+    for propuest in propuestastodos:
+        for index in id_fallas:
+            if(propuest["id_falla"]==index):
+                propuestas_user.append(propuest)
+        print(propuestas_user)
+                #propuestas_user.append(propuest)  
+    #propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))#me trajo fue las fallas asocidas a mi usuario
+      
+    
+    return jsonify(propuestas_user)
 
-@api.route('/propuestas/detalles', methods=['GET'])
+
+@api.route('/propuestas/<id_propuesta>', methods=['GET'])
 @jwt_required()
 def historial_propuestauser():
       
