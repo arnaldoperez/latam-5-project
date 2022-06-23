@@ -24,7 +24,13 @@ function ProfileTecnico() {
 
   function cargarDatos(id) {
     actions.listarPropuestasTecnico(id);
+    actions.tecnicoDetalle(id);
   }
+
+  const datos = store.propuestas_tecnico;
+  console.log(datos);
+  const detalle = store.detalle_tecnico;
+  console.log(detalle);
 
   return (
     <div className="mainMargin">
@@ -45,13 +51,16 @@ function ProfileTecnico() {
                   <h4>Datos Generales</h4>
                 </Card.Title>
                 <Card.Text>
-                  <label>Nombre:</label> Jack Baso
+                  <label>Nombre:</label> {detalle.tecnico_nombre}{" "}
+                  {detalle.tecnico_apellido}
                   <p></p>
-                  <label>Email:</label> tecnico@4geeks
+                  <label>Email:</label> {detalle.tecnico_email}
                   <p></p>
-                  <label>Website:</label> www.tecni.com
+                  <label>Descripción:</label> {detalle.descripcion}
                   <p></p>
-                  <label>Ubicación:</label> Ciudad Panamá, Panamá
+                  <label>Website:</label> {detalle.url}
+                  <p></p>
+                  <label>Ubicación:</label> {detalle.ubicacion}
                   <p></p>
                 </Card.Text>
                 <Card>
@@ -72,24 +81,36 @@ function ProfileTecnico() {
             <h4>Mis Actividades</h4>
             <h6 className="labelProfile">Propuestas Aprobadas</h6>
             <ListGroup>
-              <ListGroup.Item disabled>Cras justo odio</ListGroup.Item>
-              <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-              <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-              <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+              {datos.map((dato, index) => (
+                <Link
+                  to={`/propuesta/${datos.id}`}
+                  style={{ textDecoration: "none" }}
+                  key={index}
+                >
+                  <ListGroup.Item key={index}>
+                    {index + 1}. {dato.falla_titulo} <strong>Cliente:</strong>{" "}
+                    {dato.cliente_nombre} {dato.cliente_apellido}
+                  </ListGroup.Item>
+                </Link>
+              ))}
             </ListGroup>
             <h6 className="labelProfile">Propuestas Pendientes</h6>
             <ListGroup>
-              <ListGroup.Item disabled>Cras justo odio</ListGroup.Item>
-              <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-              <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-              <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+              {datos.map((dato, index) => (
+                <ListGroup.Item key={index}>
+                  {index + 1}. {dato.falla_titulo} <strong>Cliente:</strong>{" "}
+                  {dato.cliente_nombre} {dato.cliente_apellido}
+                </ListGroup.Item>
+              ))}
             </ListGroup>
             <h6 className="labelProfile">Informes Realizados</h6>
             <ListGroup>
-              <ListGroup.Item disabled>Cras justo odio</ListGroup.Item>
-              <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-              <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-              <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+              {datos.map((dato, index) => (
+                <ListGroup.Item key={index}>
+                  {index + 1}. {dato.falla_titulo} <strong>Cliente:</strong>{" "}
+                  {dato.cliente_nombre} {dato.cliente_apellido}
+                </ListGroup.Item>
+              ))}
             </ListGroup>
           </Col>
         </Row>

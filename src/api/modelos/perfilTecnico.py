@@ -25,7 +25,9 @@ class Perfil_tecnico(db.Model):
             "ubicacion": self.ubicacion,
             "descripcion": self.descripcion,
             "url": self.url,
-            "fecha_ing": self.fecha_ing,
             "id_user":self.id_user, 
-            "is_active":self.is_active
+            "is_active":self.is_active,
+            "tecnico_nombre":self.user.nombre,
+            "tecnico_apellido":self.user.apellido,
+            "tecnico_email":self.user.email
         }

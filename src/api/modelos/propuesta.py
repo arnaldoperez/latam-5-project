@@ -21,6 +21,9 @@ class Propuesta(db.Model):
             "costo_servicio": self.costo_servicio,
             "estado": self.estado,
             "id_falla": self.id_falla,
-            "id_tecnico": self.id_tecnico
+            "id_tecnico": self.id_tecnico,
+            "falla_titulo": self.falla.titulo,
+            "cliente_nombre": self.falla.user.nombre,
+            "cliente_apellido": self.falla.user.apellido
         }
     
