@@ -10,9 +10,9 @@ import DetalleFallas from "./pages/DetalleFallas";
 import FormInfoTecnico from "./pages/FormInfoTecnico";
 import ListadoPropuestas from "./pages/ListadoPropuestas";
 import ListadoInformes from "./pages/ListadoInformes";
-import DetalleInforme from "./pages/DetalleInforme";
-import ProfileTecnico from "./pages/ProfileTecnico";
 
+import ProfileTecnico from "./pages/ProfileTecnico";
+import DetalleInforme from "./pages/DetalleInforme";
 import injectContext, { Context } from "./store/appContext";
 import { SignUp } from "./pages/signUp";
 import { SignUp_Tech } from "./pages/signUp_Tech";
