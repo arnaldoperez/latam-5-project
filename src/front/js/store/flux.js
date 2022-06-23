@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       propuestas: [],
+      fallas_user:[],
       informes: [],
       detalle_informe: [],
       fallas: [],
@@ -180,6 +181,20 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ fallas: listado });
         return store.fallas;
       },
+      listarFallas_user: async () => {
+        const store = getStore();
+        const params = {
+          method: "GET", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(process.env.BACKEND_URL + "/api/falla_user",params);
+        const listado = await res.json();
+        setStore({ fallas_user: listado });
+        return store.fallas_user;
+      },
       detalleFallas: async (id) => {
         const res = await fetch(process.env.BACKEND_URL + "/api/falla/" + id);
         const datos = await res.json();
@@ -202,8 +217,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         return store.informes;
       },
       listarPropuestas: async () => {
-        const store = setStore();
-        const res = await fetch(process.env.BACKEND_URL + "/api/propuestas");
+        const store = getStore();
+        const params = {
+          method: "GET", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(`${apiURL}/propuestas`, params);
         const listado = await res.json();
         setStore({ propuestas: listado });
         return store.propuestas;
