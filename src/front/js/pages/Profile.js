@@ -30,18 +30,17 @@ export const Profile = () => {
     return actions.listarCalificacionesTecnico(id_tecnico);
   }
 
-  
   function media(list) {
     var suma = 0;
-    let prom =0;
-    let promedio=0;
+    let prom = 0;
+    let promedio = 0;
     console.log(list);
     for (var index in list) {
       prom = parseFloat(list[index].calificacion);
       suma = suma + prom;
     }
-    promedio=suma / list.length
-    promedio=parseInt(promedio*10)
+    promedio = suma / list.length;
+    promedio = parseInt(promedio * 10);
     return promedio;
   }
   media(store.historialTecnico);
@@ -54,7 +53,7 @@ export const Profile = () => {
     actions.listarCalificacionesTodos();
   };*/
 
-  useEffect(() =>  {
+  useEffect(() => {
     cargarListadoFallas();
     cargarListadoPropuestas();    
   }, []);
@@ -80,10 +79,11 @@ export const Profile = () => {
           <Card>
             <Card.Img variant="top" src="http://placeimg.com/640/360/any" />
             <Card.Body>
-              <Card.Title>User Name</Card.Title>
+              <Card.Title>Arnaldo Martínez</Card.Title>
               <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                Mecanico certificado KTM, Kawasaki y Ducatti. Más de 10 años de
+                experiencia reparando vehiculos. Conocimientos en motores
+                eléctricos y de combustión
               </Card.Text>
             </Card.Body>
           </Card>
@@ -92,16 +92,16 @@ export const Profile = () => {
         <Col>
           <Modal.Dialog>
             <Modal.Header>
-              <Modal.Title>Propuses</Modal.Title>
+              <Modal.Title>Propuestas</Modal.Title>
             </Modal.Header>
             {/*acaempieza el acordion */}
             <Accordion>
               <Accordion.Item eventKey="0">
-                <Accordion.Header>Proposals list</Accordion.Header>
+                <Accordion.Header>Listado de propuestas</Accordion.Header>
                 <Accordion.Body>
-                <ListGroup as="ul">                    
-                <div>
-                  <h3>History</h3>
+                  <ListGroup as="ul">
+                    <div>
+                      <h3>History</h3>
 
                   {store.propuestas.map((propuesta, index) => (
                     <ListGroup.Item key={index}>
@@ -167,7 +167,7 @@ export const Profile = () => {
           {/*acaempieza el modal */}
           <Modal.Dialog>
             <Modal.Header closeButton>
-              <Modal.Title>I need a new service</Modal.Title>
+              <Modal.Title>Necesito un nuevo servicio</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
@@ -198,13 +198,13 @@ export const Profile = () => {
           <Card>
             <Card.Body>
               <Card.Title>
-                Taller Name {" "} Cailificacion <strong >{media(store.historialTecnico)}</strong>
+                Taller Name Cailificacion{" "}
+                <strong>{media(store.historialTecnico)}</strong>
               </Card.Title>
-              <Card.Text >
-                Calificacion promedio Some quick example text to build on the
-                card title and make up the bulk of the card's content.{" "}
+              <Card.Text>
+                Promedio de calificaciones recibidas por el taller.{" "}
                 {store.historialTecnico.map((calificacion, index) => (
-                  <strong  key={{index}}>{calificacion.calificacion}</strong>
+                  <strong key={{ index }}>{calificacion.calificacion}</strong>
                 ))}
               </Card.Text>
             </Card.Body>
@@ -213,9 +213,14 @@ export const Profile = () => {
           <div>
             {/*acaempieza la calificacion */}
             <Card>
-              <Card.Title className="text-center">Score</Card.Title>
+              <Card.Title className="text-center">Puntaje</Card.Title>
               <ProgressBar>
-                <ProgressBar striped variant="success" now={media(store.historialTecnico)} key={1} />
+                <ProgressBar
+                  striped
+                  variant="success"
+                  now={media(store.historialTecnico)}
+                  key={1}
+                />
               </ProgressBar>
             </Card>
           </div>

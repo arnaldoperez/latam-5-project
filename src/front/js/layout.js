@@ -7,6 +7,7 @@ import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import ListadoFallas from "./pages/ListadoFallas";
 import DetalleFallas from "./pages/DetalleFallas";
+import DetallePropuesta from "./pages/DetallePropuesta";
 import FormInfoTecnico from "./pages/FormInfoTecnico";
 import ListadoPropuestas from "./pages/ListadoPropuestas";
 import ListadoInformes from "./pages/ListadoInformes";
@@ -101,6 +102,9 @@ const Layout = () => {
             </Route>
             <Route exact path="/propuestas">
               <ListadoPropuestas />
+            </Route>
+            <Route exact path="/propuesta/:id">
+              <DetallePropuesta />
             </Route>
             <Route exact path="/logout">
               <Logout />
