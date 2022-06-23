@@ -24,9 +24,9 @@ function DetallePropuesta() {
     <div className="mainMargin">
       <Card className="text-center">
         <Card.Title>
-          <strong>Detalle Propuesta No. {datos.cliente_apellido}</strong>
+          <strong>Detalle Propuesta No. {datos.id}</strong>
         </Card.Title>
-        <Card.Header className="bold">Datos Generales</Card.Header>
+        <Card.Header className="bold">Datos Generales de la Falla</Card.Header>
         <Card.Body>
           <Card.Text>
             <div className="paralelo">
@@ -36,21 +36,29 @@ function DetallePropuesta() {
               </p>
 
               <p>
-                <strong>Fecha del datos:</strong> {datos.fecha_creacion}
+                <strong>Titulo de la Falla:</strong> {datos.falla_titulo}
               </p>
             </div>
             <div className="paralelo">
               <p>
-                <strong>Titulo de la Falla:</strong> {datos.falla_titulo}
+                <strong>Descripción:</strong> {datos.falla_detalle}
               </p>
             </div>
           </Card.Text>
-          <Card.Header className="bold">Observaciones</Card.Header>
-          <Card.Text>{datos.comentario_servicio}</Card.Text>
-          <Card.Header className="bold">Recomendaciones</Card.Header>
-          <Card.Text>{datos.recomendacion}</Card.Text>
-          <Card.Header className="bold">Costo por Servicio</Card.Header>
-          <Card.Text>${datos.importe}</Card.Text>
+          <Card.Header className="bold">Propuesta Realizada</Card.Header>
+          <div className="paralelo">
+            <p>
+              <strong>Detalle:</strong> {datos.detalle}
+            </p>
+            <p>
+              <strong>Costo Estimado: $</strong> {datos.costo_servicio}
+            </p>
+          </div>
+          <div className="paralelo">
+            <p>
+              <strong>Estado:</strong> {datos.estado}
+            </p>
+          </div>
         </Card.Body>
         <Card.Footer className="text-muted"></Card.Footer>
       </Card>

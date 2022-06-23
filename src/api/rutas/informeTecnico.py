@@ -16,6 +16,7 @@ def crear_informe_tecnico():
         return "Acceso no autorizado", 403
     print(idTecnico)
     #print(request.form)
+    usuario_id = get_jwt_identity()
     fecha_creacion = datetime.datetime.now()    
     recomendacion=request.form['recomendacion']
     comentario_servicio=request.form['comentario']
@@ -25,7 +26,7 @@ def crear_informe_tecnico():
     estado="open"
     
     # Creamos el objeto del informe tecnico para la BD y lo guardamos
-    newInforme= InformeTecnico(fecha_creacion=fecha_creacion,comentario_servicio=comentario_servicio,recomendacion=recomendacion,usuario_id=idTecnico, falla_id=falla_id,importe=importe,estado=estado)
+    newInforme= InformeTecnico(fecha_creacion=fecha_creacion,comentario_servicio=comentario_servicio,recomendacion=recomendacion,usuario_id=usuario_id, falla_id=falla_id,importe=importe,estado=estado)
     print(newInforme)
     db.session.add(newInforme)
     db.session.flush()

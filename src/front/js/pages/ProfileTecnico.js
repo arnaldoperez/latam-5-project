@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useHistory } from "react-router-dom";
 import "../../styles/home.css";
-import avatar from "../../img/User_Avatar_2.png";
+import avatar from "../../img/Circle.png";
 //importando los componentes de Bootstrap para mejorar el aspecto del SignUp
 import Col from "react-bootstrap/Col";
 import ProgressBar from "react-bootstrap/ProgressBar";
@@ -87,7 +87,7 @@ function ProfileTecnico() {
                   style={{ textDecoration: "none" }}
                   key={index}
                 >
-                  <ListGroup.Item>
+                  <ListGroup.Item className="activation">
                     {index + 1}. {dato.falla_titulo} <strong>Cliente:</strong>{" "}
                     {dato.cliente_nombre} {dato.cliente_apellido}
                   </ListGroup.Item>
@@ -97,19 +97,31 @@ function ProfileTecnico() {
             <h6 className="labelProfile">Propuestas Pendientes</h6>
             <ListGroup>
               {datos.map((dato, index) => (
-                <ListGroup.Item key={index}>
-                  {index + 1}. {dato.falla_titulo} <strong>Cliente:</strong>{" "}
-                  {dato.cliente_nombre} {dato.cliente_apellido}
-                </ListGroup.Item>
+                <Link
+                  to={`/propuesta/${dato.id}`}
+                  style={{ textDecoration: "none" }}
+                  key={index}
+                >
+                  <ListGroup.Item className="activation">
+                    {index + 1}. {dato.falla_titulo} <strong>Cliente:</strong>{" "}
+                    {dato.cliente_nombre} {dato.cliente_apellido}
+                  </ListGroup.Item>
+                </Link>
               ))}
             </ListGroup>
             <h6 className="labelProfile">Informes Realizados</h6>
             <ListGroup>
               {datos.map((dato, index) => (
-                <ListGroup.Item key={index}>
-                  {index + 1}. {dato.falla_titulo} <strong>Cliente:</strong>{" "}
-                  {dato.cliente_nombre} {dato.cliente_apellido}
-                </ListGroup.Item>
+                <Link
+                  to={`/propuesta/${dato.id}`}
+                  style={{ textDecoration: "none" }}
+                  key={index}
+                >
+                  <ListGroup.Item className="activation">
+                    {index + 1}. {dato.falla_titulo} <strong>Cliente:</strong>{" "}
+                    {dato.cliente_nombre} {dato.cliente_apellido}
+                  </ListGroup.Item>
+                </Link>
               ))}
             </ListGroup>
           </Col>
