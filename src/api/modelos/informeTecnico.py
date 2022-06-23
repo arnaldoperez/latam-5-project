@@ -10,7 +10,7 @@ class InformeTecnico(db.Model):
     falla_id = db.Column(db.Integer, db.ForeignKey('falla.id'))
     importe = db.Column(db.Float)
     estado = db.Column(db.String(40), nullable=False)
-    imagen_id = db.Column(db.Integer, db.ForeignKey('imagenes.id'))
+    imagen_id = db.Column(db.Integer, db.ForeignKey('imagenes.id'), nullable=True)
     
 
     def serialize(self):
@@ -23,5 +23,8 @@ class InformeTecnico(db.Model):
             'falla_id': self.falla_id,
             'importe': self.importe,
             'estado': self.estado,
-            'imagen_id': self.imagen_id
+            'imagen_id': self.imagen_id,
+            'falla_titulo': self.falla.titulo,
+            'cliente_nombre': self.falla.user.nombre,
+            'cliente_apellido': self.falla.user.apellido
         }

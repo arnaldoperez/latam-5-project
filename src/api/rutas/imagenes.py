@@ -2,6 +2,7 @@ from ..modelos import Imagenes
 from ..routes import app, api, request, jsonify
 from firebase_admin import storage
 import tempfile
+from ..db import db
 
 @api.route('/imagen', methods=['POST'])
 def subir_imagen():

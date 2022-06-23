@@ -114,14 +114,14 @@ export const Profile = () => {
               <Accordion.Item eventKey="1">
                 <Accordion.Header>Fails </Accordion.Header>
                 <Accordion.Body>
-                  <ListGroup  as="ul">
+                  <ListGroup as="ul">
                     {store.fallas.map((falla, index) => (
                       <Link
                         to={`/falla/${falla.id}`}
                         style={{ textDecoration: "none" }}
                         key={index}
                       >
-                        <ListGroup.Item >
+                        <ListGroup.Item>
                           <div className="paralelo">
                             <footer className="blockquote-footer">
                               {falla.id}
