@@ -27,7 +27,6 @@ export const Profile = () => {
     let data = new FormData(event.target); //en esta variable estoy capturando controladamente todos los valores que el usuario ingreso en el formulario una vez realice el evento submit
     // capturo los valores que el usuario ingreso en el formulario
     let id_tecnico = data.get("id_tecnico"); //lo estoy sacando directamente de mi form.Control name="email"
-
     return actions.listarCalificacionesTecnico(id_tecnico);
   }
 
@@ -46,7 +45,7 @@ export const Profile = () => {
     return promedio;
   }
   media(store.historialTecnico);
-
+  
   /*useEffect(() => {
     cargarListado();
   }, []);
@@ -57,7 +56,7 @@ export const Profile = () => {
 
   useEffect(() =>  {
     cargarListadoFallas();
-    cargarListadoPropuestas();
+    cargarListadoPropuestas();    
   }, []);
 
   const cargarListadoFallas = () => {
@@ -66,6 +65,11 @@ export const Profile = () => {
   const cargarListadoPropuestas = () => {
     actions.listarPropuestas();
   };
+
+  //cargarListadoCalificaciones = () =>{
+    //let id_tecnico = store.propuestas[0].id_tecnico//lo estoy sacando directamente de mi form.Control name="email"
+    //return actions.listarCalificacionesTecnico(id_tecnico);}
+
 
   return (
     <Container>
@@ -117,6 +121,9 @@ export const Profile = () => {
                         {propuesta.detalle}
                         </cite>
                       </blockquote>
+                      <Button variant="secondary">Accept</Button>
+                      <Button variant="primary">Decline</Button>
+                      <Button variant="success" onclick="cargarListadoCalificaciones()">score</Button>
                     </ListGroup.Item>
                   ))}
                 </div>
