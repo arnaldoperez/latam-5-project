@@ -11,7 +11,7 @@ def signup():
     password_encryptado = bcrypt.generate_password_hash(password, rounds=None).decode("utf-8") # se procede a encriptar el password
     nombre=request.json.get("nombre")
     apellido=request.json.get("apellido")
-    fecha_ing=datetime.datetime.now()
+    fecha_ing=datetime.now()
     newUser=User(email=email, password=password_encryptado, nombre=nombre, apellido=apellido, fecha_ing=fecha_ing, is_active= True)#creando mi nuevo usuario con el modelo (clase) que importe
     db.session.add(newUser)
     db.session.commit()
