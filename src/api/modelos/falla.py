@@ -27,8 +27,10 @@ class Falla(db.Model):
             "estado" : self.estado,
             "ubicacion" : self.ubicacion,
             "usuario" : self.id_cliente,
-            "imagen" : self.imagen_id
+            "imagen" : self.imagen_id,
+            "user_nombre" : self.user.nombre,
+            "user_apellido": self.user.apellido
             }
-
+            
     def propuestas(self):
         return {"id_propuesta": Propuesta.id}

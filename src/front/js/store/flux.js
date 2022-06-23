@@ -1,13 +1,15 @@
-//const apiURL = process.env.BACKEND_URL + "/api";
 const getState = ({ getStore, getActions, setStore }) => {
   const apiURL = process.env.BACKEND_URL + "/api";
+
   return {
-    store: {      
+    store: {
       propuestas: [],
+      informes: [],
+      detalle_informe: [],
       fallas: [],
       detalle: [],
-      historialTodos:[],
-      historialTecnico:[],     
+      historialTodos: [],
+      historialTecnico: [],
       message: null,
       demo: [
         {
@@ -23,6 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
       token: "",
       refreshToken: "",
+      esTecnico: "",
       loginInfo: {},
     },
     actions: {
@@ -67,7 +70,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Content-Type": "application/json",
           },
         };
-        const resp = await fetch(apiURL + `/login`, params);
+        const resp = await fetch(`${apiURL}/login`, params);
         if (resp.status !== 200) {
           return { code: resp.status, msg: resp.statusText };
         }
@@ -76,10 +79,12 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log(data);
         const token = data.token;
         const refreshToken = data.refreshToken;
+        const esTecnico = data.esTecnico;
 
-        setStore({ token, refreshToken });
+        setStore({ token, refreshToken, esTecnico });
         localStorage.setItem("token", token);
         localStorage.setItem("refreshToken", refreshToken);
+        localStorage.setItem("esTecnico", esTecnico);
         return { code: 200, msg: "Access granted" };
       },
 
@@ -160,13 +165,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ historialTodos: listado });
         return store.historialTodos;
       },
-      listarCalificacionesTecnico: async (id_tecnico) => {        
+      listarCalificacionesTecnico: async (id_tecnico) => {
         const res = await fetch(`${apiURL}/calificaciones/${id_tecnico}`);
         const listado = await res.json();
         const store = getStore();
         setStore({ historialTecnico: listado });
         return store.historialTecnico;
-      },   
+      },
 
       listarFallas: async () => {
         const res = await fetch(process.env.BACKEND_URL + "/api/fallas");
@@ -181,11 +186,25 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         setStore({ detalle: datos });
         return store.detalle;
-      },     
-      listarPropuestas: async () => {
-        const res = await fetch(`${apiURL}/propuestas`);
+      },
+      detalleInforme: async (id) => {
+        const res = await fetch(process.env.BACKEND_URL + "/api/informe/" + id);
+        const datos = await res.json();
+        const store = getStore();
+        setStore({ detalle_informe: datos });
+        return store.detalle;
+      },
+      listarInformes: async () => {
+        const res = await fetch(process.env.BACKEND_URL + "/api/informes");
         const listado = await res.json();
         const store = getStore();
+        setStore({ informes: listado });
+        return store.informes;
+      },
+      listarPropuestas: async () => {
+        const store = setStore();
+        const res = await fetch(process.env.BACKEND_URL + "/api/propuestas");
+        const listado = await res.json();
         setStore({ propuestas: listado });
         return store.propuestas;
       },
@@ -210,6 +229,43 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         const resp = await fetch(
           process.env.BACKEND_URL + "/api/propuesta",
+          params
+        );
+        console.log(resp.status);
+        if (resp.status !== 201) {
+          return { code: resp.status, msg: resp.statusText };
+        }
+        //
+        return { code: 201, msg: "Propuesta registrada" };
+      },
+
+      grabarInforme: async (
+        idFalla,
+        comentario,
+        recomendacion,
+        importe,
+        imagen
+      ) => {
+        const store = getStore();
+        //mi peticion es asincrona es decir espera por el resultado
+        var data = new FormData();
+
+        data.append("comentario", comentario);
+        data.append("recomendacion", recomendacion);
+        data.append("idFalla", idFalla);
+        data.append("importe", importe);
+        data.append("imagen", imagen);
+
+        const params = {
+          method: "POST", //ingreso el metodo de mi peticion
+          body: data,
+          headers: {
+            Authorization: `Bearer ${store.token}`,
+            "Access-Control-Allow-Origin": "*",
+          },
+        };
+        const resp = await fetch(
+          process.env.BACKEND_URL + "/api/informe_tecnico",
           params
         );
         console.log(resp.status);

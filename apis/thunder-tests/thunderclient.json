@@ -46,11 +46,11 @@
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "",
     "name": "consultar falla",
-    "url": "{{url}}/falla/1",
+    "url": "{{url}}/informe/16",
     "method": "GET",
     "sortNum": 30000,
     "created": "2022-05-28T01:49:17.094Z",
-    "modified": "2022-06-16T00:14:08.219Z",
+    "modified": "2022-06-21T02:14:36.745Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -202,13 +202,35 @@
     "method": "POST",
     "sortNum": 30000,
     "created": "2022-06-05T18:51:19.847Z",
-    "modified": "2022-06-15T04:52:27.530Z",
+    "modified": "2022-06-21T00:31:35.492Z",
     "headers": [],
     "params": [],
     "body": {
-      "type": "json",
-      "raw": "{\n    \"comentario_servicio\":\"comentario_servicio\",\n    \"recomendacion\":\"recomendacion\",\n    \"usuario_id\":1,\n    \"falla_id\":1,\n    \"estado\":\"terminado\",\n    \"importe\":100\n}",
-      "form": []
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "recomendacion",
+          "value": "asdasd"
+        },
+        {
+          "name": "comentario_servicio",
+          "value": "asdasdasd"
+        },
+        {
+          "name": "falla_id",
+          "value": "dasdasds"
+        },
+        {
+          "name": "importe",
+          "value": "12"
+        }
+      ],
+      "files": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{tecnico-token}}"
     },
     "tests": []
   },
@@ -352,17 +374,17 @@
     "_id": "78538031-8469-44b9-b9f1-4a61c6d945da",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
-    "name": "Login",
+    "name": "LoginUsuario",
     "url": "{{url}}/login",
     "method": "POST",
     "sortNum": 8750,
     "created": "2022-06-12T02:31:30.867Z",
-    "modified": "2022-06-22T02:31:50.483Z",
+    "modified": "2022-06-21T00:45:26.917Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"user1@4geeks.com\",\n    \"password\":\"123\"\n}",
+      "raw": "{\n    \"email\":\"jackbaso@hotmail.com\",\n    \"password\":\"123\"\n}",
       "form": []
     },
     "tests": [
@@ -398,35 +420,43 @@
     "tests": []
   },
   {
-    "_id": "ef3bd064-d530-46ea-8eb1-c38948e4dfea",
+    "_id": "0c85e2d0-18fd-4d9d-b333-69c8f9138095",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
-    "name": "ConsultarPropuestas",
-    "url": "{{url}}/propuestas",
-    "method": "GET",
-    "sortNum": 160000,
-    "created": "2022-06-19T20:39:55.219Z",
-    "modified": "2022-06-19T22:16:08.652Z",
+    "name": "LoginTecnico",
+    "url": "{{url}}/login",
+    "method": "POST",
+    "sortNum": 145000,
+    "created": "2022-06-20T23:52:14.889Z",
+    "modified": "2022-06-21T00:43:37.772Z",
     "headers": [],
     "params": [],
-    "tests": []
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\":\"tecnico@4geeks.com\",\n    \"password\":\"123\"\n}",
+      "form": []
+    },
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.token",
+        "action": "setto",
+        "value": "{{tecnico-token}}"
+      }
+    ]
   },
   {
-    "_id": "c7336731-2ef1-47e8-9d68-ec8986fab230",
+    "_id": "f6ae1a4e-502b-44ff-be04-61995b625b05",
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
-    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
-    "name": "ConsultarPropuestas por usuario",
-    "url": "{{url}}/propuestas/detalles",
+    "containerId": "",
+    "name": "consultar informe",
+    "url": "{{url}}/informe/17",
     "method": "GET",
-    "sortNum": 170000,
-    "created": "2022-06-21T01:12:34.830Z",
-    "modified": "2022-06-21T01:49:58.051Z",
+    "sortNum": 35000,
+    "created": "2022-06-21T02:13:58.201Z",
+    "modified": "2022-06-21T02:33:01.042Z",
     "headers": [],
     "params": [],
-    "auth": {
-      "type": "bearer",
-      "bearer": "{{user-token}}"
-    },
     "tests": []
   }
 ]

@@ -3,7 +3,7 @@ import { ListGroup } from "react-bootstrap";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
-const ListadoFallas = () => {
+const ListadoInformes = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
@@ -11,38 +11,41 @@ const ListadoFallas = () => {
   }, []);
 
   const cargarListado = () => {
-    actions.listarFallas();
+    actions.listarInformes();
   };
 
-  console.log(store.fallas);
+  console.log(store.informes);
   //console.log(lista);
   return (
     <div className="mainMargin">
-      <h2>Listado de Fallas</h2>
+      <h2>Listado de Informes</h2>
 
       <ListGroup as="ul">
-        {store.fallas.map((falla, index) => (
+        {store.informes.map((informe, index) => (
           <Link
-            to={`/falla/${falla.id}`}
+            to={`/detalle_informe/${informe.id}`}
             style={{ textDecoration: "none" }}
             key={index}
           >
             <ListGroup.Item as="li" className="activation">
               <div className="paralelo">
-                <h4>{falla.titulo}</h4>
+                <h6>
+                  <strong>Falla No. {informe.falla_id}:</strong>{" "}
+                  {informe.falla_titulo}
+                </h6>
 
-                <p>{falla.fecha_creacion}</p>
+                <p>
+                  <strong>Fecha del informe:</strong> {informe.fecha_creacion}
+                </p>
               </div>
-
-              <p>{falla.descripcion}</p>
 
               <div className="paralelo">
                 <p>
-                  <strong>Publicado por: </strong>
-                  {falla.user_nombre} {falla.user_apellido}
+                  <strong>Cliente: </strong>
+                  {informe.cliente_nombre} {informe.cliente_apellido}
                 </p>
                 <p>
-                  <strong>{falla.ubicacion}</strong>
+                  <strong>${informe.importe}</strong>
                 </p>
               </div>
             </ListGroup.Item>
@@ -53,4 +56,4 @@ const ListadoFallas = () => {
   );
 };
 
-export default ListadoFallas;
+export default ListadoInformes;

@@ -116,37 +116,32 @@ export const Profile = () => {
               <Accordion.Item eventKey="1">
                 <Accordion.Header>Fails </Accordion.Header>
                 <Accordion.Body>
-
-                 <ListGroup as="ul">
-                      {store.fallas.map((falla, index) => (
-                  <Link
-                          to={`/falla/${falla.id}`}
-                          style={{ textDecoration: "none" }}
-                          key={index}
-                        >   
-
-                   <ListGroup.Item>
-                     <div className="paralelo">
-                       <footer className="blockquote-footer">
-                       {falla.id}
-                       </footer>                       
-                       <footer className="blockquote-footer">
-                       {falla.fecha_creacion}
-                       </footer>
-                       <footer className="blockquote-footer">
-                        ubicacion: {falla.ubicacion}
-                       </footer>
-                     </div>
-                     <blockquote className="blockquote mb-0">
-                       <cite title="Source Title">
-                       {falla.titulo}
-                       </cite>
-                     </blockquote>
-                   </ListGroup.Item>
-                  </Link>
-                  ))}
-               </ListGroup>
-
+                  <ListGroup as="ul">
+                    {store.fallas.map((falla, index) => (
+                      <Link
+                        to={`/falla/${falla.id}`}
+                        style={{ textDecoration: "none" }}
+                        key={index}
+                      >
+                        <ListGroup.Item>
+                          <div className="paralelo">
+                            <footer className="blockquote-footer">
+                              {falla.id}
+                            </footer>
+                            <footer className="blockquote-footer">
+                              {falla.fecha_creacion}
+                            </footer>
+                            <footer className="blockquote-footer">
+                              ubicacion: {falla.ubicacion}
+                            </footer>
+                          </div>
+                          <blockquote className="blockquote mb-0">
+                            <cite title="Source Title">{falla.titulo}</cite>
+                          </blockquote>
+                        </ListGroup.Item>
+                      </Link>
+                    ))}
+                  </ListGroup>
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>

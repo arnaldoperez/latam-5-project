@@ -12,6 +12,7 @@ def listado_fallas():
 @api.route('/falla/<int:falla_id>/', methods=['GET'])
 def falla(falla_id):
     falla = Falla.query.get_or_404(falla_id)
+    #prueba = "valor"
     return jsonify(falla.serialize())
 
 @api.route('/falla', methods=['POST']) #ENDPOINT DE REGISTRAR
