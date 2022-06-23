@@ -25,12 +25,15 @@ function ProfileTecnico() {
   function cargarDatos(id) {
     actions.listarPropuestasTecnico(id);
     actions.tecnicoDetalle(id);
+    actions.listarInformes();
   }
 
   const datos = store.propuestas_tecnico;
   console.log(datos);
   const detalle = store.detalle_tecnico;
   console.log(detalle);
+  const informes = store.informes;
+  console.log(informes);
 
   return (
     <div className="mainMargin">
@@ -111,9 +114,9 @@ function ProfileTecnico() {
             </ListGroup>
             <h6 className="labelProfile">Informes Realizados</h6>
             <ListGroup>
-              {datos.map((dato, index) => (
+              {informes.map((dato, index) => (
                 <Link
-                  to={`/propuesta/${dato.id}`}
+                  to={`/detalle_informe/${dato.id}`}
                   style={{ textDecoration: "none" }}
                   key={index}
                 >
