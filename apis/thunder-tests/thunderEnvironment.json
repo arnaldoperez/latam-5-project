@@ -5,11 +5,11 @@
     "default": true,
     "sortNum": 5000,
     "created": "2022-05-28T00:54:58.513Z",
-    "modified": "2022-06-21T03:29:28.607Z",
+    "modified": "2022-06-23T06:49:02.982Z",
     "data": [
       {
         "name": "url",
-        "value": "https://3001-arnaldopere-latam5proje-rjlvzy4dwab.ws-us47.gitpod.io/api"
+        "value": "https://3001-arnaldopere-latam5proje-71ayra9ivye.ws-us47.gitpod.io/api"
       },
       {
         "name": "id_usr_1",
@@ -21,11 +21,7 @@
       },
       {
         "name": "user-token",
-        "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1NTc3MjMyNiwianRpIjoiZmNjZjZiNDctYTBjMC00ODIyLTk5YWEtNTkyMzdmYTliNTM5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjU1NzcyMzI2LCJleHAiOjE2NTU3NzMyMjYsImlkVGVjbmljbyI6MH0.HjvOnTLQmX7wEoo0t26MYHWVZm3HqP_XgRjhMT3IDLE"
-      },
-      {
-        "name": "tecnico-token",
-        "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1NTc4MjE2OCwianRpIjoiOGRiOGQ5N2EtNjEzNy00N2MwLWIzODUtNDFhOGM5Y2RiNTQxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNjU1NzgyMTY4LCJleHAiOjE2NTU3ODMwNjgsImlkVGVjbmljbyI6Mn0.zlMy1W8Qr3QoctBUawiYQCcpS5-n5g86p8U2DHJZK2s"
+        "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1NTk2Njk0MiwianRpIjoiYmY1ZWU3OTAtODZiZS00ZTRiLTkwZWEtN2RhOTYwNzRkOGU4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNjU1OTY2OTQyLCJleHAiOjE2NTU5Njc4NDIsImlkVGVjbmljbyI6M30.JWMtmEUe0w6f3XoBrxqCbi26fXmaQxVkEDG9VWPboOA"
       }
     ]
   }
