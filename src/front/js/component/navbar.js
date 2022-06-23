@@ -29,7 +29,7 @@ export const Navbar = () => {
         <div className="container navbar-nav justify-content-between">
           <Link to="/tecnicos">
             <button className="btn btn-primary mx-2 nav-item">
-              SignUp Technician
+              Registro Técnico
             </button>
           </Link>
           <Link to="/falla">
@@ -43,14 +43,16 @@ export const Navbar = () => {
             </button>
           </Link>
           <Link to="/">
-            <span className="btn btn-primary mx-2 nav-item">My Reports</span>
+            <span className="btn btn-primary mx-2 nav-item">Mi perfil</span>
           </Link>
           <Link to="/calificaciones">Link</Link>
           <Link to="/propuestas">
-            <span className="btn btn-primary mx-2 nav-item">My proporsals</span>
+            <span className="btn btn-primary mx-2 nav-item">
+              Mis propuestas
+            </span>
           </Link>
           <Link to="/logout">
-            <button className="btn btn-primary nav-item">Logout</button>
+            <button className="btn btn-primary nav-item">Cerrar sesión</button>
           </Link>
         </div>
       </div>

@@ -14,27 +14,27 @@ export const Landing = () => {
     <div className="container-fluid row">
       <div className="row bg pageholder">
         <div className="col-md-5 p-lg-5 mx-auto my-5">
-          <h1 className="display-4 bold card">Dr. Motor</h1>
+          <h1 className="display-4 bold card">TallerApp</h1>
           <p className="lead bold card">
-            We will introduce you the right person to repair your vehicles. You
-            can visit the workshop o the workshop can visit you. Know the
-            reputation from your handyman. We are the biggest community for
-            mechanical services. Already registered? Sign in
+            Vamos a presentarte la persona indicada para reparar tus vehiculos.
+            Podrás visitar su taller o el mecánico visitará tu domicilio. Somos
+            la comunidad mas grande para servicios mecanicos. ¿Ya estás
+            registrado? Inicia sesión!
           </p>
           <a className="btn btn-primary" href="/login">
-            Login
+            Iniciar Sesión
           </a>
         </div>
         <div className="col-md-5 p-lg-5 mx-auto my-5">
-          <h1 className="display-4 bold card">About Us</h1>
+          <h1 className="display-4 bold card">Acerca de nosotros</h1>
           <p className="lead bold card">
-            Report damage to your vehicules, recieve repair propolsals, meet the
-            proper handyman for you! Rate the service recieved and know other
-            users experience with your technician. Register and start using for
-            free!
+            Reporta fallas en tus vehiculos, recibe propuestas de reparación,
+            conoce el mecánico adecuado para ti! Califica el servicio recibido y
+            conoce sobre la experiencia de otros clientes con tu mecánico.
+            Registrate y empieza a utilizar la App totalmente gratis!
           </p>
           <a className="btn btn-primary" href="/signup">
-            Sign Up
+            Registrarse
           </a>
         </div>
         <div className="row logo"></div>
