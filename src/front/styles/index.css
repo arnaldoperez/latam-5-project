@@ -5,6 +5,11 @@ body {
   font-family: "Proxima Nova", -apple-system, "Helvetica Neue", Helvetica,
     Roboto, Arial, sans-serif;
 }
+.labelProfile {
+  font-weight: 700;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
 label {
   font-weight: 700;
 }

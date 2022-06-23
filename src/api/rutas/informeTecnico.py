@@ -16,6 +16,7 @@ def crear_informe_tecnico():
         return "Acceso no autorizado", 403
     print(idTecnico)
     #print(request.form)
+    usuario_id = get_jwt_identity()
     fecha_creacion = datetime.datetime.now()    
     recomendacion=request.form['recomendacion']
     comentario_servicio=request.form['comentario']
@@ -25,7 +26,7 @@ def crear_informe_tecnico():
     estado="open"
     
     # Creamos el objeto del informe tecnico para la BD y lo guardamos
-    newInforme= InformeTecnico(fecha_creacion=fecha_creacion,comentario_servicio=comentario_servicio,recomendacion=recomendacion,usuario_id=idTecnico, falla_id=falla_id,importe=importe,estado=estado)
+    newInforme= InformeTecnico(fecha_creacion=fecha_creacion,comentario_servicio=comentario_servicio,recomendacion=recomendacion,usuario_id=usuario_id, falla_id=falla_id,importe=importe,estado=estado)
     print(newInforme)
     db.session.add(newInforme)
     db.session.flush()
@@ -58,12 +59,14 @@ def crear_informe_tecnico():
     return jsonify(response_body), 201
 
 @api.route('/informes', methods=['GET'])
+@jwt_required()
 def listar_informes():
     informes = InformeTecnico.query.all()
     informes = list(map(lambda informe: informe.serialize(), informes ))
     return jsonify(informes)
 
 @api.route('/informe/<int:informe_id>', methods=['GET'])
+@jwt_required()
 def mostrar_informe(informe_id):
     informe = InformeTecnico.query.get_or_404(informe_id)
     imagen=Imagenes.query.filter(Imagenes.id==informe.imagen_id).first()
@@ -76,3 +79,12 @@ def mostrar_informe(informe_id):
         # Allow GET requests using this URL.
         method="GET")
     return jsonify(respuesta)
+
+
+'''@api.route('/propuestas', methods=['GET'])
+@jwt_required()
+def listado_propuestas():
+id_user=get_jwt_identity()
+propuestas = Falla.query.filter(Falla.id_cliente==id_user).filter(Falla.id==Propuesta.id_falla).all() #propuestas asociadas a la falla de mi usuario
+propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))
+return jsonify(propuestas)'''

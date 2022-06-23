@@ -23,3 +23,10 @@ def create_tecnico():
         "message": "usuario creado exitosamente"
     }
     return jsonify(response_body), 200
+
+
+@api.route('/tecnico/<int:tecnico_id>', methods=['GET'])
+@jwt_required()
+def mostrar_tecnico(tecnico_id):
+    tecnico = Perfil_tecnico.query.get_or_404(tecnico_id)
+    return jsonify(tecnico.serialize())
