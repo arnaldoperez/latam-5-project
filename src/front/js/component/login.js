@@ -17,8 +17,16 @@ export const Login = () => {
     let email = data.get("email");
     let password = data.get("password");
 
-    actions.login(email, password);
-    history.push("");
+    actions.login(email, password).then((resp) => {
+      if (resp.code !== 200) {
+        return (
+          <div class="alert alert-danger" role="alert">
+            Usuario o contraseña incorrecta
+          </div>
+        );
+      }
+      history.push("");
+    });
   }
   useEffect(() => {}, [store.token]);
   return (
@@ -66,11 +74,6 @@ export const Login = () => {
                 Login
               </button>
             </div>
-            <p className="text-center">
-              <a href="#" className="btn">
-                Forgot password?
-              </a>
-            </p>
           </form>
         </article>
       </div>
