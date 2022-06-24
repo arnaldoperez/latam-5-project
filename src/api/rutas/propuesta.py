@@ -89,3 +89,30 @@ def listar_propuestas_user(tecnico_id):
 def mostrar_propuesta(id):
     propuesta = Propuesta.query.get_or_404(id)
     return jsonify(propuesta.serialize())
+
+
+@api.route('/propuestas_aprobadas/<int:tecnico_id>', methods=['GET'])
+@jwt_required()
+def propuestas_aprobadas(tecnico_id):
+    print(tecnico_id)
+    token=get_jwt()
+    idTecnico=token['idTecnico']
+    print(idTecnico)
+    if(idTecnico==0):
+        return "Acceso no autorizado", 403
+    propuestas = Propuesta.query.filter(Propuesta.id_tecnico==tecnico_id).filter(Propuesta.estado=="aceptada") #propuestas asociadas a la falla de mi usuario
+    propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))
+    return jsonify(propuestas)
+
+@api.route('/propuestas_no_aceptadas/<int:tecnico_id>', methods=['GET'])
+@jwt_required()
+def propuestas_no_aceptadas(tecnico_id):
+    print(tecnico_id)
+    token=get_jwt()
+    idTecnico=token['idTecnico']
+    print(idTecnico)
+    if(idTecnico==0):
+        return "Acceso no autorizado", 403
+    propuestas = Propuesta.query.filter(Propuesta.id_tecnico==tecnico_id).filter(Propuesta.estado=="No aceptada") #propuestas asociadas a la falla de mi usuario
+    propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))
+    return jsonify(propuestas)
