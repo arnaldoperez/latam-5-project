@@ -23,11 +23,12 @@ export const Navbarr = () => {
               <Link to="/">
                 <span className="btn btn-primary mx-2 nav-item">Mi perfil</span>
               </Link>
-              <Nav.Link to="/propuestas">
+              <Link to="/propuestas">
                 <span className="btn btn-primary mx-2 nav-item">
                   Mis propuestas
                 </span>
-              </Nav.Link>
+              </Link>
+              <Link to="/calificaciones"><span className="btn btn-primary mx-2 nav-item">calificaciones</span></Link>
               <Link to="/logout">
                 <button className="btn btn-primary nav-item">
                   Cerrar sesión

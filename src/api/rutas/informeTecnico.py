@@ -1,6 +1,6 @@
 from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt
 from ..routes import app, api, bcrypt, request, jsonify
-from ..modelos import InformeTecnico, Imagenes
+from ..modelos import InformeTecnico, Imagenes, Falla, Propuesta
 import datetime 
 import tempfile
 from firebase_admin import storage
@@ -88,3 +88,30 @@ id_user=get_jwt_identity()
 propuestas = Falla.query.filter(Falla.id_cliente==id_user).filter(Falla.id==Propuesta.id_falla).all() #propuestas asociadas a la falla de mi usuario
 propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))
 return jsonify(propuestas)'''
+
+@api.route('/informeUser', methods=['GET'])
+@jwt_required()
+def listado_informes_user():
+    id_user=get_jwt_identity()
+    id_fallas = Falla.query.filter(Falla.id_cliente==id_user).filter(Falla.id==Propuesta.id_falla).all() #Fallas asociadas a mi usuario
+    id_fallas=list(map(lambda falla: falla.id, id_fallas))    
+    #propuestastodos = Propuesta.query.all()
+    #propuestastodos =list(map(lambda propuesta: propuesta.serialize(), propuestastodos ))
+    #propuestas_user=[]
+    #for propuest in propuestastodos:
+        #for index in id_fallas:
+            #if(propuest["id_falla"]==index):
+                #propuestas_user.append(propuest)        
+                #propuestas_user.append(propuest)  
+    #propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))#me trajo fue las fallas asocidas a mi usuario
+    
+    #propuestas_user=list(map(lambda propuesta: propuesta["id"], propuestas_user))#aca tengo los ids de las propuestas asociadas a las fallas de mi usuario
+    informes_todos=InformeTecnico.query.all() #aca tengo todos los informes creados
+    informes_todos =list(map(lambda informe: informe.serialize(), informes_todos ))    
+    informes=[]    
+    for informe in informes_todos:
+        for index in id_fallas:
+            if (informe["falla_id"]==index):
+                informes.append(informe)
+
+    return jsonify(informes)

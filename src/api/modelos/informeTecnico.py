@@ -12,6 +12,8 @@ class InformeTecnico(db.Model):
     estado = db.Column(db.String(40), nullable=False)
     imagen_id = db.Column(db.Integer, db.ForeignKey('imagenes.id'), nullable=True)
     
+    def __repr__(self):
+        return f'<InformeTecnico {self.id}>'
 
     def serialize(self):
         return {

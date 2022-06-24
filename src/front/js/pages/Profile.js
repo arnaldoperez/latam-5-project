@@ -29,6 +29,7 @@ export const Profile = () => {
     let id_tecnico = data.get("id_tecnico"); //lo estoy sacando directamente de mi form.Control name="email"
     return actions.listarCalificacionesTecnico(id_tecnico);
   }
+  
 
   function media(list) {
     var suma = 0;
@@ -45,10 +46,15 @@ export const Profile = () => {
   }
   media(store.historialTecnico);
   
+  
   /*useEffect(() => {
     cargarListado();
   }, []);
 
+function profile() {   
+    let id_tecnico = 1
+    return actions.listarCalificacionesTecnico(2);
+  }
   const cargarListado = () => {
     actions.listarCalificacionesTodos();
   };*/
@@ -123,7 +129,7 @@ export const Profile = () => {
                       </blockquote>
                       <Button variant="secondary">Accept</Button>
                       <Button variant="primary">Decline</Button>
-                      <Button variant="success" onclick="cargarListadoCalificaciones()">score</Button>
+                      <Button className="btn btn-success" >score</Button>
                     </ListGroup.Item>
                   ))}
                 </div>
@@ -184,6 +190,7 @@ export const Profile = () => {
         {/*ACA EMPIEZA LA COLUMNA 3 */}
         <Col>
           <Form onSubmit={profile}>
+         
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Control
                 type="integer"
@@ -203,9 +210,7 @@ export const Profile = () => {
               </Card.Title>
               <Card.Text>
                 Promedio de calificaciones recibidas por el taller.{" "}
-                {store.historialTecnico.map((calificacion, index) => (
-                  <strong key={{ index }}>{calificacion.calificacion}</strong>
-                ))}
+                
               </Card.Text>
             </Card.Body>
           </Card>
