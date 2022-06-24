@@ -7,15 +7,7 @@ const FormCrearFallas = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [isSelected, setIsSelected] = useState(false);
   const { store, actions } = useContext(Context);
-  const [validated, setValidated] = useState(false);
 
-  let param = useParams();
-  param = parseInt(param.id);
-
-  const location = useLocation();
-  const { idFalla, tituloFalla, modeloFalla } = location.state;
-  let idDetalle = idFalla;
-  console.log(typeof idDetalle);
   const navigate = useHistory();
   useEffect(() => {}, []);
 
@@ -64,7 +56,7 @@ const FormCrearFallas = () => {
 
   return (
     <div className="mainMargin">
-      <h2>Informe Técnico</h2>
+      <h2>Registrar Falla</h2>
       <Form noValidate validated={validated} onSubmit={grabarInforme}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>
