@@ -64,7 +64,7 @@
     "method": "GET",
     "sortNum": 40000,
     "created": "2022-05-30T23:40:23.606Z",
-    "modified": "2022-06-24T04:59:30.669Z",
+    "modified": "2022-06-24T04:58:01.095Z",
     "headers": [],
     "params": [],
     "auth": {
@@ -386,12 +386,12 @@
     "method": "POST",
     "sortNum": 8750,
     "created": "2022-06-12T02:31:30.867Z",
-    "modified": "2022-06-24T05:00:55.236Z",
+    "modified": "2022-06-24T04:50:13.067Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"user3@4geeks.com\",\n    \"password\":\"123\"\n}",
+      "raw": "{\n    \"email\":\"tecnico@4geeks.com\",\n    \"password\":\"123\"\n}",
       "form": []
     },
     "auth": {

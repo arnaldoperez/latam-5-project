@@ -36,8 +36,8 @@ const DetallePropuesta = () => {
   }
 
   const datos = store.detalle;
-
   console.log(datos);
+  console.log(datos.propuestas);
 
   function grabarPropuesta(event) {
     event.preventDefault();
@@ -133,7 +133,7 @@ const DetallePropuesta = () => {
         <Row>
           <Col sm={4}>
             <Card>
-              <Card.Img variant="top" src="https://picsum.photos/250/200" />
+              <Card.Img variant="top" src={datos.imagen} />
               <Card.Body>
                 <Card.Text>
                   <strong>Publicado por: </strong>
@@ -150,17 +150,21 @@ const DetallePropuesta = () => {
                 <Button variant="danger" onClick={handleShow}>
                   Reportar
                 </Button>
-                <Link
-                  className="btn btn-success"
-                  to={{
-                    pathname: "/detalle_informe",
-                    state: {
-                      idFalla: datos.id,
-                    },
-                  }}
-                >
-                  Ver Informe Técnico
-                </Link>
+                {datos.estado == "Sin informe" ? (
+                  <Link
+                    className="btn btn-success"
+                    to={{
+                      pathname: "/detalle_informe",
+                      state: {
+                        idFalla: datos.id,
+                      },
+                    }}
+                  >
+                    Ver Informe Técnico
+                  </Link>
+                ) : (
+                  ""
+                )}
               </Card.Body>
             </Card>
           </Col>
@@ -198,6 +202,8 @@ const DetallePropuesta = () => {
                           idFalla: datos.id,
                           tituloFalla: datos.titulo,
                           modeloFalla: datos.modelo,
+                          nombreCliente: datos.user_nombre,
+                          apellidoCliente: datos.user_apellido,
                         },
                       }}
                     >

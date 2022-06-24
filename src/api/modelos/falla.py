@@ -29,7 +29,7 @@ class Falla(db.Model):
             "usuario" : self.id_cliente,
             "imagen" : self.imagen_id,
             "user_nombre" : self.user.nombre,
-            "user_apellido": self.user.apellido
+            "user_apellido": self.user.apellido,
             }
             
     def propuestas(self):
