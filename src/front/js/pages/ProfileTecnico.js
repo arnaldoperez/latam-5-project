@@ -26,12 +26,14 @@ function ProfileTecnico() {
     actions.propuestas_no_aceptadas(id);
     actions.propuestas_aprobadas(id);
     actions.listar_informes_user(id);
+    actions.tecnicoDetalle(id);
   }
 
   const aprobadas = store.propuestas_aprobadas;
   const no_aprobadas = store.propuestas_no_aceptadas;
   const informes = store.listar_informes_user;
-  const detalle = store.detalle;
+  const detalle = store.detalle_tecnico;
+  console.log(detalle);
 
   return (
     <div className="mainMargin">
@@ -92,7 +94,7 @@ function ProfileTecnico() {
                     key={index}
                   >
                     <ListGroup.Item className="activation">
-                      {index + 1}. <strong>Propuesta Falla: </strong>
+                      {index + 1}. Propuesta Falla:
                       {dato.falla_titulo} <strong>Cliente:</strong>{" "}
                       {dato.cliente_nombre} {dato.cliente_apellido}
                     </ListGroup.Item>
@@ -112,7 +114,7 @@ function ProfileTecnico() {
                     key={index}
                   >
                     <ListGroup.Item className="activation">
-                      {index + 1}. <strong>Propuesta Falla: </strong>
+                      {index + 1}. Propuesta Falla:
                       {dato.falla_titulo} <strong>Cliente:</strong>{" "}
                       {dato.cliente_nombre} {dato.cliente_apellido}
                     </ListGroup.Item>
@@ -132,7 +134,7 @@ function ProfileTecnico() {
                     key={index}
                   >
                     <ListGroup.Item className="activation">
-                      {index + 1}. <strong>Informe Falla: </strong>
+                      {index + 1}. Informe Falla:
                       {dato.falla_titulo} <strong>Cliente:</strong>{" "}
                       {dato.cliente_nombre} {dato.cliente_apellido}
                     </ListGroup.Item>

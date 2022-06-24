@@ -81,3 +81,9 @@ def listado_fallas_user():
     fallas_user = list(map(lambda propuesta: propuesta.serialize(), fallas_user ))#me trajo fue las fallas asocidas a mi usuario
     return jsonify(fallas_user)
 
+@api.route('/listarFallasAbiertas', methods=['GET'])
+@jwt_required()
+def listarFallasAbiertas():
+    fallas = Falla.query.filter(Falla.estado=="abierta").all() 
+    fallas = list(map(lambda falla: falla.serialize(), fallas ))
+    return jsonify(fallas)

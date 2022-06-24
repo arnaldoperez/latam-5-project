@@ -7,22 +7,24 @@ const ListadoPropuestas = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    cargarListado();
+    cargarListado(store.id_tecnico);
   }, []);
 
-  const cargarListado = () => {
-    actions.listarPropuestasTecnico();
+  const cargarListado = (id) => {
+    actions.listarPropuestasTecnico(id);
   };
+
+  const listarPropuestasTecnico = store.listarPropuestasTecnico;
 
   return (
     <div className="mainMargin">
       <h2>Listado de Propuestas</h2>
 
       <ListGroup as="ul">
-        {store.propuestas_tecnico.length == 0 ? (
+        {store.listarPropuestasTecnico.length == 0 ? (
           <h4>Aún no ha presentado Propuestas</h4>
         ) : (
-          store.propuestas_tecnico.map((dato, index) => (
+          store.listarPropuestasTecnico.map((dato, index) => (
             <Link
               to={`/propuesta/${dato.id}`}
               style={{ textDecoration: "none" }}

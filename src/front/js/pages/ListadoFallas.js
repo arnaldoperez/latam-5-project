@@ -11,15 +11,17 @@ const ListadoFallas = () => {
   }, []);
 
   const cargarListado = () => {
-    actions.listarFallas();
+    actions.listarFallasAbiertas();
   };
+
+  const fallas = store.listarFallasAbiertas;
 
   return (
     <div className="mainMargin">
       <h2>Listado de Fallas</h2>
 
       <ListGroup as="ul">
-        {store.fallas.map((falla, index) => (
+        {fallas.map((falla, index) => (
           <Link
             to={`/falla/${falla.id}`}
             style={{ textDecoration: "none" }}
@@ -29,7 +31,9 @@ const ListadoFallas = () => {
               <div className="paralelo">
                 <h4>{falla.titulo}</h4>
 
-                <p>{falla.fecha_creacion}</p>
+                <p>
+                  {falla.fecha_creacion} <strong>Estado:</strong> {falla.estado}
+                </p>
               </div>
 
               <p>{falla.descripcion}</p>

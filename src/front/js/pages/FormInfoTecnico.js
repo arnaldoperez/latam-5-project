@@ -52,7 +52,7 @@ const FormInfoTecnico = () => {
       )
       .then((resp) => {
         //evalua la respuesta en sus dos casos
-        if (resp.code == 201) navigate.push("/falla/" + idFalla);
+        if (resp.code == 201) navigate.push("/perfil_tecnico");
         //caso exitoso
         else console.log("Problema en el registro del informe: ", resp);
       })
