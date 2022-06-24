@@ -52,14 +52,14 @@ const DetallePropuesta = () => {
     // capturo los valores que el usuario ingreso en el formulario
     let detalle = data.get("detalle"); //lo estoy sacando directamente de mi form.Control name="email"
     let costo_servicio = data.get("costo_servicio"); //lo estoy sacando directamente de mi form.Control name="password"
-    let estado = "open";
+    let estado = "No aceptada";
     let id_falla = datos.id;
 
     actions
       .grabarPropuesta(detalle, costo_servicio, estado, id_falla)
       .then((resp) => {
         //evalua la respuesta en sus dos casos
-        if (resp.code == 201) setModalShow(false);
+        if (resp.code == 201) navigate.push("/perfil_tecnico");
         else {
           //caso exitoso
           console.log("Problema en el registro de la propuesta: ", resp);
@@ -147,9 +147,7 @@ const DetallePropuesta = () => {
                   <strong>Estado: </strong>
                   {datos.estado}
                 </Card.Text>
-                <Button variant="danger" onClick={handleShow}>
-                  Reportar
-                </Button>
+
                 {datos.estado == "Sin informe" ? (
                   <Link
                     className="btn btn-success"
@@ -194,21 +192,6 @@ const DetallePropuesta = () => {
                     >
                       Crear Propuesta
                     </Button>{" "}
-                    <Link
-                      className="btn btn-primary"
-                      to={{
-                        pathname: "/crear_informe",
-                        state: {
-                          idFalla: datos.id,
-                          tituloFalla: datos.titulo,
-                          modeloFalla: datos.modelo,
-                          nombreCliente: datos.user_nombre,
-                          apellidoCliente: datos.user_apellido,
-                        },
-                      }}
-                    >
-                      Crear Informe
-                    </Link>
                   </>
                 ) : (
                   ""

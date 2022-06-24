@@ -14,8 +14,6 @@ const ListadoFallas = () => {
     actions.listarFallas();
   };
 
-  console.log(store.fallas);
-  //console.log(lista);
   return (
     <div className="mainMargin">
       <h2>Listado de Fallas</h2>

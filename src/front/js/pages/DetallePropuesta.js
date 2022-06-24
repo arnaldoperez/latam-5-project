@@ -18,7 +18,6 @@ function DetallePropuesta() {
   }
 
   const datos = store.detalle_propuesta;
-  console.log(datos);
 
   return (
     <div className="mainMargin">
@@ -60,7 +59,41 @@ function DetallePropuesta() {
             </p>
           </div>
         </Card.Body>
-        <Card.Footer className="text-muted"></Card.Footer>
+        <Card.Footer className="text-muted">
+          {datos.estado == "aceptada" ? (
+            <Link
+              className="btn btn-primary"
+              to={{
+                pathname: "/crear_informe",
+                state: {
+                  idFalla: datos.id_falla,
+                  tituloFalla: datos.falla_titulo,
+                  modeloFalla: datos.falla_modelo,
+                  nombreCliente: datos.cliente_nombre,
+                  apellidoCliente: datos.cliente_apellido,
+                },
+              }}
+            >
+              Crear Informe
+            </Link>
+          ) : (
+            <Link
+              className="btn btn-primary disabled"
+              to={{
+                pathname: "/crear_informe",
+                state: {
+                  idFalla: datos.id_falla,
+                  tituloFalla: datos.falla_titulo,
+                  modeloFalla: datos.falla_modelo,
+                  nombreCliente: datos.cliente_nombre,
+                  apellidoCliente: datos.cliente_apellido,
+                },
+              }}
+            >
+              Crear Informe
+            </Link>
+          )}
+        </Card.Footer>
       </Card>
     </div>
   );

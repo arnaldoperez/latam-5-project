@@ -11,42 +11,32 @@ const ListadoPropuestas = () => {
   }, []);
 
   const cargarListado = () => {
-    actions.listarPropuestas();
+    actions.listarPropuestasTecnico();
   };
 
-  console.log(store.propuestas);
-  //console.log(lista);
   return (
     <div className="mainMargin">
       <h2>Listado de Propuestas</h2>
 
       <ListGroup as="ul">
-        {store.propuestas.map((propuesta, index) => (
-         
-          <ListGroup.Item as="li" className="activation" key={index}>
-            <div className="paralelo">
-              <h4>{propuesta.falla_titulo}</h4>
-
-              <p>${propuesta.costo_servicio}</p>
-            </div>
-
-            <p>{propuesta.detalle}</p>
-
-            <div className="paralelo">
-              <p>
-                <strong>Tecnico proponente:</strong>{" "}
-                {propuesta.tecnico_user_nombre}{" "}
-                {propuesta.tecnico_user_apellido}
-              </p>
-              <p>
-                <strong>{propuesta.estado}</strong>
-              </p>
-            </div>
-          </ListGroup.Item>
-         
-        ))}
+        {store.propuestas_tecnico.length == 0 ? (
+          <h4>Aún no ha presentado Propuestas</h4>
+        ) : (
+          store.propuestas_tecnico.map((dato, index) => (
+            <Link
+              to={`/propuesta/${dato.id}`}
+              style={{ textDecoration: "none" }}
+              key={index}
+            >
+              <ListGroup.Item className="activation">
+                {index + 1}. {dato.falla_titulo} <strong>Cliente:</strong>{" "}
+                {dato.cliente_nombre} {dato.cliente_apellido}{" "}
+                <strong>Estado:</strong> {dato.estado}
+              </ListGroup.Item>
+            </Link>
+          ))
+        )}
       </ListGroup>
-      
     </div>
   );
 };

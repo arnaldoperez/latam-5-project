@@ -23,17 +23,15 @@ function ProfileTecnico() {
   }, []);
 
   function cargarDatos(id) {
-    actions.listarPropuestasTecnico(id);
-    actions.tecnicoDetalle(id);
-    actions.listarInformes();
+    actions.propuestas_no_aceptadas(id);
+    actions.propuestas_aprobadas(id);
+    actions.listar_informes_user(id);
   }
 
-  const datos = store.propuestas_tecnico;
-  console.log(datos);
-  const detalle = store.detalle_tecnico;
-  console.log(detalle);
-  const informes = store.informes;
-  console.log(informes);
+  const aprobadas = store.propuestas_aprobadas;
+  const no_aprobadas = store.propuestas_no_aceptadas;
+  const informes = store.listar_informes_user;
+  const detalle = store.detalle;
 
   return (
     <div className="mainMargin">
@@ -84,48 +82,63 @@ function ProfileTecnico() {
             <h4>Mis Actividades</h4>
             <h6 className="labelProfile">Propuestas Aprobadas</h6>
             <ListGroup>
-              {datos.map((dato, index) => (
-                <Link
-                  to={`/propuesta/${dato.id}`}
-                  style={{ textDecoration: "none" }}
-                  key={index}
-                >
-                  <ListGroup.Item className="activation">
-                    {index + 1}. {dato.falla_titulo} <strong>Cliente:</strong>{" "}
-                    {dato.cliente_nombre} {dato.cliente_apellido}
-                  </ListGroup.Item>
-                </Link>
-              ))}
+              {aprobadas.length == 0 ? (
+                <p>No mantienes Propuestas aceptadas</p>
+              ) : (
+                aprobadas.map((dato, index) => (
+                  <Link
+                    to={`/propuesta/${dato.id}`}
+                    style={{ textDecoration: "none" }}
+                    key={index}
+                  >
+                    <ListGroup.Item className="activation">
+                      {index + 1}. <strong>Propuesta Falla: </strong>
+                      {dato.falla_titulo} <strong>Cliente:</strong>{" "}
+                      {dato.cliente_nombre} {dato.cliente_apellido}
+                    </ListGroup.Item>
+                  </Link>
+                ))
+              )}
             </ListGroup>
             <h6 className="labelProfile">Propuestas Pendientes</h6>
             <ListGroup>
-              {datos.map((dato, index) => (
-                <Link
-                  to={`/propuesta/${dato.id}`}
-                  style={{ textDecoration: "none" }}
-                  key={index}
-                >
-                  <ListGroup.Item className="activation">
-                    {index + 1}. {dato.falla_titulo} <strong>Cliente:</strong>{" "}
-                    {dato.cliente_nombre} {dato.cliente_apellido}
-                  </ListGroup.Item>
-                </Link>
-              ))}
+              {no_aprobadas.length == 0 ? (
+                <p>No mantienes Propuestas presentadas</p>
+              ) : (
+                no_aprobadas.map((dato, index) => (
+                  <Link
+                    to={`/propuesta/${dato.id}`}
+                    style={{ textDecoration: "none" }}
+                    key={index}
+                  >
+                    <ListGroup.Item className="activation">
+                      {index + 1}. <strong>Propuesta Falla: </strong>
+                      {dato.falla_titulo} <strong>Cliente:</strong>{" "}
+                      {dato.cliente_nombre} {dato.cliente_apellido}
+                    </ListGroup.Item>
+                  </Link>
+                ))
+              )}
             </ListGroup>
             <h6 className="labelProfile">Informes Realizados</h6>
             <ListGroup>
-              {informes.map((dato, index) => (
-                <Link
-                  to={`/detalle_informe/${dato.id}`}
-                  style={{ textDecoration: "none" }}
-                  key={index}
-                >
-                  <ListGroup.Item className="activation">
-                    {index + 1}. {dato.falla_titulo} <strong>Cliente:</strong>{" "}
-                    {dato.cliente_nombre} {dato.cliente_apellido}
-                  </ListGroup.Item>
-                </Link>
-              ))}
+              {informes.length == 0 ? (
+                <p>No mantienes Informes presentados</p>
+              ) : (
+                informes.map((dato, index) => (
+                  <Link
+                    to={`/detalle_informe/${dato.id}`}
+                    style={{ textDecoration: "none" }}
+                    key={index}
+                  >
+                    <ListGroup.Item className="activation">
+                      {index + 1}. <strong>Informe Falla: </strong>
+                      {dato.falla_titulo} <strong>Cliente:</strong>{" "}
+                      {dato.cliente_nombre} {dato.cliente_apellido}
+                    </ListGroup.Item>
+                  </Link>
+                ))
+              )}
             </ListGroup>
           </Col>
         </Row>

@@ -22,7 +22,7 @@ def crear_informe_tecnico():
     comentario_servicio=request.form['comentario']
     falla_id=request.form['idFalla']
     importe=request.form['importe']
-    estado=request.form['estado']
+    estado="creado"
     imagen=request.files['imagen']
     
     # Creamos el objeto del informe tecnico para la BD y lo guardamos
@@ -88,6 +88,17 @@ id_user=get_jwt_identity()
 propuestas = Falla.query.filter(Falla.id_cliente==id_user).filter(Falla.id==Propuesta.id_falla).all() #propuestas asociadas a la falla de mi usuario
 propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))
 return jsonify(propuestas)'''
+
+
+
+    
+@api.route('/listar_informes_user', methods=['GET'])
+@jwt_required()
+def listar_informes_user():
+    id_user=get_jwt_identity()
+    informes = InformeTecnico.query.filter(InformeTecnico.usuario_id==id_user).all()
+    informes = list(map(lambda informe: informe.serialize(), informes ))
+    return jsonify(informes)
 
 @api.route('/informeUser', methods=['GET'])
 @jwt_required()
