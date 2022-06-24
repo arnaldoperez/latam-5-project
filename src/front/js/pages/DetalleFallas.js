@@ -198,6 +198,8 @@ const DetallePropuesta = () => {
                           idFalla: datos.id,
                           tituloFalla: datos.titulo,
                           modeloFalla: datos.modelo,
+                          nombreCliente: datos.user_nombre,
+                          apellidoCliente: datos.user_apellido,
                         },
                       }}
                     >

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Form, Button, FloatingLabel, InputGroup } from "react-bootstrap";
 import { Context } from "../store/appContext";
-import { Link, useParams, useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const FormCrearFallas = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [isSelected, setIsSelected] = useState(false);
+  const [validated, setValidated] = useState(false);
   const { store, actions } = useContext(Context);
 
   const navigate = useHistory();
@@ -18,7 +19,7 @@ const FormCrearFallas = () => {
     setIsSelected(true);
   };
 
-  function grabarInforme(event) {
+  function grabarFalla(event) {
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -27,28 +28,22 @@ const FormCrearFallas = () => {
     }
     //const imagen = new FormData(event.target.files);
     let data = new FormData(event.target);
-    let comentario_servicio = data.get("comentario");
-    let recomendacion = data.get("recomendacion");
-    let importe = data.get("importe");
+    let titulo = data.get("titulo");
+    let modelo = data.get("modelo");
+    let descripcion = data.get("descripcion");
+    let ubicacion = data.get("ubicacion");
     let imagen = data.get("imagen");
 
-    console.log("id falla", idFalla);
     actions
-      .grabarInforme(
-        idFalla,
-        comentario_servicio,
-        recomendacion,
-        importe,
-        imagen
-      )
+      .grabarFalla(titulo, modelo, descripcion, ubicacion, imagen)
       .then((resp) => {
         //evalua la respuesta en sus dos casos
-        if (resp.code == 201) navigate.push("/falla/" + idFalla);
+        if (resp.code == 201) navigate.push("/");
         //caso exitoso
-        else console.log("Problema en el registro del informe: ", resp);
+        else console.log("Problema en el registro de la falla: ", resp);
       })
       .catch((error) => {
-        console.log("Error en el registro del informe: ", error);
+        console.log("Error en el registro de la falla: ", error);
       });
 
     setValidated(true);
@@ -57,7 +52,7 @@ const FormCrearFallas = () => {
   return (
     <div className="mainMargin">
       <h2>Registrar Falla</h2>
-      <Form noValidate onSubmit={grabarInforme}>
+      <Form noValidate validated={validated} onSubmit={grabarFalla}>
         <Form.Group className="mb-3" controlId="formBasicEmail"></Form.Group>
 
         <Form.Group>
@@ -78,7 +73,7 @@ const FormCrearFallas = () => {
           <Form.Control
             required
             placeholder="Ingrese el modelo del vehículo"
-            name="comentario_servicio"
+            name="modelo"
           />
           <Form.Control.Feedback type="invalid">
             Ingrese el modelo
@@ -91,7 +86,7 @@ const FormCrearFallas = () => {
             required
             as="textarea"
             placeholder="Ingrese la descripción de la falla presentada"
-            name="comentario_servicio"
+            name="descripcion"
           />
           <Form.Control.Feedback type="invalid">
             Ingrese la descripción de su falla
@@ -103,7 +98,7 @@ const FormCrearFallas = () => {
           <Form.Control
             required
             placeholder="Ingrese la dirección"
-            name="comentario_servicio"
+            name="ubicacion"
           />
           <Form.Control.Feedback type="invalid">
             Ingrese su dirección

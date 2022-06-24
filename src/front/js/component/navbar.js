@@ -30,8 +30,13 @@ export const Navbarr = () => {
               </Link>
               <Link to="/calificaciones">
                 <span className="btn btn-primary mx-2 nav-item">
-                  calificaciones
+                  Calificaciones
                 </span>
+              </Link>
+              <Link to="/fallas">
+                <button className="btn btn-primary mx-2 nav-item">
+                  Ver Fallas
+                </button>
               </Link>
               <Link to="/logout">
                 <button className="btn btn-primary nav-item">

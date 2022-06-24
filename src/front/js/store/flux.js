@@ -177,7 +177,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const listado = await res.json();
         const store = getStore();
         setStore({ historialTecnico: listado });
-        console.log(store.historialTecnico)
+        console.log(store.historialTecnico);
         return store.historialTecnico;
       },
       tecnicoDetalle: async (tecnico_id) => {
@@ -379,6 +379,36 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
         //
         return { code: 201, msg: "Propuesta registrada" };
+      },
+      grabarFalla: async (titulo, modelo, descripcion, ubicacion, imagen) => {
+        const store = getStore();
+        //mi peticion es asincrona es decir espera por el resultado
+        var data = new FormData();
+
+        data.append("titulo", titulo);
+        data.append("modelo", modelo);
+        data.append("descripcion", descripcion);
+        data.append("ubicacion", ubicacion);
+        data.append("imagen", imagen);
+
+        const params = {
+          method: "POST", //ingreso el metodo de mi peticion
+          body: data,
+          headers: {
+            Authorization: `Bearer ${store.token}`,
+            "Access-Control-Allow-Origin": "*",
+          },
+        };
+        const resp = await fetch(
+          process.env.BACKEND_URL + "/api/crear_falla",
+          params
+        );
+        console.log(resp.status);
+        if (resp.status !== 201) {
+          return { code: resp.status, msg: resp.statusText };
+        }
+        //
+        return { code: 201, msg: "Falla registrada" };
       },
       detallePropuesta: async (id) => {
         const store = getStore();
