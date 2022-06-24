@@ -7,12 +7,14 @@ from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
-from api.models import db
+from api.db import db
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 import firebase_admin
 from firebase_admin import credentials
+from flask_bcrypt import Bcrypt
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required
 
 #from models import Person
 
@@ -37,6 +39,9 @@ CORS(app)
 
 # add the admin
 setup_admin(app)
+
+app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET_KEY') # Check key at .env
+jwt = JWTManager(app)
 
 # add the admin
 setup_commands(app)
