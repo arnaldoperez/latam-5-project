@@ -504,5 +504,19 @@
       "bearer": "{{user-token}}"
     },
     "tests": []
+  },
+  {
+    "_id": "3b51f291-e3c9-4604-b68a-e7be49ac5c07",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "aceptar Propuesta",
+    "url": "{{url}}/aceptar_propuesta/2",
+    "method": "POST",
+    "sortNum": 160000,
+    "created": "2022-06-24T17:30:18.402Z",
+    "modified": "2022-06-24T19:02:49.257Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
