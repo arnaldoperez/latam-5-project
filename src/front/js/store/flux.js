@@ -360,6 +360,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         data.append("idFalla", idFalla);
         data.append("importe", importe);
         data.append("imagen", imagen);
+        data.append("estado", "abierta");
 
         const params = {
           method: "POST", //ingreso el metodo de mi peticion
@@ -390,6 +391,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         data.append("descripcion", descripcion);
         data.append("ubicacion", ubicacion);
         data.append("imagen", imagen);
+        data.append("estado", "Sin Informe");
 
         const params = {
           method: "POST", //ingreso el metodo de mi peticion

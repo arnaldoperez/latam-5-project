@@ -22,8 +22,8 @@ def crear_informe_tecnico():
     comentario_servicio=request.form['comentario']
     falla_id=request.form['idFalla']
     importe=request.form['importe']
+    estado=request.form['estado']
     imagen=request.files['imagen']
-    estado="open"
     
     # Creamos el objeto del informe tecnico para la BD y lo guardamos
     newInforme= InformeTecnico(fecha_creacion=fecha_creacion,comentario_servicio=comentario_servicio,recomendacion=recomendacion,usuario_id=usuario_id, falla_id=falla_id,importe=importe,estado=estado)

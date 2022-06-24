@@ -1,6 +1,8 @@
 from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt
 from ..routes import app, api, request, jsonify
-from ..modelos import Falla, Propuesta
+from ..modelos import Falla, Propuesta, Imagenes
+import tempfile
+from firebase_admin import storage
 import datetime
 from ..db import db
 
@@ -15,31 +17,33 @@ def listado_fallas():
 @jwt_required()
 def falla(falla_id):
     falla = Falla.query.get_or_404(falla_id)
-    return jsonify(falla.serialize())
+    imagen=Imagenes.query.filter(Imagenes.id==falla.imagen_id).first()
+    bucket=storage.bucket(name="tallerapp-4geeks.appspot.com")
+    blob = bucket.blob(imagen.firebase_id)
+    respuesta=falla.serialize()
+    respuesta["imagen"]=blob.generate_signed_url(version="v4",
+        # This URL is valid for 15 minutes
+        expiration=datetime.timedelta(minutes=15),
+        # Allow GET requests using this URL.
+        method="GET")
+    return jsonify(respuesta)
 
 @api.route('/crear_falla', methods=['POST']) #ENDPOINT DE REGISTRAR
 @jwt_required()
 def crearFalla():
-    usuario_id = get_jwt_identity()
-    titulo = request.json.get("titulo")
-    modelo=request.json.get("modelo")
-    descripcion=request.json.get("descripcion")#capturando la contraseña de mi ususario
-    ubicacion = request.json.get("ubicacion")
+    id_cliente = get_jwt_identity()
+    titulo = request.form['titulo']
+    modelo=request.form['modelo']
+    descripcion=request.form['descripcion']
+    ubicacion = request.form['ubicacion']
     imagen=request.files['imagen']
-    date=datetime.datetime.now()
-    fecha_creacion= date.strftime("%x")
-    fecha_cierre=request.json.get("fecha_cierre")
+    estado=request.form['estado']
+    fecha_creacion= datetime.datetime.now()
     
-    estado = request.json.get("estado")
-    
-    id_cliente = request.json.get("id_cliente")
-   
-    falla_id=request.form['idFalla']
-    importe=request.form['importe']
      # Creamos el objeto del informe tecnico para la BD y lo guardamos
-    newInforme= InformeTecnico(fecha_creacion=fecha_creacion,comentario_servicio=comentario_servicio,recomendacion=recomendacion,usuario_id=usuario_id, falla_id=falla_id,importe=importe,estado=estado)
-    print(newInforme)
-    db.session.add(newInforme)
+    newFalla= Falla(id_cliente=id_cliente,titulo=titulo,modelo=modelo,descripcion=descripcion,ubicacion=ubicacion,estado=estado,fecha_creacion=fecha_creacion)
+    #print(newInforme)
+    db.session.add(newFalla)
     db.session.flush()
 
     # Guardar el archivo recibido en un archivo temporal
@@ -48,7 +52,7 @@ def crearFalla():
     
     # Se genera el nombre del archivo y la extension para poder guardarlo
     extension=imagen.filename.split(".")[1]
-    firebase_id="informe/"+str(newInforme.id)+"."+extension
+    firebase_id="falla/"+str(newFalla.id)+"."+extension
 
     # Subir el archivo a firebase
     bucket=storage.bucket(name="tallerapp-4geeks.appspot.com")
@@ -56,16 +60,16 @@ def crearFalla():
     blob.upload_from_filename(temp.name,content_type="image/"+extension)
 
     # Se guardan los datos de la imagen en la base de datos con el nombre que le corresponde
-    imagenDB=Imagenes(detalle="Informe tecnico " + str(newInforme.id), firebase_id=firebase_id)
+    imagenDB=Imagenes(detalle="Falla " + str(newFalla.id), firebase_id=firebase_id)
     db.session.add(imagenDB)
     db.session.flush()
 
     # Actualizamos el campo imagen del informe, con el id de la imagen que se acaba de guardar
-    newInforme.imagen_id=imagenDB.id
+    newFalla.imagen_id=imagenDB.id
     db.session.commit()
 
     response_body = {
-        "message": "informe creado exitosamente"
+        "message": "Falla creada exitosamente"
     }
     return jsonify(response_body), 201
 
