@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       propuestas: [],
+      estadopropuesta: [],
       propuestas_tecnico: [],
       fallas_user: [],
       informes: [],
@@ -379,6 +380,36 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
         //
         return { code: 201, msg: "Propuesta registrada" };
+      },
+      aceptar_propuesta_actions: async(id_propuesta)=>{
+        const store = getStore();
+        const params = {
+          method: "POST", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            //Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(`${apiURL}/aceptar_propuesta/${id_propuesta}`, params
+        );
+        const datos = await res.json();
+        setStore({ estadopropuesta: datos });
+        return store.estadopropuesta;
+      },
+      declinar_propuesta_actions: async(id_propuesta)=>{
+        const store = getStore();
+        const params = {
+          method: "POST", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            //Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(`${apiURL}/declinar_propuesta/${id_propuesta}`, params
+        );
+        const datos = await res.json();
+        setStore({ estadopropuesta: datos });
+        return store.estadopropuesta;
       },
       detallePropuesta: async (id) => {
         const store = getStore();
