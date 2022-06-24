@@ -17,15 +17,16 @@ def listado_fallas():
 @jwt_required()
 def falla(falla_id):
     falla = Falla.query.get_or_404(falla_id)
-    imagen=Imagenes.query.filter(Imagenes.id==falla.imagen_id).first()
-    bucket=storage.bucket(name="tallerapp-4geeks.appspot.com")
-    blob = bucket.blob(imagen.firebase_id)
     respuesta=falla.serialize()
-    respuesta["imagen"]=blob.generate_signed_url(version="v4",
-        # This URL is valid for 15 minutes
-        expiration=datetime.timedelta(minutes=15),
-        # Allow GET requests using this URL.
-        method="GET")
+    if falla.imagen_id:
+        imagen=Imagenes.query.filter(Imagenes.id==falla.imagen_id).first()
+        bucket=storage.bucket(name="tallerapp-4geeks.appspot.com")
+        blob = bucket.blob(imagen.firebase_id)
+        respuesta.imagen=blob.generate_signed_url(version="v4",
+            # This URL is valid for 15 minutes
+            expiration=datetime.timedelta(minutes=15),
+            # Allow GET requests using this URL.
+            method="GET")
     return jsonify(respuesta)
 
 @api.route('/crear_falla', methods=['POST']) #ENDPOINT DE REGISTRAR

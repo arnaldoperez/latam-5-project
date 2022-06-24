@@ -11,26 +11,20 @@ import Accordion from "react-bootstrap/Accordion";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-
 import { Card, Row, Container, Column } from "react-bootstrap";
-
 import Button from "react-bootstrap/Button";
-
 export const Profile = () => {
   const { store, actions } = useContext(Context);
   const navigate = useHistory();
-
   function profile(id_tecnico) {
     return actions.listarCalificacionesTecnico(id_tecnico);
   }
   const aceptar_propuesta = (id_propuesta) => {
     actions.aceptar_propuesta_actions(id_propuesta);
   }
-
   const declinar_propuesta = (id_propuesta) => {
     actions.declinar_propuesta_actions(id_propuesta);
   }
-
   function media(list) {
     var suma = 0;
     let prom = 0;
@@ -48,28 +42,22 @@ export const Profile = () => {
   
   
   /*
-
   const cargarListado = () => {
     actions.listarCalificacionesTodos();
   };*/
-
   useEffect(() => {
     cargarListadoFallas();
     cargarListadoPropuestas();    
   }, []);
-
   const cargarListadoFallas = () => {
     actions.listarFallas_user();
   };
   const cargarListadoPropuestas = () => {
     actions.listarPropuestas();
   };
-
   //cargarListadoCalificaciones = () =>{
     //let id_tecnico = store.propuestas[0].id_tecnico//lo estoy sacando directamente de mi form.Control name="email"
     //return actions.listarCalificacionesTecnico(id_tecnico);}
-
-
   return (
     <Container>
       <Row>
@@ -103,7 +91,6 @@ export const Profile = () => {
               <ListGroup as="ul">
                     <div>
                       
-
                   {store.propuestas.map((propuesta, index) => (
                     <ListGroup.Item key={index}>
                       <div className="paralelo">
@@ -173,18 +160,15 @@ export const Profile = () => {
             <Modal.Header closeButton>
               <Modal.Title>comentarios y sugerencias</Modal.Title>
             </Modal.Header>
-
             <Modal.Body>
               <p>Me gustaria incluir nuevos centros de mantenimiento de mi zona en esta aplicacion.</p>
             </Modal.Body>
-
             <Modal.Footer>
               <Button variant="secondary">Close</Button>
               <Button variant="primary">Save changes</Button>
             </Modal.Footer>
           </Modal.Dialog>
         </Col>
-
         {/*ACA EMPIEZA LA COLUMNA 3 */}
         <Col>
          
@@ -201,7 +185,6 @@ export const Profile = () => {
               </Card.Text>
             </Card.Body>
           </Card>
-
           <div>
             {/*acaempieza la calificacion */}
             <Card>
@@ -216,14 +199,12 @@ export const Profile = () => {
               </ProgressBar>
             </Card>
           </div>
-
           <Accordion>
             <Accordion.Item eventKey="0">
               <Accordion.Header>History</Accordion.Header>
               <Accordion.Body>
                 <div>
                   <h3>History</h3>
-
                   {store.historialTecnico.map((calificacion, index) => (
                     <ListGroup.Item key={index}>
                       <div className="paralelo">

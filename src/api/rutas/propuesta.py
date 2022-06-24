@@ -16,7 +16,7 @@ def nuevapropuesta():
 
     detalle=request.json.get("detalle")#capturando destalle del requerimiento
     costo_servicio=request.json.get("costo_servicio")#capturando servicio del requerimiento
-    estado=request.json.get("estado")#"sin estado"#capturando estado del requerimiento
+    estado=request.json.get("estado")#capturando estado del requerimiento
     id_falla=request.json.get("id_falla")#capturando falla del requerimiento
     id_tecnico=idTecnico#request.json.get("id_tecnico")#capturando tecnico del requerimiento
     newPropuesta=Propuesta(detalle=detalle, costo_servicio=costo_servicio, estado=estado, id_falla=id_falla, id_tecnico=id_tecnico, is_active=True)#creando propuesta con el modelo (clase) que importe
@@ -57,7 +57,7 @@ def historial_propuestauser():
 
     id_mis_fallas=Falla.query.filter_by(id_cliente=id_user).all()
     id_mis_fallas=list(map(lambda falla: falla.propuestas(), id_mis_fallas ))
-    #print(id_mis_fallas)
+    print(id_mis_fallas)
     for id in id_mis_fallas:
         print(id.serialize())
     id_mis_fallas.fecha_cierre=newCalificacion.fecha_cierre

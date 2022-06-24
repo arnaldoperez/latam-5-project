@@ -247,12 +247,15 @@ const getState = ({ getStore, getActions, setStore }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${store.token}`,
+            "Access-Control-Allow-Origin": "*",
           },
         };
-        const res = await fetch(
-          process.env.BACKEND_URL + "/api/falla/" + id,
-          params
+        const res = await fetch(apiURL + "/falla/" + id, params).catch((err) =>
+          console.log(err)
         );
+        if (res.status !== 200) {
+          console.error(res.statusText);
+        }
         const datos = await res.json();
         setStore({ detalle: datos });
         return store.detalle;
@@ -389,7 +392,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         //
         return { code: 201, msg: "Propuesta registrada" };
       },
-      aceptar_propuesta_actions: async(id_propuesta)=>{
+      aceptar_propuesta_actions: async (id_propuesta) => {
         const store = getStore();
         const params = {
           method: "POST", //ingreso el metodo de mi peticion
@@ -398,13 +401,15 @@ const getState = ({ getStore, getActions, setStore }) => {
             //Authorization: `Bearer ${store.token}`,
           },
         };
-        const res = await fetch(`${apiURL}/aceptar_propuesta/${id_propuesta}`, params
+        const res = await fetch(
+          `${apiURL}/aceptar_propuesta/${id_propuesta}`,
+          params
         );
         const datos = await res.json();
         setStore({ estadopropuesta: datos });
         return store.estadopropuesta;
       },
-      declinar_propuesta_actions: async(id_propuesta)=>{
+      declinar_propuesta_actions: async (id_propuesta) => {
         const store = getStore();
         const params = {
           method: "POST", //ingreso el metodo de mi peticion
@@ -413,7 +418,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             //Authorization: `Bearer ${store.token}`,
           },
         };
-        const res = await fetch(`${apiURL}/declinar_propuesta/${id_propuesta}`, params
+        const res = await fetch(
+          `${apiURL}/declinar_propuesta/${id_propuesta}`,
+          params
         );
         const datos = await res.json();
         setStore({ estadopropuesta: datos });
