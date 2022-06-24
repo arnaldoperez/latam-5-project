@@ -396,6 +396,42 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ detalle_propuesta: datos });
         return store.detalle_propuesta;
       },
+      grabarInforme: async (
+        idFalla,
+        comentario,
+        recomendacion,
+        importe,
+        imagen
+      ) => {
+        const store = getStore();
+        //mi peticion es asincrona es decir espera por el resultado
+        var data = new FormData();
+
+        data.append("comentario", comentario);
+        data.append("recomendacion", recomendacion);
+        data.append("idFalla", idFalla);
+        data.append("importe", importe);
+        data.append("imagen", imagen);
+
+        const params = {
+          method: "POST", //ingreso el metodo de mi peticion
+          body: data,
+          headers: {
+            Authorization: `Bearer ${store.token}`,
+            "Access-Control-Allow-Origin": "*",
+          },
+        };
+        const resp = await fetch(
+          process.env.BACKEND_URL + "/api/informe_tecnico",
+          params
+        );
+        console.log(resp.status);
+        if (resp.status !== 201) {
+          return { code: resp.status, msg: resp.statusText };
+        }
+        //
+        return { code: 201, msg: "Propuesta registrada" };
+      },
     },
   };
 };

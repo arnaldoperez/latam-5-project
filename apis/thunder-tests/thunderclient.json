@@ -64,9 +64,13 @@
     "method": "GET",
     "sortNum": 40000,
     "created": "2022-05-30T23:40:23.606Z",
-    "modified": "2022-06-07T18:18:00.182Z",
+    "modified": "2022-06-24T04:58:01.095Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{user-token}}"
+    },
     "tests": []
   },
   {
@@ -379,12 +383,12 @@
     "method": "POST",
     "sortNum": 8750,
     "created": "2022-06-12T02:31:30.867Z",
-    "modified": "2022-06-21T00:45:26.917Z",
+    "modified": "2022-06-24T04:50:13.067Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"jackbaso@hotmail.com\",\n    \"password\":\"123\"\n}",
+      "raw": "{\n    \"email\":\"tecnico@4geeks.com\",\n    \"password\":\"123\"\n}",
       "form": []
     },
     "tests": [

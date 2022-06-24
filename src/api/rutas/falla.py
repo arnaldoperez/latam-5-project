@@ -15,7 +15,6 @@ def listado_fallas():
 @jwt_required()
 def falla(falla_id):
     falla = Falla.query.get_or_404(falla_id)
-    #prueba = "valor"
     return jsonify(falla.serialize())
 
 @api.route('/falla', methods=['POST']) #ENDPOINT DE REGISTRAR
@@ -46,3 +45,4 @@ def listado_fallas_user():
     fallas_user = Falla.query.filter(Falla.id_cliente==id_user).filter(Falla.id==Propuesta.id_falla).all() #Fallas asociadas a mi usuario
     fallas_user = list(map(lambda propuesta: propuesta.serialize(), fallas_user ))#me trajo fue las fallas asocidas a mi usuario
     return jsonify(fallas_user)
+

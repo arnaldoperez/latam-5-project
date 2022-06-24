@@ -37,7 +37,7 @@ const DetallePropuesta = () => {
 
   const datos = store.detalle;
 
-  console.log(datos);
+  console.log(datos.propuestas);
 
   function grabarPropuesta(event) {
     event.preventDefault();
