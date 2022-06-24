@@ -74,11 +74,6 @@ export const Login = () => {
                 Login
               </button>
             </div>
-            <p className="text-center">
-              <a href="#" className="btn">
-                Forgot password?
-              </a>
-            </p>
           </form>
         </article>
       </div>
