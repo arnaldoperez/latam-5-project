@@ -62,63 +62,52 @@ const FormCrearFallas = () => {
 
         <Form.Group>
           <Form.Label>Titulo: </Form.Label>
-          <FloatingLabel controlId="floatingTextarea2">
-            <Form.Control
-              required
-              as="textarea"
-              placeholder="Observaciones acerca del trabajo realizado"
-              name="comentario_servicio"
-              style={{ height: "100px" }}
-            />
-            <Form.Control.Feedback type="invalid">
-              Ingrese un título
-            </Form.Control.Feedback>
-          </FloatingLabel>
+
+          <Form.Control
+            required
+            placeholder="Ingrese un título descriptivo"
+            name="titulo"
+          />
+          <Form.Control.Feedback type="invalid">
+            Ingrese un título
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group>
           <Form.Label>Modelo: </Form.Label>
-          <FloatingLabel controlId="floatingTextarea2">
-            <Form.Control
-              required
-              as="textarea"
-              placeholder="Observaciones acerca del trabajo realizado"
-              name="comentario_servicio"
-              style={{ height: "100px" }}
-            />
-            <Form.Control.Feedback type="invalid">
-              Ingrese el modelo
-            </Form.Control.Feedback>
-          </FloatingLabel>
+
+          <Form.Control
+            required
+            placeholder="Ingrese el modelo del vehículo"
+            name="comentario_servicio"
+          />
+          <Form.Control.Feedback type="invalid">
+            Ingrese el modelo
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group>
           <Form.Label>Descripción: </Form.Label>
-          <FloatingLabel controlId="floatingTextarea2">
-            <Form.Control
-              required
-              as="textarea"
-              placeholder="Observaciones acerca del trabajo realizado"
-              name="comentario_servicio"
-              style={{ height: "100px" }}
-            />
-            <Form.Control.Feedback type="invalid">
-              Ingrese la descripción de su falla
-            </Form.Control.Feedback>
-          </FloatingLabel>
+
+          <Form.Control
+            required
+            as="textarea"
+            placeholder="Ingrese la descripción de la falla presentada"
+            name="comentario_servicio"
+          />
+          <Form.Control.Feedback type="invalid">
+            Ingrese la descripción de su falla
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group>
           <Form.Label>Ubicación: </Form.Label>
-          <FloatingLabel controlId="floatingTextarea2">
-            <Form.Control
-              required
-              as="textarea"
-              placeholder="Observaciones acerca del trabajo realizado"
-              name="comentario_servicio"
-              style={{ height: "100px" }}
-            />
-            <Form.Control.Feedback type="invalid">
-              Ingrese su ubicación
-            </Form.Control.Feedback>
-          </FloatingLabel>
+
+          <Form.Control
+            required
+            placeholder="Ingrese la dirección"
+            name="comentario_servicio"
+          />
+          <Form.Control.Feedback type="invalid">
+            Ingrese su dirección
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="formFileMultiple" className="mb-3">
           <Form.Label>Imagenes</Form.Label>
