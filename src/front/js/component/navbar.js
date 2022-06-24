@@ -45,7 +45,7 @@ export const Navbar = () => {
           <Link to="/">
             <span className="btn btn-primary mx-2 nav-item">Mi perfil</span>
           </Link>
-          <Link to="/calificaciones">Link</Link>
+          <Link to="/calificaciones"><span className="btn btn-primary mx-2 nav-item">calificaciones</span></Link>
           <Link to="/propuestas">
             <span className="btn btn-primary mx-2 nav-item">
               Mis propuestas
