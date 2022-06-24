@@ -130,11 +130,11 @@
     "colId": "history",
     "containerId": "",
     "name": "{{url}}/login",
-    "url": "https://3001-arnaldopere-latam5proje-eut884jccbg.ws-us47.gitpod.io/api/login",
+    "url": "{{url}}/login",
     "method": "POST",
     "sortNum": 0,
     "created": "2022-06-05T00:34:00.797Z",
-    "modified": "2022-06-18T01:46:11.502Z",
+    "modified": "2022-06-24T19:28:18.853Z",
     "headers": [],
     "params": [],
     "body": {

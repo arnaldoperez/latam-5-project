@@ -3,6 +3,7 @@ from ..routes import app, api, bcrypt, request, jsonify
 from ..modelos import User, Perfil_tecnico, TokenBlockedList
 from ..db import db
 from datetime import datetime, timezone, timedelta
+from api.utils import generate_sitemap, APIException
 
 @api.route('/signup', methods=['POST']) #ENDPOINT DE REGISTRAR
 def signup():
