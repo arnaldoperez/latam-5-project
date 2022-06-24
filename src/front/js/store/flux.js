@@ -177,6 +177,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const listado = await res.json();
         const store = getStore();
         setStore({ historialTecnico: listado });
+        console.log(store.historialTecnico)
         return store.historialTecnico;
       },
       tecnicoDetalle: async (tecnico_id) => {

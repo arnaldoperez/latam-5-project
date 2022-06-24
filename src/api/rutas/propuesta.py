@@ -32,7 +32,7 @@ def nuevapropuesta():
 def listado_propuestas():
     id_user=get_jwt_identity()
     id_fallas = Falla.query.filter(Falla.id_cliente==id_user).filter(Falla.id==Propuesta.id_falla).all() #Fallas asociadas a mi usuario
-    id_fallas=list(map(lambda falla: falla.id, id_fallas))
+    id_fallas=list(map(lambda falla: falla.id, id_fallas))    
     propuestastodos = Propuesta.query.all()
     propuestastodos =list(map(lambda propuesta: propuesta.serialize(), propuestastodos ))
     propuestas_user=[]

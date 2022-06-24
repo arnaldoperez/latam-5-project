@@ -20,7 +20,7 @@ import { SignUp_Tech } from "./pages/signUp_Tech";
 import { Profile } from "./pages/Profile";
 import { Logout } from "./pages/logout";
 
-import { Navbar } from "./component/navbar";
+import { Navbarr } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Login } from "./component/login";
 import { NavbarProtected } from "./component/navbarProtected";
@@ -57,7 +57,7 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          <Navbar />
+          <Navbarr />
           <Switch>
             <Route exact path="/tecnicos">
               <SignUp_Tech />
@@ -85,14 +85,6 @@ const Layout = () => {
             </Route>
             <Route exact path="/falla/:id">
               <DetalleFallas />
-            </Route>
-
-            <Route exact path="/propuestas">
-              <ListadoPropuestas />
-            </Route>
-
-            <Route exact path="/propuestas">
-              <ListadoPropuestas />
             </Route>
             <Route exact path="/crear_informe">
               <FormInfoTecnico />
