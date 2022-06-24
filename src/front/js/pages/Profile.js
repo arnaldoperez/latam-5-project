@@ -20,14 +20,15 @@ export const Profile = () => {
   const { store, actions } = useContext(Context);
   const navigate = useHistory();
 
-  function profile(event) {
-    // Previene el comportamiento por defecto, evitando que la pagina se recargue
-    event.preventDefault();
-    // Se crea un objeto "FormData" con los datos del formulario
-    let data = new FormData(event.target); //en esta variable estoy capturando controladamente todos los valores que el usuario ingreso en el formulario una vez realice el evento submit
-    // capturo los valores que el usuario ingreso en el formulario
-    let id_tecnico = data.get("id_tecnico"); //lo estoy sacando directamente de mi form.Control name="email"
+  function profile(id_tecnico) {
     return actions.listarCalificacionesTecnico(id_tecnico);
+  }
+  const aceptar_propuesta = (id_propuesta) => {
+    actions.aceptar_propuesta_actions(id_propuesta);
+  }
+
+  const declinar_propuesta = (id_propuesta) => {
+    actions.declinar_propuesta_actions(id_propuesta);
   }
 
   function media(list) {
@@ -41,13 +42,12 @@ export const Profile = () => {
     }
     promedio = suma / list.length;
     promedio = parseInt(promedio * 10);
+        
     return promedio;
   }
-  media(store.historialTecnico);
   
-  /*useEffect(() => {
-    cargarListado();
-  }, []);
+  
+  /*
 
   const cargarListado = () => {
     actions.listarCalificacionesTodos();
@@ -79,9 +79,10 @@ export const Profile = () => {
           <Card>
             <Card.Img variant="top" src="http://placeimg.com/640/360/any" />
             <Card.Body>
-              <Card.Title>Arnaldo Martínez</Card.Title>
+              <Card.Title>Nelly Stewart</Card.Title>
               <Card.Text>
-                Mecanico certificado KTM, Kawasaki y Ducatti. Más de 10 años de
+                Industria mecanica.
+                Cuenta con certificado KTM, Kawasaki y Ducatti. Más de 10 años de
                 experiencia reparando vehiculos. Conocimientos en motores
                 eléctricos y de combustión
               </Card.Text>
@@ -96,12 +97,12 @@ export const Profile = () => {
             </Modal.Header>
             {/*acaempieza el acordion */}
             <Accordion>
-              <Accordion.Item eventKey="0">
-                <Accordion.Header>Listado de propuestas</Accordion.Header>
+            <Accordion.Item eventKey="0">
+                <Accordion.Header>Configuracion Estado: {store.estadopropuesta.estado}</Accordion.Header>
                 <Accordion.Body>
-                  <ListGroup as="ul">
+              <ListGroup as="ul">
                     <div>
-                      <h3>History</h3>
+                      
 
                   {store.propuestas.map((propuesta, index) => (
                     <ListGroup.Item key={index}>
@@ -113,7 +114,7 @@ export const Profile = () => {
                         {propuesta.estado}
                         </footer>
                         <footer className="blockquote-footer">
-                        id_tecnico : {propuesta.id_tecnico}
+                        tecnico asignado : {propuesta.id_tecnico}
                         </footer>
                       </div>
                       <blockquote className="blockquote mb-0">
@@ -121,14 +122,14 @@ export const Profile = () => {
                         {propuesta.detalle}
                         </cite>
                       </blockquote>
-                      <Button variant="secondary">Accept</Button>
-                      <Button variant="primary">Decline</Button>
-                      <Button variant="success" onclick="cargarListadoCalificaciones()">score</Button>
+                      <Button variant="secondary"onClick={()=>aceptar_propuesta(propuesta.id)}>Accept</Button>
+                      <Button variant="primary" onClick={()=>declinar_propuesta(propuesta.id)}>Decline</Button>
+                      <Button variant="success" onClick={()=>profile(propuesta.id_tecnico)}>score</Button>
                     </ListGroup.Item>
                   ))}
                 </div>
-                </ListGroup>
-                </Accordion.Body>
+              </ListGroup>
+              </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="1">
                 <Accordion.Header>Fails </Accordion.Header>
@@ -151,6 +152,9 @@ export const Profile = () => {
                             <footer className="blockquote-footer">
                               ubicacion: {falla.ubicacion}
                             </footer>
+                            <footer className="blockquote-footer">
+                              estado: {falla.estado}
+                            </footer>
                           </div>
                           <blockquote className="blockquote mb-0">
                             <cite title="Source Title">{falla.titulo}</cite>
@@ -163,15 +167,15 @@ export const Profile = () => {
               </Accordion.Item>
             </Accordion>
           </Modal.Dialog>
-
+          
           {/*acaempieza el modal */}
           <Modal.Dialog>
             <Modal.Header closeButton>
-              <Modal.Title>Necesito un nuevo servicio</Modal.Title>
+              <Modal.Title>comentarios y sugerencias</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
-              <p>Modal body text goes here.</p>
+              <p>Me gustaria incluir nuevos centros de mantenimiento de mi zona en esta aplicacion.</p>
             </Modal.Body>
 
             <Modal.Footer>
@@ -183,29 +187,17 @@ export const Profile = () => {
 
         {/*ACA EMPIEZA LA COLUMNA 3 */}
         <Col>
-          <Form onSubmit={profile}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Control
-                type="integer"
-                placeholder="Enter id Technician"
-                name="id_tecnico"
-                required
-              />
-              {/*Este email es el que se toma en la funcion SignUpUser con el evento submit*/}{" "}
-            </Form.Group>
-          </Form>
+         
           {/*acaempieza el card con la imagen opcional del taller prestador del servicio */}
           <Card>
             <Card.Body>
               <Card.Title>
-                Taller Name Cailificacion{" "}
-                <strong>{media(store.historialTecnico)}</strong>
+                Puntaje del tecnico{" "}
+                
               </Card.Title>
               <Card.Text>
-                Promedio de calificaciones recibidas por el taller.{" "}
-                {store.historialTecnico.map((calificacion, index) => (
-                  <strong key={{ index }}>{calificacion.calificacion}</strong>
-                ))}
+                Algunos usuarios han recibido apoyo de este taller y lo han calificado
+                , este es el promedio de calificaciones recibidas por el taller.              
               </Card.Text>
             </Card.Body>
           </Card>

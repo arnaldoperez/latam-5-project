@@ -4,6 +4,13 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       propuestas: [],
+      estadopropuesta: [],
+      listar_informes_user: [],
+      listarPropuestasTecnico: [],
+      propuestas_aprobadas: [],
+      propuestas_no_aceptadas: [],
+      listarFallasAbiertas: [],
+      informes_user: [],
       propuestas_tecnico: [],
       fallas_user: [],
       informes: [],
@@ -177,6 +184,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const listado = await res.json();
         const store = getStore();
         setStore({ historialTecnico: listado });
+        console.log(store.historialTecnico);
         return store.historialTecnico;
       },
       tecnicoDetalle: async (tecnico_id) => {
@@ -312,6 +320,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ propuestas_tecnico: listado });
         return store.propuestas_tecnico;
       },
+
       grabarPropuesta: async (detalle, costo_servicio, estado, id_falla) => {
         const store = getStore();
         //mi peticion es asincrona es decir espera por el resultado
@@ -359,6 +368,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         data.append("idFalla", idFalla);
         data.append("importe", importe);
         data.append("imagen", imagen);
+        data.append("estado", "creado");
 
         const params = {
           method: "POST", //ingreso el metodo de mi peticion
@@ -379,6 +389,67 @@ const getState = ({ getStore, getActions, setStore }) => {
         //
         return { code: 201, msg: "Propuesta registrada" };
       },
+      aceptar_propuesta_actions: async(id_propuesta)=>{
+        const store = getStore();
+        const params = {
+          method: "POST", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            //Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(`${apiURL}/aceptar_propuesta/${id_propuesta}`, params
+        );
+        const datos = await res.json();
+        setStore({ estadopropuesta: datos });
+        return store.estadopropuesta;
+      },
+      declinar_propuesta_actions: async(id_propuesta)=>{
+        const store = getStore();
+        const params = {
+          method: "POST", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            //Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(`${apiURL}/declinar_propuesta/${id_propuesta}`, params
+        );
+        const datos = await res.json();
+        setStore({ estadopropuesta: datos });
+        return store.estadopropuesta;
+      },
+      grabarFalla: async (titulo, modelo, descripcion, ubicacion, imagen) => {
+        const store = getStore();
+        //mi peticion es asincrona es decir espera por el resultado
+        var data = new FormData();
+
+        data.append("titulo", titulo);
+        data.append("modelo", modelo);
+        data.append("descripcion", descripcion);
+        data.append("ubicacion", ubicacion);
+        data.append("imagen", imagen);
+        data.append("estado", "Sin Informe");
+
+        const params = {
+          method: "POST", //ingreso el metodo de mi peticion
+          body: data,
+          headers: {
+            Authorization: `Bearer ${store.token}`,
+            "Access-Control-Allow-Origin": "*",
+          },
+        };
+        const resp = await fetch(
+          process.env.BACKEND_URL + "/api/crear_falla",
+          params
+        );
+        console.log(resp.status);
+        if (resp.status !== 201) {
+          return { code: resp.status, msg: resp.statusText };
+        }
+        //
+        return { code: 201, msg: "Falla registrada" };
+      },
       detallePropuesta: async (id) => {
         const store = getStore();
         const params = {
@@ -395,6 +466,125 @@ const getState = ({ getStore, getActions, setStore }) => {
         const datos = await res.json();
         setStore({ detalle_propuesta: datos });
         return store.detalle_propuesta;
+      },
+      grabarInforme: async (
+        idFalla,
+        comentario,
+        recomendacion,
+        importe,
+        imagen
+      ) => {
+        const store = getStore();
+        //mi peticion es asincrona es decir espera por el resultado
+        var data = new FormData();
+
+        data.append("comentario", comentario);
+        data.append("recomendacion", recomendacion);
+        data.append("idFalla", idFalla);
+        data.append("importe", importe);
+        data.append("imagen", imagen);
+
+        const params = {
+          method: "POST", //ingreso el metodo de mi peticion
+          body: data,
+          headers: {
+            Authorization: `Bearer ${store.token}`,
+            "Access-Control-Allow-Origin": "*",
+          },
+        };
+        const resp = await fetch(
+          process.env.BACKEND_URL + "/api/informe_tecnico",
+          params
+        );
+        console.log(resp.status);
+        if (resp.status !== 201) {
+          return { code: resp.status, msg: resp.statusText };
+        }
+        //
+        return { code: 201, msg: "Propuesta registrada" };
+      },
+      propuestas_aprobadas: async (id) => {
+        const store = getStore();
+        const params = {
+          method: "GET", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(`${apiURL}/propuestas_aprobadas/${id}`, params);
+        const listado = await res.json();
+        setStore({ propuestas_aprobadas: listado });
+        return store.propuestas_aprobadas;
+      },
+      propuestas_no_aceptadas: async (id) => {
+        const store = getStore();
+        const params = {
+          method: "GET", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(
+          `${apiURL}/propuestas_no_aceptadas/${id}`,
+          params
+        );
+        const listado = await res.json();
+        setStore({ propuestas_no_aceptadas: listado });
+        return store.propuestas_no_aceptadas;
+      },
+      listar_informes_user: async (id) => {
+        const store = getStore();
+        const params = {
+          method: "GET", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(
+          process.env.BACKEND_URL + "/api/listar_informes_user",
+          params
+        );
+        const listado = await res.json();
+        setStore({ listar_informes_user: listado });
+        return store.listar_informes_user;
+      },
+      listarPropuestasTecnico: async (id) => {
+        const store = getStore();
+        const params = {
+          method: "GET", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(
+          process.env.BACKEND_URL + "/api/propuesta_user/" + id,
+          params
+        );
+        const listado = await res.json();
+        setStore({ listarPropuestasTecnico: listado });
+        return store.listarPropuestasTecnico;
+      },
+      listarFallasAbiertas: async () => {
+        const store = getStore();
+        const params = {
+          method: "GET", //ingreso el metodo de mi peticion
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.token}`,
+          },
+        };
+        const res = await fetch(
+          process.env.BACKEND_URL + "/api/listarFallasAbiertas",
+          params
+        );
+        const listado = await res.json();
+
+        setStore({ listarFallasAbiertas: listado });
+        return store.listarFallasAbiertas;
       },
     },
   };

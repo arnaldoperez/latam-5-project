@@ -1,6 +1,6 @@
 from flask_jwt_extended import JWTManager, create_access_token,create_refresh_token, jwt_required, get_jwt_identity,get_jwt
 from ..routes import app, api, bcrypt, request, jsonify
-from ..modelos import InformeTecnico, Imagenes
+from ..modelos import InformeTecnico, Imagenes, Falla, Propuesta
 import datetime 
 import tempfile
 from firebase_admin import storage
@@ -22,8 +22,8 @@ def crear_informe_tecnico():
     comentario_servicio=request.form['comentario']
     falla_id=request.form['idFalla']
     importe=request.form['importe']
+    estado="creado"
     imagen=request.files['imagen']
-    estado="open"
     
     # Creamos el objeto del informe tecnico para la BD y lo guardamos
     newInforme= InformeTecnico(fecha_creacion=fecha_creacion,comentario_servicio=comentario_servicio,recomendacion=recomendacion,usuario_id=usuario_id, falla_id=falla_id,importe=importe,estado=estado)
@@ -88,3 +88,41 @@ id_user=get_jwt_identity()
 propuestas = Falla.query.filter(Falla.id_cliente==id_user).filter(Falla.id==Propuesta.id_falla).all() #propuestas asociadas a la falla de mi usuario
 propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))
 return jsonify(propuestas)'''
+
+
+
+    
+@api.route('/listar_informes_user', methods=['GET'])
+@jwt_required()
+def listar_informes_user():
+    id_user=get_jwt_identity()
+    informes = InformeTecnico.query.filter(InformeTecnico.usuario_id==id_user).all()
+    informes = list(map(lambda informe: informe.serialize(), informes ))
+    return jsonify(informes)
+
+@api.route('/informeUser', methods=['GET'])
+@jwt_required()
+def listado_informes_user():
+    id_user=get_jwt_identity()
+    id_fallas = Falla.query.filter(Falla.id_cliente==id_user).filter(Falla.id==Propuesta.id_falla).all() #Fallas asociadas a mi usuario
+    id_fallas=list(map(lambda falla: falla.id, id_fallas))    
+    #propuestastodos = Propuesta.query.all()
+    #propuestastodos =list(map(lambda propuesta: propuesta.serialize(), propuestastodos ))
+    #propuestas_user=[]
+    #for propuest in propuestastodos:
+        #for index in id_fallas:
+            #if(propuest["id_falla"]==index):
+                #propuestas_user.append(propuest)        
+                #propuestas_user.append(propuest)  
+    #propuestas = list(map(lambda propuesta: propuesta.serialize(), propuestas ))#me trajo fue las fallas asocidas a mi usuario
+    
+    #propuestas_user=list(map(lambda propuesta: propuesta["id"], propuestas_user))#aca tengo los ids de las propuestas asociadas a las fallas de mi usuario
+    informes_todos=InformeTecnico.query.all() #aca tengo todos los informes creados
+    informes_todos =list(map(lambda informe: informe.serialize(), informes_todos ))    
+    informes=[]    
+    for informe in informes_todos:
+        for index in id_fallas:
+            if (informe["falla_id"]==index):
+                informes.append(informe)
+
+    return jsonify(informes)

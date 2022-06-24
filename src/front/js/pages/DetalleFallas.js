@@ -36,8 +36,8 @@ const DetallePropuesta = () => {
   }
 
   const datos = store.detalle;
-
   console.log(datos);
+  console.log(datos.propuestas);
 
   function grabarPropuesta(event) {
     event.preventDefault();
@@ -52,14 +52,14 @@ const DetallePropuesta = () => {
     // capturo los valores que el usuario ingreso en el formulario
     let detalle = data.get("detalle"); //lo estoy sacando directamente de mi form.Control name="email"
     let costo_servicio = data.get("costo_servicio"); //lo estoy sacando directamente de mi form.Control name="password"
-    let estado = "open";
+    let estado = "No aceptada";
     let id_falla = datos.id;
 
     actions
       .grabarPropuesta(detalle, costo_servicio, estado, id_falla)
       .then((resp) => {
         //evalua la respuesta en sus dos casos
-        if (resp.code == 201) setModalShow(false);
+        if (resp.code == 201) navigate.push("/perfil_tecnico");
         else {
           //caso exitoso
           console.log("Problema en el registro de la propuesta: ", resp);
@@ -133,7 +133,7 @@ const DetallePropuesta = () => {
         <Row>
           <Col sm={4}>
             <Card>
-              <Card.Img variant="top" src="https://picsum.photos/250/200" />
+              <Card.Img variant="top" src={datos.imagen} />
               <Card.Body>
                 <Card.Text>
                   <strong>Publicado por: </strong>
@@ -147,20 +147,22 @@ const DetallePropuesta = () => {
                   <strong>Estado: </strong>
                   {datos.estado}
                 </Card.Text>
-                <Button variant="danger" onClick={handleShow}>
-                  Reportar
-                </Button>
-                <Link
-                  className="btn btn-success"
-                  to={{
-                    pathname: "/detalle_informe",
-                    state: {
-                      idFalla: datos.id,
-                    },
-                  }}
-                >
-                  Ver Informe Técnico
-                </Link>
+
+                {datos.estado == "Sin informe" ? (
+                  <Link
+                    className="btn btn-success"
+                    to={{
+                      pathname: "/detalle_informe",
+                      state: {
+                        idFalla: datos.id,
+                      },
+                    }}
+                  >
+                    Ver Informe Técnico
+                  </Link>
+                ) : (
+                  ""
+                )}
               </Card.Body>
             </Card>
           </Col>
@@ -190,19 +192,6 @@ const DetallePropuesta = () => {
                     >
                       Crear Propuesta
                     </Button>{" "}
-                    <Link
-                      className="btn btn-primary"
-                      to={{
-                        pathname: "/crear_informe",
-                        state: {
-                          idFalla: datos.id,
-                          tituloFalla: datos.titulo,
-                          modeloFalla: datos.modelo,
-                        },
-                      }}
-                    >
-                      Crear Informe
-                    </Link>
                   </>
                 ) : (
                   ""

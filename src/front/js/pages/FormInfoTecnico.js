@@ -13,7 +13,8 @@ const FormInfoTecnico = () => {
   param = parseInt(param.id);
 
   const location = useLocation();
-  const { idFalla, tituloFalla, modeloFalla } = location.state;
+  const { idFalla, tituloFalla, modeloFalla, nombreCliente, apellidoCliente } =
+    location.state;
   let idDetalle = idFalla;
   console.log(typeof idDetalle);
   const navigate = useHistory();
@@ -51,7 +52,7 @@ const FormInfoTecnico = () => {
       )
       .then((resp) => {
         //evalua la respuesta en sus dos casos
-        if (resp.code == 201) navigate.push("/falla/" + idFalla);
+        if (resp.code == 201) navigate.push("/perfil_tecnico");
         //caso exitoso
         else console.log("Problema en el registro del informe: ", resp);
       })
@@ -68,28 +69,30 @@ const FormInfoTecnico = () => {
       <Form noValidate validated={validated} onSubmit={grabarInforme}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>
-            <strong>Servicio a la falla No. {idFalla}: </strong> {tituloFalla}
+            <strong>Servicio a la Falla No. {idFalla}: </strong> {tituloFalla}
             <br />
             <br />
             <strong>Modelo: </strong>
             {modeloFalla}
+            <br />
+            <br />
+            <strong>Cliente: </strong>
+            {nombreCliente} {apellidoCliente}
           </Form.Label>
         </Form.Group>
 
         <Form.Group>
           <Form.Label>Observación</Form.Label>
-          <FloatingLabel controlId="floatingTextarea2">
-            <Form.Control
-              required
-              as="textarea"
-              placeholder="Observaciones acerca del trabajo realizado"
-              name="comentario_servicio"
-              style={{ height: "100px" }}
-            />
-            <Form.Control.Feedback type="invalid">
-              Ingrese su evalución o comentario acerca del servicio realizado!
-            </Form.Control.Feedback>
-          </FloatingLabel>
+
+          <Form.Control
+            required
+            as="textarea"
+            placeholder="Observaciones acerca del trabajo realizado"
+            name="comentario_servicio"
+          />
+          <Form.Control.Feedback type="invalid">
+            Ingrese su evalución o comentario acerca del servicio realizado!
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="formFileMultiple" className="mb-3">
           <Form.Label>Imagenes</Form.Label>
@@ -97,14 +100,12 @@ const FormInfoTecnico = () => {
         </Form.Group>
         <Form.Group>
           <Form.Label>Recomendación</Form.Label>
-          <FloatingLabel controlId="floatingTextarea2">
-            <Form.Control
-              as="textarea"
-              placeholder="Tienes algo que recomendar?"
-              name="recomendacion"
-              style={{ height: "100px" }}
-            />
-          </FloatingLabel>
+
+          <Form.Control
+            as="textarea"
+            placeholder="Tienes algo que recomendar?"
+            name="recomendacion"
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">

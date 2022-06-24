@@ -11,7 +11,7 @@ import DetallePropuesta from "./pages/DetallePropuesta";
 import FormInfoTecnico from "./pages/FormInfoTecnico";
 import ListadoPropuestas from "./pages/ListadoPropuestas";
 import ListadoInformes from "./pages/ListadoInformes";
-
+import FormCrearFallas from "./pages/FormCrearFallas";
 import ProfileTecnico from "./pages/ProfileTecnico";
 import DetalleInforme from "./pages/DetalleInforme";
 import injectContext, { Context } from "./store/appContext";
@@ -86,16 +86,11 @@ const Layout = () => {
             <Route exact path="/falla/:id">
               <DetalleFallas />
             </Route>
-
-            <Route exact path="/propuestas">
-              <ListadoPropuestas />
-            </Route>
-
-            <Route exact path="/propuestas">
-              <ListadoPropuestas />
-            </Route>
             <Route exact path="/crear_informe">
               <FormInfoTecnico />
+            </Route>
+            <Route exact path="/crear_falla">
+              <FormCrearFallas />
             </Route>
             <Route exact path="/informes">
               <ListadoInformes />

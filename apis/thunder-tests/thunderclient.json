@@ -4,16 +4,16 @@
     "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
     "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
     "name": "SignUp",
-    "url": "https://3001-arnaldopere-latam5proje-71ayra9ivye.ws-us47.gitpod.io/api/signup",
+    "url": "{{url}}/signup",
     "method": "POST",
     "sortNum": 5000,
     "created": "2022-05-28T00:56:01.087Z",
-    "modified": "2022-06-22T02:28:44.074Z",
+    "modified": "2022-06-24T04:52:56.671Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"user6@4geeks.com\",\n    \"password\":\"123\",\n    \"nombre\":\"Javier\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}\n",
+      "raw": "{\n    \"email\":\"user7@4geeks.com\",\n    \"password\":\"123\",\n    \"nombre\":\"Javier\",\n    \"apellido\":\"Pérez\",\n    \"fecha_ing\":\"27/5/2022\"\n}\n",
       "form": []
     },
     "tests": []
@@ -64,9 +64,13 @@
     "method": "GET",
     "sortNum": 40000,
     "created": "2022-05-30T23:40:23.606Z",
-    "modified": "2022-06-07T18:18:00.182Z",
+    "modified": "2022-06-24T04:58:01.095Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{user-token}}"
+    },
     "tests": []
   },
   {
@@ -309,9 +313,12 @@
     "method": "GET",
     "sortNum": 120000,
     "created": "2022-06-08T01:30:03.697Z",
-    "modified": "2022-06-08T01:51:41.734Z",
+    "modified": "2022-06-24T04:55:05.336Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer"
+    },
     "tests": []
   },
   {
@@ -379,13 +386,16 @@
     "method": "POST",
     "sortNum": 8750,
     "created": "2022-06-12T02:31:30.867Z",
-    "modified": "2022-06-21T00:45:26.917Z",
+    "modified": "2022-06-24T04:50:13.067Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\":\"jackbaso@hotmail.com\",\n    \"password\":\"123\"\n}",
+      "raw": "{\n    \"email\":\"tecnico@4geeks.com\",\n    \"password\":\"123\"\n}",
       "form": []
+    },
+    "auth": {
+      "type": "bearer"
     },
     "tests": [
       {
@@ -455,6 +465,56 @@
     "sortNum": 35000,
     "created": "2022-06-21T02:13:58.201Z",
     "modified": "2022-06-21T02:33:01.042Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "caff9b7e-edf7-4aee-84ab-b8bc823deff7",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "",
+    "name": "Propuestas",
+    "url": "{{url}}/propuestas",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2022-06-24T04:55:33.424Z",
+    "modified": "2022-06-24T05:13:42.198Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{user-token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "0b51762f-01a8-42ee-90ee-79b9aea424c5",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "",
+    "name": "Informes User",
+    "url": "{{url}}/informeUser",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2022-06-24T05:13:44.776Z",
+    "modified": "2022-06-24T05:15:04.182Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{user-token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "3b51f291-e3c9-4604-b68a-e7be49ac5c07",
+    "colId": "560f2737-c9d7-4c0a-83b1-44de2e71b3dc",
+    "containerId": "a039e116-029b-4920-ad0a-8acf4586352e",
+    "name": "aceptar Propuesta",
+    "url": "{{url}}/aceptar_propuesta/2",
+    "method": "POST",
+    "sortNum": 160000,
+    "created": "2022-06-24T17:30:18.402Z",
+    "modified": "2022-06-24T19:02:49.257Z",
     "headers": [],
     "params": [],
     "tests": []
