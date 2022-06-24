@@ -28,7 +28,11 @@ export const Navbarr = () => {
                   Mis propuestas
                 </span>
               </Link>
-              <Link to="/calificaciones"><span className="btn btn-primary mx-2 nav-item">calificaciones</span></Link>
+              <Link to="/calificaciones">
+                <span className="btn btn-primary mx-2 nav-item">
+                  calificaciones
+                </span>
+              </Link>
               <Link to="/logout">
                 <button className="btn btn-primary nav-item">
                   Cerrar sesión
@@ -59,7 +63,7 @@ export const Navbarr = () => {
                   Registro Técnico
                 </button>
               </Link>
-              <Link to="/falla">
+              <Link to="/crear_falla">
                 <button className="btn btn-primary mx-2 nav-item">
                   Nueva Falla
                 </button>
