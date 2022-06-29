@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -134,3 +135,7 @@ class Calificacion(db.Model):
             #'propuesta': self.propuesta
         }
 
+=======
+from .db import db
+from api.modelos import User, TokenBlockedList, Calificacion,Falla,Imagenes,InformeTecnico,Perfil_tecnico,Propuesta
+>>>>>>> desarrollo

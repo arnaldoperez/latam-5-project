@@ -1,3 +1,44 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+body {
+  font-family: "Proxima Nova", -apple-system, "Helvetica Neue", Helvetica,
+    Roboto, Arial, sans-serif;
+}
+.labelProfile {
+  font-weight: 700;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+label {
+  font-weight: 700;
+}
+.bold {
+  font-weight: 700;
+}
+.mainMargin {
+  margin: 20px 60px 20px 60px;
+}
+.mainMargin h2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.imagen_informe {
+  width: 50%;
+  padding: 10px;
+}
+.paralelo {
+  display: flex;
+  justify-content: space-between;
+}
+.activation:hover {
+  background: rgb(240, 240, 240);
+}
+.detalles {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+Button {
+  margin-right: 10px;
+}

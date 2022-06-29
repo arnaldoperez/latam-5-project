@@ -35,6 +35,7 @@ Thumbs.db
 *.sql
 *.sqlite
 
+
 # ignore compiled files
 *.com
 *.class
@@ -65,6 +66,7 @@ public/
 !.htaccess
 !.eslintrc
 !.env.example
+.env
 .now
 
 # backend stuff
@@ -76,3 +78,4 @@ __pycache__/
 
 #variable de entorno de thunder
 apis/thunder-tests/thunderEnvironment.json
+.env
